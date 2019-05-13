@@ -387,6 +387,7 @@ li.filtro {
     display: none;
 }
 .filtros-dropdown {
+    z-index: 1;
     position: absolute;
     min-width: 320px;
     max-width: 360px;

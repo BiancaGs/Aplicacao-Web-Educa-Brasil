@@ -126,6 +126,10 @@
                             <div class="filtros-dropdown closed">
                                 <fieldset>
                                     <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="bercario">
+                                        <label class="custom-control-label" for="bercario">Bercário</label>
+                                    </div>
+                                    <div class="custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="creche">
                                         <label class="custom-control-label" for="creche">Creche</label>
                                     </div>
