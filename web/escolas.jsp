@@ -1,7 +1,8 @@
 <%-- 
     Document   : escolas
     Created on : 13/05/2019, 10:03:21
-    Author     : pietr
+    Author     : Pietro
+    Author     : Bianca
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

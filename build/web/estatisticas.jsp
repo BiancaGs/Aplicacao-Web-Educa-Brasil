@@ -1,7 +1,8 @@
 <%-- 
     Document   : estatisticas
     Created on : 13/05/2019, 10:03:56
-    Author     : pietr
+    Author     : Pietro
+    Author     : Bianca
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
