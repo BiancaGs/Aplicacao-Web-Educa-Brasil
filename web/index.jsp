@@ -1,0 +1,182 @@
+<%-- 
+    Document   : index
+    Created on : 13/05/2019, 10:01:07
+    Author     : Pietro
+    Author     : Bianca
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Educa Brasil - Página Principal</title>
+
+        <!-- Ícone Principal -->
+        <link rel="shortcut icon" href="img/icones/Books.png" type="image/x-icon">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="lib/mdbootstrap/css/bootstrap.css">
+        <link rel="stylesheet" href="lib/mdbootstrap/css/mdb.css">
+        <link rel="stylesheet" href="css/educa_brasil.css">
+        <link rel="stylesheet" href="css/design-responsivo.css">
+        <link rel="stylesheet" href="css/fontes.css">
+
+        <!-- Icones -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+
+    </head>
+
+    <body>
+        
+        <!-- Barra de Navegação -->
+        <nav class="navbar navbar-expand-md navbar-light fixed-top" id="barra-navegacao">
+        
+            <div class="container">
+            
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.jsp">
+                        <div class="d-flex flex-row align-items-center">
+                            <img src="img/icones/Books.png" alt="Icone do Site" class="icone-header mr-1"> 
+                            <strong>Educa Brasil</strong>
+                        </div>
+                    </a>
+                </div>
+                    
+                <button class="navbar-toggler">
+                    <span class="navbar-toggler-icon" data-toggle="collapse" data-target="#navbarMenu"></span>
+                </button>
+                
+                <div class="collapse navbar-collapse" id="navbarMenu">
+
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.jsp#sobre">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="escolas.jsp">Escolas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="estatisticas.jsp">Estátísticas</a>
+                        </li>
+                        
+                    </ul>
+
+                </div>
+            
+            </div>
+    
+        </nav>
+        
+        <!-- Header -->
+        <header id="header-principal">
+            
+            
+        </header>
+        
+        <!-- Main -->
+        <main id="main-principal">
+            
+            <!-- Hero -->
+            <section id="hero-principal">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h1 class="titulo-principal">Todas as escolas em um só lugar.</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p class="paragrafo-principal">O sistema do Educa Brasil é especialista em te auxiliar a encontrar uma escola ideal para as suas necessidades.</p>
+                        </div>
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-sm-4 d-flex flex-column">
+                            <span for="btn-start">Vamos começar?</span>
+                            <input type="button" id="btn-start" value="Selecione um estado" class="mt-3 z-depth-2">
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sobre o Site -->
+            <section id="sobre">
+
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-sm-7">
+                            <h2 class="verde-escuro-text semibold">Escolha a melhor escola à partir de dados do Censo Escolar do Inep</h2>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center mt-2">
+                        <div class="col-sm-7">
+                            <p>Os dados do Educa Brasil vêm do Censo Escolar dos Microdados do Inep 2018 e abrangem diversas informações que permitem encontrar a melhor escola possível</p>
+                        </div>
+                    </div>
+                    <div class="row caracteristicas">
+
+                        <div class="col-sm-4">
+                            <div class="img rounded-circle situacao"></div>
+                            <ul>
+                                <li>Situação de Funcionamento</li>
+                                <li>(Em Atividade, Paralisada e Extinta)</li>
+                            </ul>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="img rounded-circle dependencias"></div>
+                            <p>Dependências da Escola</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="img rounded-circle ofertas-matricula"></div>
+                            <p>Ofertas de Matrícula</p>
+                        </div>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <!-- Sobre Estatísticas -->
+            <section id="sobre-estatisticas">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <h2 class="verde-escuro-text semibold">Consulte as estatísticas gerais dos dados das escolas</h2>
+                            <p>O sistema do Educa Brasil permite que você visualize os dados gerais das escolas brasileiras à partir de gráficos personalizados com diversas informações.</p>
+                        </div>
+                        <div class="col-sm-7">
+                            <div id="grafico-brasil"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+
+        </main>
+
+        <!-- Footer -->
+        <footer id="footer-principal" class="p-3">
+            <div class="footer-copy text-center">&copy; 2019 Copyright: Bianca Gomes Rodrigues, Pietro Zuntini Bonfim</div>
+        </footer>
+
+
+        <!-- Javascript -->
+
+        <script src="lib/jquery/jquery-3.3.1.min.js"></script>                          <!-- JQquery -->
+        <script src="lib/mdbootstrap/js/bootstrap.js"></script>                         <!-- Bootstrap -->
+        <script src="lib/mdbootstrap/js/mdb.js"></script>                               <!-- MDBootstrap -->
+        <!-- <script src="lib/popper/popper.min.js"></script> -->
+
+        <!-- Amcharts v4.0 -->
+        <script src="lib/amchats4/core.js"></script>
+        <script src="lib/amchats4/maps.js"></script>
+        <script src="lib/amchats4/geodata/brazilLow.js"></script>
+        <script src="lib/amchats4/animated.js"></script>
+        <script src="js/index_grafico.js"></script>
+
+    </body>
+
+</html>
