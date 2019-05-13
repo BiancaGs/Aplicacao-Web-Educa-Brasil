@@ -654,21 +654,8 @@
 
     </main>
 
-    <!-- Footer -->
-    <footer id="footer-principal" class="p-3">
-        <div class="footer-copy text-center">&copy; 2019 Copyright: Bianca Gomes Rodrigues, Pietro Zuntini Bonfim</div>
-    </footer>
+<%@include file="rodape.html"%>
 
-
-    <!-- Javascript -->
-    <script src="lib/jquery/jquery-3.3.1.min.js"></script>
-    <script src="lib/mdbootstrap/js/bootstrap.js"></script>
-    <script src="lib/mdbootstrap/js/mdb.js"></script>
-    <script src="lib/mdbootstrap/js/datatables.js"></script>
-    <script src="lib/select2/js/select2.min.js"></script>
-
-    <script src="js/escolas.js"></script>
-
-</body>
-
-</html>
+<script src="lib/mdbootstrap/js/datatables.js"></script>
+<script src="lib/select2/js/select2.min.js"></script>
+<script src="js/escolas.js"></script>

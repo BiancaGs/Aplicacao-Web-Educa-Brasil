@@ -93,27 +93,12 @@
             </section>
 
         </main>
+    
+<%@include file="rodape.html"%>
 
-        <!-- Footer -->
-        <footer id="footer-principal" class="p-3">
-            <div class="footer-copy text-center">&copy; 2019 Copyright: Bianca Gomes Rodrigues, Pietro Zuntini Bonfim</div>
-        </footer>
-
-
-        <!-- Javascript -->
-
-        <script src="lib/jquery/jquery-3.3.1.min.js"></script>                          <!-- JQquery -->
-        <script src="lib/mdbootstrap/js/bootstrap.js"></script>                         <!-- Bootstrap -->
-        <script src="lib/mdbootstrap/js/mdb.js"></script>                               <!-- MDBootstrap -->
-        <!-- <script src="lib/popper/popper.min.js"></script> -->
-
-        <!-- Amcharts v4.0 -->
-        <script src="lib/amchats4/core.js"></script>
-        <script src="lib/amchats4/maps.js"></script>
-        <script src="lib/amchats4/geodata/brazilLow.js"></script>
-        <script src="lib/amchats4/animated.js"></script>
-        <script src="js/index_grafico.js"></script>
-
-    </body>
-
-</html>
+<!-- Amcharts v4.0 -->
+<script src="lib/amchats4/core.js"></script>
+<script src="lib/amchats4/maps.js"></script>
+<script src="lib/amchats4/geodata/brazilLow.js"></script>
+<script src="lib/amchats4/animated.js"></script>
+<script src="js/index_grafico.js"></script>
