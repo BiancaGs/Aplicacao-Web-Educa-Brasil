@@ -281,7 +281,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
    ======================================================= */
 
 #sobre {
-    padding: 10rem !important;
+    padding: 3rem;
     text-align: center;  
 }
 #sobre p, #sobre li, #sobre-estatisticas p {
