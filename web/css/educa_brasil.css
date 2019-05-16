@@ -344,7 +344,7 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
    ======================================================= */
 
 #sobre-estatisticas {
-    padding: 7rem !important;
+    padding: 3rem;
     background-color: rgb(238, 237, 237);
     min-height: 80vh;
 }

@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="row mt-5">
-                        <div class="col-sm-6 col-lg-4 d-flex flex-column">
+                        <div class="col-8 col-sm-6 col-lg-4 d-flex flex-column">
                             <span for="btn-start">Vamos começar?</span>
                             <input type="button" id="btn-start" value="Selecione um estado" class="mt-3 z-depth-2">
                         </div>
@@ -77,11 +77,11 @@
             <section id="sobre-estatisticas">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-5">
+                        <div class="col-12 col-lg-5">
                             <h2 class="verde-escuro-text semibold">Consulte as estatísticas gerais dos dados das escolas</h2>
                             <p>O sistema do Educa Brasil permite que você visualize os dados gerais das escolas brasileiras à partir de gráficos personalizados com diversas informações.</p>
                         </div>
-                        <div class="col-sm-7">
+                        <div class="col-12 col-lg-7">
                             <div id="grafico-brasil"></div>
                         </div>
                     </div>

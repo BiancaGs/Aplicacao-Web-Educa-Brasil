@@ -27,7 +27,7 @@
 
 /* md + */
 @media only screen and (min-width: 768px) {
-    #sobre {
+    #sobre, #sobre-estatisticas {
         padding: 5rem !important;
     }
 }
@@ -41,6 +41,9 @@
 @media only screen and (min-width: 992px) {
     #sobre {
         padding: 10rem !important;
+    }
+    #sobre-estatisticas {
+        padding: 7rem !important;
     }
 }
 
