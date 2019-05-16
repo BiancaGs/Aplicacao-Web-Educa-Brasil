@@ -84,7 +84,7 @@ section p {
 }
 
 
-section span {
+section span[for=btn-start] {
     --tt-key: span;
     font-size: 17px;
 }
