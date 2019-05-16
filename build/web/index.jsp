@@ -55,15 +55,15 @@
                     </div>
                     <div class="row caracteristicas">
 
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-sm-4 col-md-4">
                             <div class="img rounded-circle situacao"></div>
                             <p>Situação de Funcionamento</p>
                         </div>
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-sm-4 col-md-4">
                             <div class="img rounded-circle dependencias"></div>
                             <p>Dependências da Escola</p>
                         </div>
-                        <div class="col-12 col-md-4">
+                        <div class="col-12 col-sm-4 col-md-4">
                             <div class="img rounded-circle ofertas-matricula"></div>
                             <p>Ofertas de Matrícula</p>
                         </div>

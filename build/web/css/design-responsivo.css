@@ -5,7 +5,10 @@
 
 /* xs */
 @media only screen and (max-width: 575.98px) {
-
+    #sobre .img {
+        height: 131px;
+        width: 131px;
+    }
 }
 
 /* sm */
@@ -13,11 +16,15 @@
     .nav-item {
         margin-left: 0;
     }
+    #sobre .img {
+        height: 131px;
+        width: 131px;
+    }
 }
 
 /* sm + */
 @media only screen and (min-width: 576px) {
-
+    
 }
 
 /* md */
@@ -45,9 +52,4 @@
     #sobre-estatisticas {
         padding: 7rem !important;
     }
-}
-
-/* xl */
-@media only screen and (min-width: 1200px) {
-
 }
