@@ -38,15 +38,39 @@ $(document).ready(function() {
         },
         datatype: 'html',
         success: function(retorno) {
-            console.log('Success');
-            console.log(retorno);
             
+            // Preenche o SELECT
             $('#select-estado').html(retorno);
         },
         error: function(retorno) {
             console.log('Error');
             console.log(retorno);
         }
+    });
+    
+    // Preencher o SELECT do Estado
+    $('#select-estado').change(function () {
+        
+        var estado = $(this).val();
+        
+        $.ajax({
+            url: 'RecuperarMunicipios',
+            method: 'POST',
+            data: {
+                estado: estado
+            },
+            datatype: 'html',
+            success: function(retorno) {
+
+                // Preenche o SELECT
+                $('#select-municipio').html(retorno);
+            },
+            error: function(retorno) {
+                console.log('Error');
+                console.log(retorno);
+            }
+        });
+
     });
 
     // Criação dos selects

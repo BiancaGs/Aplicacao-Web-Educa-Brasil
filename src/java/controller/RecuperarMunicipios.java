@@ -10,30 +10,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import model.Estado;
+import model.Municipio;
 import persistence.DAOException;
-import persistence.EstadoDAO;
+import persistence.MunicipioDAO;
 
 /**
  *
  * @author Pietro
  * @author Bianca
  */
-public class RecuperarEstados extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-    }
+public class RecuperarMunicipios extends HttpServlet {
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -45,7 +31,7 @@ public class RecuperarEstados extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+
     }
 
     /**
@@ -58,29 +44,32 @@ public class RecuperarEstados extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-    
+
         String retorno = "<option></option>";
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         
+        // Recupera o código do Estado da Requisição
+        String estado = request.getParameter("estado");
+
         try {
-            
-            EstadoDAO edao = new EstadoDAO();
-            List<Estado> estados = edao.listar();
-            
-            for (int i = 0; i < estados.size(); i++) {
-                String option = "<option value='" + estados.get(i).getCodigo() + "'>" + estados.get(i).getNome() + "</option>";
+
+            MunicipioDAO mdao = new MunicipioDAO();
+            List<Municipio> municipios = mdao.listar(estado);
+
+            for (int i = 0; i < municipios.size(); i++) {
+                String option = "<option value='" + municipios.get(i).getCodigo() + "'>" + municipios.get(i).getNome() + "</option>";
                 retorno += option;
             }
-            
+
         } catch (DAOException ex) {
             Logger.getLogger(RecuperarEstados.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         PrintWriter writer = response.getWriter();
         writer.print(retorno);
         writer.close();
-        
+
     }
 
     /**
@@ -90,7 +79,7 @@ public class RecuperarEstados extends HttpServlet {
      */
     @Override
     public String getServletInfo() {
-        return "Este servlet tem o objetivo de recuperar os Estados disponíveis no Banco de Dados";
+        return "A partir da seleção de um Estado, retorna as opções de Municípios";
     }
 
 }

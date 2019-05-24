@@ -6,14 +6,11 @@ package model;
  * @author Pietro
  * @author Bianca
  */
-public class Estado {
-    
+public class Municipio {
     
     private Integer codigo;
     private String nome;
-    private String sigla;
-    private Integer codigoRegiao;
-
+    private Integer codigoMicrorregiao;
     
     // ======================================
     // Get e Set
@@ -35,20 +32,12 @@ public class Estado {
         this.nome = nome;
     }
 
-    public String getSigla() {
-        return sigla;
+    public Integer getCodigoMicrorregiao() {
+        return codigoMicrorregiao;
     }
 
-    public void setSigla(String sigla) {
-        this.sigla = sigla;
-    }
-
-    public Integer getCodigoRegiao() {
-        return codigoRegiao;
-    }
-
-    public void setCodigoRegiao(Integer codigoRegiao) {
-        this.codigoRegiao = codigoRegiao;
-    }
+    public void setCodigoMicrorregiao(Integer codigoMicrorregiao) {
+        this.codigoMicrorregiao = codigoMicrorregiao;
+    }    
     
 }
