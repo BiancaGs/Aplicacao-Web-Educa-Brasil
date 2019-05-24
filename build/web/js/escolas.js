@@ -73,6 +73,31 @@ $(document).ready(function() {
 
     });
 
+    // Preencher o SELECT da Escola
+    $('#select-municipio').change(function () {
+    
+        var municipio = $(this).val();
+        
+        $.ajax({
+            url: 'RecuperarEscolas',
+            method: 'POST',
+            data: {
+                municipio: municipio
+            },
+            datatype: 'html',
+            success: function(retorno) {
+
+                // Preenche o SELECT
+                $('#select-escola').html(retorno);
+            },
+            error: function(retorno) {
+                console.log('Error');
+                console.log(retorno);
+            }
+        });
+
+    });
+
     // Criação dos selects
     $("#select-estado").select2({
         placeholder: "Estado"

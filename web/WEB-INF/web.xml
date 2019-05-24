@@ -8,6 +8,10 @@
         <servlet-name>RecuperarMunicipios</servlet-name>
         <servlet-class>controller.RecuperarMunicipios</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecuperarEscolas</servlet-name>
+        <servlet-class>controller.RecuperarEscolas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RecuperarEstados</servlet-name>
         <url-pattern>/RecuperarEstados</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>RecuperarMunicipios</servlet-name>
         <url-pattern>/RecuperarMunicipios</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecuperarEscolas</servlet-name>
+        <url-pattern>/RecuperarEscolas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

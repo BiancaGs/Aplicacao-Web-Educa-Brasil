@@ -25,7 +25,7 @@
                     <li class="list-inline-item">
                         <select name="select-municipio" id="select-municipio">
                             <option></option>
-                            <option value="Sorocaba">Sorocaba</option>
+                            <!-- Preenchido com AJAX -->
                         </select>
                     </li>
                     <li class="list-inline-item">
