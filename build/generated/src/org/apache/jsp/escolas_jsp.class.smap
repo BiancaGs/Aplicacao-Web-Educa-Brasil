@@ -1,0 +1,18 @@
+SMAP
+escolas_jsp.java
+JSP
+*S JSP
+*F
++ 0 escolas.jsp
+escolas.jsp
++ 1 cabecalho.html
+cabecalho.html
++ 2 rodape.html
+rodape.html
+*L
+6,4:50
+1#1,66:53
+9#0,650:119
+1#2,15:768
+658#0,5:783
+*E

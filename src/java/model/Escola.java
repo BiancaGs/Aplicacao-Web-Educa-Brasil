@@ -9,11 +9,18 @@ import java.time.LocalDate;
  */
 public class Escola {
     
+    // =================================
     // Referência aos outros Beans
+    // =================================
+
     private EscolaOfertas eo;
     private EscolaDependenciasGerais edg;
     private EscolaDependenciasFisicas edf;
+
     
+    // =================================
+    // Atributos
+    // =================================
     
     private Integer coEscola;
     private String nomeEscola;
@@ -36,6 +43,8 @@ public class Escola {
     private Integer qtdSalasExistentes;
     private Integer qtdSalasUtilizadas;
     private Integer qtdFuncionarios;
+    
+    
     
     
 }

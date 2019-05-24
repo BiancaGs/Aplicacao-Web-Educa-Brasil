@@ -19,10 +19,7 @@
                     <li class="list-inline-item">Buscar</li>
                     <li class="list-inline-item">
                         <select name="select-estado" id="select-estado">
-                            <option></option>
-                            <option value="SP">São Paulo</option>
-                            <option value="GO">Goiás</option>
-                            <option value="RJ">Rio de Janeiro</option>
+                            <!-- Preenchido com AJAX -->
                         </select>
                     </li>
                     <li class="list-inline-item">

@@ -7,7 +7,7 @@ function inicializaDataTable() {
     $('#tabela-escolas').DataTable({
         "language": {
             "lengthMenu": "Mostrar _MENU_ itens por página",
-            "zeroRecords": "Nenhum item encontrado - desculpa",
+            "zeroRecords": "Nenhum item encontrado",
             "info": "Mostrando página _PAGE_ de _PAGES_",
             "infoEmpty": "Nenhum item encontrado",
             "infoFiltered": "(filtrado a partir de _MAX_ itens)",
@@ -28,6 +28,26 @@ function inicializaDataTable() {
 }
 
 $(document).ready(function() {
+
+    // Preencher o SELECT do Estado
+    $.ajax({
+        url: 'RecuperarEstados',
+        method: 'POST',
+        data: {
+            recuperar: "sim"
+        },
+        datatype: 'html',
+        success: function(retorno) {
+            console.log('Success');
+            console.log(retorno);
+            
+            $('#select-estado').html(retorno);
+        },
+        error: function(retorno) {
+            console.log('Error');
+            console.log(retorno);
+        }
+    });
 
     // Criação dos selects
     $("#select-estado").select2({
