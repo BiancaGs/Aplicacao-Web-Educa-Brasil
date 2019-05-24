@@ -28,7 +28,7 @@ public class EstadoDAO {
         
         try {
         
-            String sql = "SELECT * FROM uf";
+            String sql = "SELECT * FROM uf ORDER BY nome_uf";
             PreparedStatement stmt = connection.prepareStatement(sql);
         
             ResultSet rs = stmt.executeQuery();

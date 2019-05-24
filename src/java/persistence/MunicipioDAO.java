@@ -34,6 +34,7 @@ public class MunicipioDAO {
             sql +=          "WHERE mi.co_mesorregiao IN (";
             sql +=              "SELECT me.co_mesorregiao FROM mesorregiao me ";
             sql +=                  "WHERE me.co_uf = " + codigoUf + "))";
+            sql +=       "ORDER BY m.nome_municipio";
 
             PreparedStatement stmt = connection.prepareStatement(sql);
         

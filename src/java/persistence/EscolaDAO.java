@@ -34,7 +34,8 @@ public class EscolaDAO {
             String sql = "SELECT e.co_escola, e.nome_escola FROM escola e ";
             sql +=       "WHERE e.co_distrito IN (";
             sql +=          "SELECT d.co_distrito FROM distrito d ";
-            sql +=          "WHERE d.co_municipio = " + codigoMunicipio + ");";
+            sql +=          "WHERE d.co_municipio = " + codigoMunicipio + ")";
+            sql +=       "ORDER BY e.nome_escola";
 
             PreparedStatement stmt = connection.prepareStatement(sql);
         

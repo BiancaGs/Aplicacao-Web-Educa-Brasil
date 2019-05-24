@@ -53,6 +53,7 @@ $(document).ready(function() {
         
         var estado = $(this).val();
         
+        // Recuperar os Municípios
         $.ajax({
             url: 'RecuperarMunicipios',
             method: 'POST',

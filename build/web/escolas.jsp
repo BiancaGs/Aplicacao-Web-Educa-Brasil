@@ -31,8 +31,7 @@
                     <li class="list-inline-item">
                         <select name="select-escola" id="select-escola">
                             <option></option>
-                            <option value="7193282">Colégio Uirapuru</option>
-                            <option value="1830923">Colégio Objetivo</option>
+                            <!-- Preenchido com AJAX -->
                         </select>
                     </li>
                 </ul>
