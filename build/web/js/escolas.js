@@ -72,6 +72,24 @@ $(document).ready(function() {
             }
         });
 
+        // Preencher a tabela
+        $.ajax({
+            url: 'RecuperarEscolasTabela',
+            method: 'POST',
+            data: {
+                estado: estado
+            },
+            datatype: '',
+            success: function(retorno) {
+                console.log('Success');
+                console.log(retorno);
+            },
+            error: function(retorno) {
+                console.log('Error');
+                console.log(retorno);
+            }
+        });
+
     });
 
     // Preencher o SELECT da Escola

@@ -39,8 +39,6 @@ public class EstadoDAO {
                 e.setNome(rs.getString("nome_uf"));
                 e.setSigla(rs.getString("sigla_uf"));
                 
-                System.out.println(rs.getString("nome_uf"));
-                
                 estados.add(e);
             }
         

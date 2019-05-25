@@ -657,5 +657,5 @@
 <%@include file="rodape.html"%>
 
 <script src="lib/mdbootstrap/js/datatables.js"></script>
-<script src="lib/select2/js/select2.min.js"></script>
+<script src="lib/select2/js/select2.js"></script>
 <script src="js/escolas.js"></script>
