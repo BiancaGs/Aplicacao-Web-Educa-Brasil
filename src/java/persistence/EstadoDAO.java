@@ -50,4 +50,31 @@ public class EstadoDAO {
         
     }
     
+    
+    public Estado buscar(String codigo) {
+        
+        Estado e = new Estado();
+        
+        try {
+            
+            String sql = "SELECT * FROM uf WHERE co_uf = " + codigo;
+            PreparedStatement stmt = connection.prepareStatement(sql);
+        
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                e.setCodigo(rs.getInt("co_uf"));
+                e.setNome(rs.getString("nome_uf"));
+                e.setSigla(rs.getString("sigla_uf"));
+                e.setCodigoRegiao(rs.getInt("co_regiao"));
+            }            
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return e;
+        
+    }
+    
 }

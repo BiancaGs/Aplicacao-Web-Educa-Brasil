@@ -56,4 +56,31 @@ public class MunicipioDAO {
         
     }
     
+    
+    public Municipio buscar(String codigo) {
+        
+        Municipio m = new Municipio();
+        
+        try {
+            
+            String sql = "SELECT * FROM municipio WHERE co_municipio = " + codigo;
+            PreparedStatement stmt = connection.prepareStatement(sql);
+        
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                m.setCodigo(rs.getInt("co_municipio"));
+                m.setNome(rs.getString("nome_municipio"));
+                m.setCodigoMicrorregiao(rs.getInt("co_microrregiao"));
+                
+            }            
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return m;
+        
+    }
+    
 }

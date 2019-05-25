@@ -74,7 +74,7 @@ $(document).ready(function() {
 
         // Preencher a tabela
         $.ajax({
-            url: 'RecuperarEscolasTabela',
+            url: 'recuperar-escolas.jsp',
             method: 'POST',
             data: {
                 estado: estado
@@ -83,6 +83,8 @@ $(document).ready(function() {
             success: function(retorno) {
                 console.log('Success');
                 console.log(retorno);
+
+                $('#resultado-busca').html(retorno);
             },
             error: function(retorno) {
                 console.log('Error');
@@ -96,6 +98,7 @@ $(document).ready(function() {
     $('#select-municipio').change(function () {
     
         var municipio = $(this).val();
+        var estado = $('#select-estado').val();
         
         $.ajax({
             url: 'RecuperarEscolas',
@@ -108,6 +111,27 @@ $(document).ready(function() {
 
                 // Preenche o SELECT
                 $('#select-escola').html(retorno);
+            },
+            error: function(retorno) {
+                console.log('Error');
+                console.log(retorno);
+            }
+        });
+        
+        // Preencher a tabela
+        $.ajax({
+            url: 'recuperar-escolas.jsp',
+            method: 'POST',
+            data: {
+                municipio: municipio,
+                estado: estado
+            },
+            datatype: '',
+            success: function(retorno) {
+                console.log('Success');
+                console.log(retorno);
+
+                $('#resultado-busca').html(retorno);
             },
             error: function(retorno) {
                 console.log('Error');
