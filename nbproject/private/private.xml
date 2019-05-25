@@ -4,6 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/web/escolas.jsp</file>
+            <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/src/java/controller/RecuperarEstados.java</file>
+            <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/src/java/persistence/EstadoDAO.java</file>
         </group>
     </open-files>
 </project-private>
