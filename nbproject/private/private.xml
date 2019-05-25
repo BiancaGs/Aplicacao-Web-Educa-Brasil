@@ -5,7 +5,11 @@
         <group>
             <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/web/escolas.jsp</file>
             <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/src/java/controller/RecuperarEstados.java</file>
+            <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/web/recuperar-escolas.jsp</file>
             <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/src/java/persistence/EstadoDAO.java</file>
+            <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/src/java/persistence/MunicipioDAO.java</file>
+            <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/web/cabecalho.html</file>
+            <file>file:/D:/OneDrive/Documentos/NetBeansProjects/Cadastro%20de%20Escolas%20Brasileiras/web/js/escolas.js</file>
         </group>
     </open-files>
 </project-private>
