@@ -81,10 +81,13 @@ $(document).ready(function() {
             },
             datatype: '',
             success: function(retorno) {
-                console.log('Success');
-                console.log(retorno);
+
+                // Limpa e destrói a tabela
+                $("#tabela-escolas").DataTable().clear().destroy();
 
                 $('#resultado-busca').html(retorno);
+
+                inicializaDataTable();
             },
             error: function(retorno) {
                 console.log('Error');
