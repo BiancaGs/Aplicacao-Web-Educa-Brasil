@@ -259,7 +259,181 @@ public class EscolaDAO {
         return json;
 
     }
-    
+
+    /**
+     * Recupera o JSON para utilização da DataTable das Escolas
+     * 
+     * @param String codigoMunicipio        : código do Municipio
+     * @param String campoBusca             : campo digitado na busca
+     * @param String limit                  : número de itens por página
+     * @param String offset                 : "deslocamento" para o SELECT
+     * @param String draw               
+     * @param String qtdEscolasMunicipio    : quantidade total de escolas, fornecida pela sessão
+     * 
+     * @return uma String contendo o JSON
+     * 
+     */
+    public String listaPorMunicipioJSON(String codigoMunicipio, String campoBusca, String limit, String offset, String draw, String qtdEscolasMunicipio, String orderColumn, String orderDirection) {
+
+        List<Escola> escolas = new ArrayList<>();
+        String json = "";
+
+        try {
+            
+            /**
+             * COM LIMIT
+             */
+
+            String sql = "SELECT  e.co_escola, e.nome_escola, e.situacao_funcionamento, "; 
+            sql += "e.dependencia_adm, e.bercario, e.creche, e.pre_escola, ";
+            sql += "e.ens_fundamental_anos_iniciais, e.ens_fundamental_anos_finais, ";
+            sql += "e.ens_medio_normal, e.ens_medio_integrado ";
+            sql += "FROM escola e ";
+            sql += "WHERE e.co_distrito IN ( ";
+            sql += "SELECT d.co_distrito ";
+            sql += "FROM distrito d ";
+            sql += "WHERE d.co_municipio = " + codigoMunicipio;
+            sql += ")";
+
+
+            // =======================================================
+            // Caso o usuário tenha digitado algo no campo de busca
+            // =======================================================
+
+            if (!campoBusca.isEmpty()) {
+                sql += "AND e.nome_escola ILIKE '%"+campoBusca+"%' ";
+            }
+            
+            // =======================================================
+            // Ordenação
+            // =======================================================
+            
+            switch (orderColumn) {
+                case "0":
+                    sql += "ORDER BY e.co_escola "+orderDirection+" ";
+                    break;
+                case "1":
+                    sql += "ORDER BY e.nome_escola "+orderDirection+" ";
+                    break;
+                case "2":
+                    sql += "ORDER BY e.situacao_funcionamento "+orderDirection+" ";
+                    break;
+                case "3":
+                    sql += "ORDER BY e.dependencia_adm "+orderDirection+" ";
+                    break;
+                default:
+                    sql += "ORDER BY e.qtd_funcionarios ";
+                    break;
+            }
+            
+            // =======================================================
+            // LIMIT e OFFSET para paginação
+            // =======================================================
+            
+            sql += "LIMIT "+limit+" OFFSET "+offset;
+            
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Escola e = new Escola();
+                EscolaOfertas eo = new EscolaOfertas();
+
+                e.setCodigo(rs.getInt("co_escola"));
+                e.setNome(rs.getString("nome_escola"));
+                e.setSituacaoFuncionamento(rs.getString("situacao_funcionamento"));
+                e.setDependenciaAdm(rs.getString("dependencia_adm"));
+
+                eo.setBercario(rs.getBoolean("bercario"));
+                eo.setCreche(rs.getBoolean("creche"));
+                eo.setPreEscola(rs.getBoolean("pre_escola"));
+                eo.setEFI(rs.getBoolean("ens_fundamental_anos_iniciais"));
+                eo.setEFII(rs.getBoolean("ens_fundamental_anos_finais"));
+                eo.setEMN(rs.getBoolean("ens_medio_normal"));
+                eo.setEMI(rs.getBoolean("ens_medio_integrado"));
+
+                e.setEo(eo);
+
+                escolas.add(e);
+            }
+
+
+            /**
+             * SEM LIMIT (para contar os elementos)
+             */
+            
+            sql = "SELECT count(e.co_escola) AS total ";
+            sql += "FROM escola e ";
+            sql += "WHERE e.co_distrito IN ( ";
+            sql += "SELECT d.co_distrito ";
+            sql += "FROM distrito d ";
+            sql += "WHERE d.co_municipio = " + codigoMunicipio;
+            sql += ")";
+
+            
+            // =======================================================
+            // Caso o usuário tenha digitado algo no campo de busca
+            // =======================================================
+
+            if (!campoBusca.isEmpty()) {
+                sql += "AND e.nome_escola ILIKE '%"+campoBusca+"%' ";
+            }
+            
+            stmt = connection.prepareStatement(sql);
+
+            rs = stmt.executeQuery();
+            rs.next();
+            
+            Integer qtdSemLimit = rs.getInt("total");
+
+            
+            /**
+             * CRIA O JSON
+             */
+            
+            String data = "";
+            
+            if (!escolas.isEmpty()) {
+                
+                int total = escolas.size();
+                int i = 1;
+                
+                for (Escola escola : escolas) {
+                    
+                    data += "["+
+                            "\""+ escola.getCodigo() +"\", "+
+                            "\""+ escola.getNome() +"\", "+
+                            "\""+ escola.getSituacaoFuncionamento() +"\", "+
+                            "\""+ escola.getDependenciaAdm() +"\""+
+                        "]";
+                    if (i < total)
+                        data += ",";
+                    
+                    i++;
+                }
+                
+            }
+            
+            json = "{"+
+                "\"draw\": " + draw + ","+
+                "\"recordsTotal\": " + qtdEscolasMunicipio + ","+     // o total é o valor de 'qtd_escolas_estado' na sessão
+                "\"recordsFiltered\": " + qtdSemLimit.toString() + ","+
+                "\"data\": ["+
+                    data +
+                "]"+ // fechamento do data
+            "}"; // fechamento do json
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return json;
+
+    }
     
     /**
      * Recupera a quantidade de escolas em um Estado
@@ -292,6 +466,41 @@ public class EscolaDAO {
             sql += ")";
             sql += ")";
             sql += "); ";
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+            rs.next();
+            total = rs.getInt("total");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return total;
+    }
+
+    
+    /**
+     * Recupera a quantidade de escolas em um Municipio
+     * 
+     * @param String codigoMunicipio   : código do Municipio
+     * 
+     * @return um Integer com o número de escolas
+     */
+    public Integer contarEscolasMunicipio(String codigoMunicipio) {
+        
+        Integer total = 0;
+        
+        try {
+
+            String sql = "SELECT count(e.co_escola) as total ";
+            sql += "FROM escola e ";
+            sql += "WHERE e.co_distrito IN ( ";
+            sql += "SELECT d.co_distrito ";
+            sql += "FROM distrito d ";
+            sql += "WHERE d.co_municipio = " + codigoMunicipio;
+            sql += ")";
 
             PreparedStatement stmt = connection.prepareStatement(sql);
 

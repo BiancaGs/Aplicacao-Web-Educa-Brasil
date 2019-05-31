@@ -115,7 +115,6 @@ $(document).ready(function() {
         var municipio = dados_municipio[0].id;
         var nome_municipio = dados_municipio[0].text;
         
-        
         var estado = $('#select-estado').val();
         
         $.ajax({
@@ -139,8 +138,47 @@ $(document).ready(function() {
         // Atualizar o nome na view
         $('.nome-municipio').text(nome_municipio);
 
+        
+        // =======================================================
         // Preencher a tabela
-        // TODO
+        // =======================================================
+
+        // Limpa e destrói a tabela
+        $("#tabela-escolas").DataTable().clear().destroy();
+
+        $('#tabela-escolas').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+            },
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": 'RecuperarEscolasTabela',
+                "type": 'GET',
+                "data": {
+                    "estado": estado,
+                    "municipio": municipio
+                }
+            },
+            "columns": [
+                {
+                    "name": "co_escola",
+                    "className": "t-codigo-escola"
+                },
+                {
+                    "name": "nome_escola",
+                    "className": "t-nome-escola"
+                },
+                {
+                    "name": "situacao_funcionamento",                
+                    "className": "t-situacao-escola"
+                },
+                {
+                    "name": "dependencia_adm",
+                    "className": "t-dep-escola"
+                }
+            ]
+        });
 
     });
 

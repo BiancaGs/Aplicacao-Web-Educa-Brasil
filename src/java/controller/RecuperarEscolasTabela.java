@@ -38,7 +38,8 @@ public class RecuperarEscolasTabela extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         String codigoEstado = request.getParameter("estado");
-        
+        String codigoMunicipio = request.getParameter("municipio");
+
         
         try {
         
@@ -58,6 +59,25 @@ public class RecuperarEscolasTabela extends HttpServlet {
                     s.setAttribute("co_estado", codigoEstado);
                     Integer total = edao.contarEscolasEstado(codigoEstado);
                     s.setAttribute("qtd_escolas_estado", total.toString());
+                }
+
+                if ( codigoMunicipio !=  null ) {
+                    if ( s.getAttribute("co_municipio") != null ) {
+                        String municipioSessao = (String) s.getAttribute("co_municipio");
+                        // codigo recuperado
+                        if ( !codigoMunicipio.equals(municipioSessao) ) { // usuário selecionou um estado diferente
+                            // atualiza o codigo e a quantidade
+                            s.setAttribute("co_municipio", codigoMunicipio);
+                            Integer total = edao.contarEscolasMunicipio(codigoMunicipio);
+                            s.setAttribute("qtd_escolas_municipio", total.toString());
+                        }
+                    }
+                    else {
+                        // codigo inexistente
+                        s.setAttribute("co_municipio", codigoMunicipio);
+                        Integer total = edao.contarEscolasMunicipio(codigoMunicipio);
+                        s.setAttribute("qtd_escolas_municipio", total.toString());
+                    }
                 }
             }
             else {
@@ -84,7 +104,11 @@ public class RecuperarEscolasTabela extends HttpServlet {
              * Criação do JSON
              */
 
-            String json = edao.listarPorEstadoJSON(codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_estado"), orderColumn, orderDirection);
+            String json;
+            if (codigoMunicipio != null) 
+                json = edao.listaPorMunicipioJSON(codigoMunicipio, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_municipio"), orderColumn, orderDirection);
+            else
+                json = edao.listarPorEstadoJSON(codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_estado"), orderColumn, orderDirection);
             
             // Retorno
             response.setStatus(200);
