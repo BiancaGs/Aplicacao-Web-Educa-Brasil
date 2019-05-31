@@ -188,38 +188,9 @@
                             <th class="t-nome">Nome</th>
                             <th class="t-situacao">Situação</th>
                             <th class="t-dep-adm">Dep.Adm.</th>
-                            <th class="t-ofertas">Ofertas</th>
+                            <!-- <th class="t-ofertas">Ofertas</th> -->
                         </tr>
                     </thead>
-
-                    <tbody id="escolas-datatable">
-                        <tr class="escola" codigo-escola="21114978" data-toggle="modal" data-target="#modal-escola">
-                            <td class="t-codigo">21114978</td>
-                            <td class="t-nome">UNIDADE INTEGRADA DE EDUCACAO ESCOLAR INDIGENA MONTE SIAO</td>
-                            <td class="t-situacao">Em Atividade</td>
-                            <td class="t-dep-adm">Estadual</td>
-                            <td class="t-ofertas">
-                                <span class="badge badge-pill badge-light">C</span>
-                                <span class="badge badge-pill badge-light">PE</span>
-                                <span class="badge badge-pill badge-light">EFI</span>
-                                <span class="badge badge-pill badge-light">EFII</span>
-                                <span class="badge badge-pill badge-light">EM</span>
-                                <span class="badge badge-pill badge-light">EMI</span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="t-codigo">21114986</td>
-                            <td class="t-nome">UNIDADE INTEGRADA DE EDUCACAO ESCOLAR INDIGENA MOISES KANELA</td>
-                            <td class="t-situacao">Em Atividade</td>
-                            <td class="t-dep-adm">Pública</td>
-                            <td class="t-ofertas">
-                                <span class="badge badge-pill badge-light">EFI</span>
-                                <span class="badge badge-pill badge-light">EFII</span>
-                                <span class="badge badge-pill badge-light">EM</span>
-                                <span class="badge badge-pill badge-light">EMI</span>
-                            </td>
-                        </tr>
-                    </tbody>
 
                 </table>
                 <!-- Fim da Tabela de Escolas -->

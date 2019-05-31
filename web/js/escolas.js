@@ -6,25 +6,9 @@
 function inicializaDataTable() {
     $('#tabela-escolas').DataTable({
         "language": {
-            "lengthMenu": "Mostrar _MENU_ itens por página",
-            "zeroRecords": "Nenhum item encontrado",
-            "info": "Mostrando página _PAGE_ de _PAGES_",
-            "infoEmpty": "Nenhum item encontrado",
-            "infoFiltered": "(filtrado a partir de _MAX_ itens)",
-            "search": "Buscar:",
-            "emptyTable":     "Nenhum dado disponível na tabela",
-            "loadingRecords": "Carregando...",
-            "processing":     "Processando...",
-            "paginate": {
-                "first":      "Primeiro",
-                "last":       "Último",
-                "next":       "Próximo",
-                "previous":   "Anterior"
-            }
-        },
-        "order": [[ 1, "asc" ]]    // Ordena por Nome
+            "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
+        }
     });
-    $('.dataTables_length').addClass('bs-select');
 }
 
 $(document).ready(function() {
@@ -48,7 +32,7 @@ $(document).ready(function() {
         }
     });
     
-    // Preencher o SELECT do Estado
+    // Preencher o SELECT do Município
     $('#select-estado').change(function () {
         
         var estado = $(this).val();
@@ -71,28 +55,46 @@ $(document).ready(function() {
                 console.log(retorno);
             }
         });
+        
 
+        // =======================================================
         // Preencher a tabela
-        $.ajax({
-            url: 'recuperar-escolas.jsp',
-            method: 'POST',
-            data: {
-                estado: estado
+        // =======================================================
+
+        // Limpa e destrói a tabela
+        $("#tabela-escolas").DataTable().clear().destroy();
+
+        $('#tabela-escolas').DataTable({
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
             },
-            datatype: '',
-            success: function(retorno) {
-
-                // Limpa e destrói a tabela
-                $("#tabela-escolas").DataTable().clear().destroy();
-
-                $('#resultado-busca').html(retorno);
-
-                inicializaDataTable();
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": 'RecuperarEscolasTabela',
+                "type": 'GET',
+                "data": {
+                    "estado": estado
+                }
             },
-            error: function(retorno) {
-                console.log('Error');
-                console.log(retorno);
-            }
+            "columns": [
+                {
+                    "name": "co_escola",
+                    "className": "t-codigo-escola"
+                },
+                {
+                    "name": "nome_escola",
+                    "className": "t-nome-escola"
+                },
+                {
+                    "name": "situacao_funcionamento",                
+                    "className": "t-situacao-escola"
+                },
+                {
+                    "name": "dependencia_adm",
+                    "className": "t-dep-escola"
+                }
+            ]
         });
 
     });
@@ -122,25 +124,7 @@ $(document).ready(function() {
         });
         
         // Preencher a tabela
-        $.ajax({
-            url: 'recuperar-escolas.jsp',
-            method: 'POST',
-            data: {
-                municipio: municipio,
-                estado: estado
-            },
-            datatype: '',
-            success: function(retorno) {
-                console.log('Success');
-                console.log(retorno);
-
-                $('#resultado-busca').html(retorno);
-            },
-            error: function(retorno) {
-                console.log('Error');
-                console.log(retorno);
-            }
-        });
+        // TODO
 
     });
 
