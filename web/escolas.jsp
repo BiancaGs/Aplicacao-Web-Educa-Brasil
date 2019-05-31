@@ -5,6 +5,8 @@
     Author     : Bianca
 --%>
 
+<%@page import="model.Estado"%>
+<%@page import="persistence.EstadoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="cabecalho.html"%>
 
@@ -172,10 +174,11 @@
 
         <div class="container mt-5" id="resultado-busca">
 
-            <h2 class="verde-escuro-text">Resultado da Busca:</h2>
-            <h3 class="verde-claro-text">São Paulo</h3>
-            <h4 class="verde-claro-text mt-4">Sorocaba</h4>
-
+            <h2 class="verde-escuro-text titulo-resultado-busca">Resultado da Busca:</h2>
+            <h3 class="verde-claro-text nome-estado"></h3>
+            <h4 class="verde-claro-text mt-4 nome-municipio"></h4>
+            
+            
             <!-- Escolas -->
             <section id="resultado-escolas" class="mt-4">
 

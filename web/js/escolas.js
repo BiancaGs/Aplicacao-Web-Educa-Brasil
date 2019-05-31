@@ -22,7 +22,6 @@ $(document).ready(function() {
         },
         datatype: 'html',
         success: function(retorno) {
-            
             // Preenche o SELECT
             $('#select-estado').html(retorno);
         },
@@ -35,8 +34,12 @@ $(document).ready(function() {
     // Preencher o SELECT do Município
     $('#select-estado').change(function () {
         
-        var estado = $(this).val();
-        
+        // Recupera os dados do Estado selecionado
+        var dados_estado = $(this).select2('data');
+        var estado = dados_estado[0].id;
+        var nome_estado = dados_estado[0].text;
+
+
         // Recuperar os Municípios
         $.ajax({
             url: 'RecuperarMunicipios',
@@ -55,7 +58,12 @@ $(document).ready(function() {
                 console.log(retorno);
             }
         });
-        
+
+        // Atualizar o nome na view
+        $('.nome-estado').text(nome_estado);
+
+        // Zera o nome do Municipio
+        $('.nome-municipio').html('');
 
         // =======================================================
         // Preencher a tabela
@@ -102,7 +110,12 @@ $(document).ready(function() {
     // Preencher o SELECT da Escola
     $('#select-municipio').change(function () {
     
-        var municipio = $(this).val();
+        // Recupera os dados do Municipio selecionado
+        var dados_municipio = $(this).select2('data');
+        var municipio = dados_municipio[0].id;
+        var nome_municipio = dados_municipio[0].text;
+        
+        
         var estado = $('#select-estado').val();
         
         $.ajax({
@@ -122,7 +135,10 @@ $(document).ready(function() {
                 console.log(retorno);
             }
         });
-        
+
+        // Atualizar o nome na view
+        $('.nome-municipio').text(nome_municipio);
+
         // Preencher a tabela
         // TODO
 
