@@ -76,14 +76,15 @@ public class RecuperarEscolasTabela extends HttpServlet {
             String length = request.getParameter("length");                 // tamanho selecionado para paginação
             String start = request.getParameter("start");                   // início dos itens
             String searchValue = request.getParameter("search[value]");     // valor do campo de busca
-            
+            String orderColumn = request.getParameter("order[0][column]");  // coluna em que foi requisitada a ordenação
+            String orderDirection = request.getParameter("order[0][dir]");  // direção de ordenação (ASC / DESC)
             
             
             /**
              * Criação do JSON
              */
 
-            String json = edao.listarPorEstadoJSON(codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_estado"));
+            String json = edao.listarPorEstadoJSON(codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_estado"), orderColumn, orderDirection);
             
             // Retorno
             response.setStatus(200);

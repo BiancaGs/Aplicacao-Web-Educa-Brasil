@@ -77,7 +77,7 @@ public class EscolaDAO {
      * @return uma String contendo o JSON
      * 
      */
-    public String listarPorEstadoJSON(String codigoEstado, String campoBusca, String limit, String offset, String draw, String qtdEscolasEstado) {
+    public String listarPorEstadoJSON(String codigoEstado, String campoBusca, String limit, String offset, String draw, String qtdEscolasEstado, String orderColumn, String orderDirection) {
 
         List<Escola> escolas = new ArrayList<>();
         String json = "";
@@ -122,7 +122,23 @@ public class EscolaDAO {
             // Ordenação
             // =======================================================
             
-            sql += "ORDER BY e.qtd_funcionarios ";
+            switch (orderColumn) {
+                case "0":
+                    sql += "ORDER BY e.co_escola "+orderDirection+" ";
+                    break;
+                case "1":
+                    sql += "ORDER BY e.nome_escola "+orderDirection+" ";
+                    break;
+                case "2":
+                    sql += "ORDER BY e.situacao_funcionamento "+orderDirection+" ";
+                    break;
+                case "3":
+                    sql += "ORDER BY e.dependencia_adm "+orderDirection+" ";
+                    break;
+                default:
+                    sql += "ORDER BY e.qtd_funcionarios ";
+                    break;
+            }
             
             // =======================================================
             // LIMIT e OFFSET para paginação
