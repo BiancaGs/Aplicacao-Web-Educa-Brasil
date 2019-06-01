@@ -214,7 +214,8 @@ $(document).on('click', '#tabela-escolas tbody tr', function(){
         },
         datatype: 'html',
         success: function(retorno) {
-            console.log(retorno);
+            $("#modal-escola").html(retorno);
+            $("#modal-escola").modal("show");
         },
         error: function(retorno) {
             console.log(retorno);
