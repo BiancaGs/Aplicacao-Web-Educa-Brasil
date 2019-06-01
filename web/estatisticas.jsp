@@ -17,9 +17,21 @@
             <div class="container">
                 <ul class="list-inline navbar-busca">
                     <li class="list-inline-item">Brasil</li>
-                    <li class="list-inline-item">Região</li>
-                    <li class="list-inline-item">Estado</li>
-                    <li class="list-inline-item">Município</li>
+                    <li class="list-inline-item">
+                        <select name="select-regiao" id="select-regiao">
+                            <!-- Preenchido com AJAX -->
+                        </select>
+                    </li>
+                    <li class="list-inline-item">
+                        <select name="select-estado" id="select-estado">
+                            <!-- Preenchido com AJAX -->
+                        </select>
+                    </li>
+                    <li class="list-inline-item">
+                        <select name="select-municipio" id="select-municipio">
+                            <!-- Preenchido com AJAX -->
+                        </select>
+                    </li>
                 </ul>
             </div>
 
@@ -78,4 +90,6 @@
 <script src="lib/amchats4/core.js"></script>
 <script src="lib/amchats4/charts.js"></script>
 <script src="lib/amchats4/animated.js"></script>
+<script src="lib/select2/js/select2.js"></script>
+<script src="js/estatisticas.js"></script>
 <script src="js/estatisticas_graficos.js"></script>
