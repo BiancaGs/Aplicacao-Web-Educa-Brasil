@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import model.Escola;
+import model.EscolaDependenciasFisicas;
+import model.EscolaDependenciasGerais;
 import model.EscolaOfertas;
 
 /**
@@ -515,4 +517,98 @@ public class EscolaDAO {
         return total;
     }
 
+    
+    /**
+     * Recupera uma escola específica a partir de seu código
+     * 
+     * @param String codigoEscola   : código da Escola
+     * 
+     * @return uma Escola 
+     */
+    public Escola recuperarEscola(String codigoEscola) {
+        
+        Escola e = new Escola();
+        EscolaDependenciasFisicas edf = new EscolaDependenciasFisicas();
+        EscolaDependenciasGerais edg = new EscolaDependenciasGerais();
+        EscolaOfertas eo = new EscolaOfertas();
+                
+        try {
+
+            String sql = "SELECT * FROM escola WHERE co_escola = " + codigoEscola;
+           
+            PreparedStatement stmt = connection.prepareStatement(sql);
+
+            ResultSet rs = stmt.executeQuery();
+            
+            System.out.println("hi");
+            
+            if (rs.next()) {
+                
+                // Informações Gerais
+                e.setCodigo(rs.getInt("co_escola"));
+                e.setNome(rs.getString("nome_escola"));
+                e.setSituacaoFuncionamento(rs.getString("situacao_funcionamento"));
+                e.setInicioAnoLetivo(rs.getString("inicio_ano_letivo"));
+                e.setTerminoAnoLetivo(rs.getString("termino_ano_letivo"));
+                e.setCodigoDistrito(rs.getInt("co_distrito"));
+                e.setLocalizacao(rs.getString("localizacao"));
+                e.setDependenciaAdm(rs.getString("dependencia_adm"));
+                e.setRegulamentada(rs.getBoolean("regulamentada"));
+                e.setQtdSalasExistentes(rs.getInt("qtd_salas_existentes"));
+                e.setQtdSalasUtilizadas(rs.getInt("qtd_salas_utilizadas"));
+                e.setQtdFuncionarios(rs.getInt("qtd_funcionarios"));
+                
+                // Dependências Físcias
+                edf.setSalaDiretoria(rs.getBoolean("sala_diretoria"));
+                edf.setSalaProfessor(rs.getBoolean("sala_professor"));
+                edf.setLaboratorioInformatica(rs.getBoolean("laboratorio_informatica"));
+                edf.setLaboratorioCiencias(rs.getBoolean("laboratorio_ciencias"));
+                edf.setQuadraEsportes(rs.getBoolean("quadra_esportes"));
+                edf.setCozinha(rs.getBoolean("cozinha"));
+                edf.setBiblioteca(rs.getBoolean("biblioteca"));
+                edf.setSalaLeitura(rs.getBoolean("sala_leitura"));
+                edf.setParqueInfantil(rs.getBoolean("parque_infantil"));
+                edf.setSecretaria(rs.getBoolean("secretaria"));
+                edf.setRefeitorio(rs.getBoolean("refeitorio"));
+                edf.setAuditorio(rs.getBoolean("auditorio"));
+                
+                // Dependencias Gerais
+                
+                edg.setAguaFiltrada(rs.getBoolean("agua_filtrada"));
+                edg.setEsgoto(rs.getBoolean("esgoto"));
+                edg.setColetaLixo(rs.getBoolean("coleta_de_lixo"));
+                edg.setRecliclagem(rs.getBoolean("reciclagem"));
+                edg.setAcessibilidade(rs.getBoolean("acessibilidade_deficiencia"));
+                edg.setAlimentacao(rs.getBoolean("alimentacao"));
+                edg.setAlojamentoAlunos(rs.getBoolean("alojamento_alunos"));
+                edg.setAlojamentoProfessores(rs.getBoolean("alojamento_professores"));
+                edg.setAreaVerde(rs.getBoolean("area_verde"));
+                edg.setInternet(rs.getBoolean("internet"));
+                
+                // Ofertas de Matrícula
+                
+                eo.setBercario(rs.getBoolean("bercario"));
+                eo.setCreche(rs.getBoolean("creche"));
+                eo.setPreEscola(rs.getBoolean("pre_escola"));
+                eo.setEFI(rs.getBoolean("ens_fundamental_anos_iniciais"));
+                eo.setEFII(rs.getBoolean("ens_fundamental_anos_finais"));
+                eo.setEMN(rs.getBoolean("ens_medio_normal"));
+                eo.setEMI(rs.getBoolean("ens_medio_integrado"));
+                
+            }
+            
+            e.setEdf(edf);
+            e.setEdg(edg);
+            e.setEo(eo);
+            
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return e;
+    }
+    
 }
+
+

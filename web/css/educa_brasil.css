@@ -6,6 +6,7 @@
 :root {
     /* Paleta de Cores */
     --verde-escuro: #36923F;
+    --verde-intermediario: #88bc3c;
     --verde-claro: #89DA59;
     --azul-escuro: #002776;
     --azul-intermediario: #217CA3;
@@ -546,6 +547,11 @@ ul.info {
 #tabela-escolas thead tr th {
     font-weight: bold;
 }
-#tabela-escolas tbody tr.escola {
+#tabela-escolas tbody tr {
     cursor: pointer;
+}
+
+#tabela-escolas tbody tr:hover {
+    background-color: var(--verde-intermediario);
+    color: white;
 }

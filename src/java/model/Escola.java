@@ -25,8 +25,8 @@ public class Escola {
     private Integer codigo;
     private String nome;
     private String situacaoFuncionamento;      // Em atividade / Extinta / Paralisada
-    private LocalDate inicioAnoLetivo;
-    private LocalDate terminoAnoLetivo;
+    private String inicioAnoLetivo;
+    private String terminoAnoLetivo;
     private Integer codigoDistrito;
     private String localizacao;                // Rural / Urbana
     private String dependenciaAdm;             // Federal / Estadual / Municipal / Privada
@@ -88,19 +88,19 @@ public class Escola {
         this.situacaoFuncionamento = situacaoFuncionamento;
     }
 
-    public LocalDate getInicioAnoLetivo() {
+    public String getInicioAnoLetivo() {
         return inicioAnoLetivo;
     }
 
-    public void setInicioAnoLetivo(LocalDate inicioAnoLetivo) {
+    public void setInicioAnoLetivo(String inicioAnoLetivo) {
         this.inicioAnoLetivo = inicioAnoLetivo;
     }
 
-    public LocalDate getTerminoAnoLetivo() {
+    public String getTerminoAnoLetivo() {
         return terminoAnoLetivo;
     }
 
-    public void setTerminoAnoLetivo(LocalDate terminoAnoLetivo) {
+    public void setTerminoAnoLetivo(String terminoAnoLetivo) {
         this.terminoAnoLetivo = terminoAnoLetivo;
     }
 

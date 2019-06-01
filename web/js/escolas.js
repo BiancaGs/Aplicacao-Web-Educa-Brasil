@@ -198,6 +198,31 @@ $(document).ready(function() {
 
 });
 
+// =======================================================
+// Controle Cartão Escolas
+// =======================================================
+
+$(document).on('click', '#tabela-escolas tbody tr', function(){
+
+    var co_escola = $(this).children("td.t-codigo-escola").text();
+
+    $.ajax({
+        url: 'RecuperarInformacoesEscola',
+        method: 'POST',
+        data: {
+            codigoEscola: co_escola        
+        },
+        datatype: 'html',
+        success: function(retorno) {
+            console.log(retorno);
+        },
+        error: function(retorno) {
+            console.log(retorno);
+        }
+    })
+
+})
+
 
 // =======================================================
 // Controle dos dropdowns de filtros

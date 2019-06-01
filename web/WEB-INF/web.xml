@@ -16,6 +16,10 @@
         <servlet-name>RecuperarEscolasTabela</servlet-name>
         <servlet-class>controller.RecuperarEscolasTabela</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecuperarInformacoesEscola</servlet-name>
+        <servlet-class>controller.RecuperarInformacoesEscola</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RecuperarEstados</servlet-name>
         <url-pattern>/RecuperarEstados</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>RecuperarEscolasTabela</servlet-name>
         <url-pattern>/RecuperarEscolasTabela</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecuperarInformacoesEscola</servlet-name>
+        <url-pattern>/RecuperarInformacoesEscola</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
