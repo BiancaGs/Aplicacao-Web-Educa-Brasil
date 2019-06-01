@@ -233,8 +233,16 @@ public class EscolaDAO {
                             "\""+ escola.getCodigo() +"\", "+
                             "\""+ escola.getNome() +"\", "+
                             "\""+ escola.getSituacaoFuncionamento() +"\", "+
-                            "\""+ escola.getDependenciaAdm() +"\""+
-                        "]";
+                            "\""+ escola.getDependenciaAdm() +"\","+
+                            "["+ 
+                            (escola.getEo().getBercario() == true ? "\"B\"," : "\"\",")+
+                            (escola.getEo().getCreche() == true ? "\"C\"," : "\"\",")+
+                            (escola.getEo().getPreEscola() == true ? "\"PE\"," : "\"\",")+
+                            (escola.getEo().getEFI() == true ? "\"EFI\"," : "\"\",")+
+                            (escola.getEo().getEFII() == true ? "\"EFII\"," : "\"\",")+
+                            (escola.getEo().getEMN() == true ? "\"EMN\"," : "\"\",")+
+                            (escola.getEo().getEMI() == true ? "\"EMI\"" : "\"\"")+
+                        "]]";
                     if (i < total)
                         data += ",";
                     
@@ -408,8 +416,16 @@ public class EscolaDAO {
                             "\""+ escola.getCodigo() +"\", "+
                             "\""+ escola.getNome() +"\", "+
                             "\""+ escola.getSituacaoFuncionamento() +"\", "+
-                            "\""+ escola.getDependenciaAdm() +"\""+
-                        "]";
+                            "\""+ escola.getDependenciaAdm() +"\","+
+                            "["+ 
+                            (escola.getEo().getBercario() == true ? "\"B\"," : "\"\",")+
+                            (escola.getEo().getCreche() == true ? "\"C\"," : "\"\",")+
+                            (escola.getEo().getPreEscola() == true ? "\"PE\"," : "\"\",")+
+                            (escola.getEo().getEFI() == true ? "\"EFI\"," : "\"\",")+
+                            (escola.getEo().getEFII() == true ? "\"EFII\"," : "\"\",")+
+                            (escola.getEo().getEMN() == true ? "\"EMN\"," : "\"\",")+
+                            (escola.getEo().getEMI() == true ? "\"EMI\"" : "\"\"")+
+                        "]]";
                     if (i < total)
                         data += ",";
                     

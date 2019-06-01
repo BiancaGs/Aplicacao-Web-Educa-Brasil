@@ -191,7 +191,7 @@
                             <th class="t-nome">Nome</th>
                             <th class="t-situacao">Situação</th>
                             <th class="t-dep-adm">Dep.Adm.</th>
-                            <!-- <th class="t-ofertas">Ofertas</th> -->
+                            <th class="t-ofertas">Ofertas</th>
                         </tr>
                     </thead>
 
