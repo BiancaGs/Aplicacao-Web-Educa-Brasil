@@ -137,6 +137,13 @@ public class EscolaDAO {
                 case "3":
                     sql += "ORDER BY e.dependencia_adm "+orderDirection+" ";
                     break;
+                case "4":
+                    sql += "ORDER BY ";
+                    sql += "CASE ";
+                    sql += "WHEN (e.bercario IS true AND e.creche IS true AND e.pre_escola IS true) THEN 1 ";
+                    sql += "ELSE 2 ";
+                    sql += "END "+orderDirection+" ";
+                    break;
                 default:
                     sql += "ORDER BY e.qtd_funcionarios ";
                     break;
@@ -147,6 +154,8 @@ public class EscolaDAO {
             // =======================================================
             
             sql += "LIMIT "+limit+" OFFSET "+offset;
+
+            System.out.println(sql);
             
 
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -330,6 +339,13 @@ public class EscolaDAO {
                     break;
                 case "3":
                     sql += "ORDER BY e.dependencia_adm "+orderDirection+" ";
+                    break;
+                case "4":
+                    sql += "ORDER BY ";
+                    sql += "CASE ";
+                    sql += "WHEN (e.bercario IS true AND e.creche IS true AND e.pre_escola IS true) THEN 1 ";
+                    sql += "ELSE 2 ";
+                    sql += "END "+orderDirection+" ";
                     break;
                 default:
                     sql += "ORDER BY e.qtd_funcionarios ";
