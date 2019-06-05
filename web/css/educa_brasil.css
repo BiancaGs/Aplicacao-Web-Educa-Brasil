@@ -505,26 +505,6 @@ li.filtro {
     size: 110%;
 }
 
-/* =======================================================
-   RESULTADO ESCOLAS
-   ======================================================= */
-
-#id-nome {
-    font-weight: bold;
-    max-width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    vertical-align: top;
-}
-#id-nome:hover {
-    white-space: normal;
-}
-#cartao-escola {
-    border: 1px solid black;
-    padding: 10px 5px;
-}
-
 
 /* =======================================================
    MODAL ESCOLAS
@@ -579,4 +559,16 @@ ul.info {
 #tabela-escolas tbody tr:hover {
     background-color: var(--verde-intermediario);
     color: white;
+}
+
+.t-nome-escola {
+    font-weight: bold;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    vertical-align: top;
+}
+.t-nome-escola:hover {
+    white-space: normal;
 }
