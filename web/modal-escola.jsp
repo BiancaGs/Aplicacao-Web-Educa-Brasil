@@ -5,6 +5,9 @@
     Author     : Bianca
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.sql.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="persistence.EstadoDAO"%>
 <%@page import="persistence.MunicipioDAO"%>
 <%@page import="model.Regiao"%>
@@ -207,11 +210,21 @@
                                 </li>
                                 <li class="row">
                                     <div class="col"><b>Início do Ano Letivo:</b></div>
-                                    <div class="col"><%= e.getInicioAnoLetivo() %></div>
+                                    <%
+                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                        Calendar c = Calendar.getInstance();
+                                        java.util.Date date = sdf.parse(e.getInicioAnoLetivo());
+                                        c.setTime(date);
+                                    %>
+                                    <div class="col"><%= String.format("%02d", c.get(Calendar.DAY_OF_MONTH)) + "/" + String.format("%02d", c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.YEAR) %></div>
                                 </li>
                                 <li class="row">
                                     <div class="col"><b>Término do Ano Letivo:</b></div>
-                                    <div class="col"><%= e.getTerminoAnoLetivo() %></div>
+                                    <%
+                                        date = sdf.parse(e.getTerminoAnoLetivo());
+                                        c.setTime(date);
+                                    %>
+                                    <div class="col"><%= String.format("%02d", c.get(Calendar.DAY_OF_MONTH)) + "/" + String.format("%02d", c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.YEAR) %></div>
                                 </li>                                                      
                                 <li class="row">
                                     <div class="col"><b>Dep. Administrativa:</b></div>
