@@ -563,7 +563,7 @@ ul.info {
 
 .t-nome-escola {
     font-weight: bold;
-    max-width: 100%;
+    max-width: 400px !important;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

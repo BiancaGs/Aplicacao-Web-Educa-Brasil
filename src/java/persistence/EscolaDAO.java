@@ -96,20 +96,7 @@ public class EscolaDAO {
             sql += "FROM escola e ";
             sql += "WHERE e.co_distrito IN (";
             sql += "SELECT d.co_distrito ";
-            sql += "FROM distrito d ";
-            sql += "WHERE d.co_municipio IN (";
-            sql += "SELECT m.co_municipio ";
-            sql += "FROM municipio m ";
-            sql += "WHERE m.co_microrregiao IN (";
-            sql += "SELECT mi.co_microrregiao ";
-            sql += "FROM microrregiao mi ";
-            sql += "WHERE mi.co_mesorregiao IN (";
-            sql += "SELECT me.co_mesorregiao ";
-            sql += "FROM mesorregiao me ";
-            sql += "WHERE me.co_uf = " + codigoEstado;
-            sql += ")";
-            sql += ")";
-            sql += ")";
+            sql += "FROM distritos"+codigoEstado+" d ";
             sql += ")";
             
             // =======================================================
@@ -117,7 +104,7 @@ public class EscolaDAO {
             // =======================================================
 
             if (!campoBusca.isEmpty()) {
-                sql += "AND e.nome_escola ILIKE '%"+campoBusca+"%' ";
+                sql += "AND e.nome_escola LIKE '%"+campoBusca.toUpperCase()+"%' ";
             }
             
             // =======================================================
@@ -193,20 +180,7 @@ public class EscolaDAO {
             sql += "FROM escola e ";
             sql += "WHERE e.co_distrito IN (";
             sql += "SELECT d.co_distrito ";
-            sql += "FROM distrito d ";
-            sql += "WHERE d.co_municipio IN (";
-            sql += "SELECT m.co_municipio ";
-            sql += "FROM municipio m ";
-            sql += "WHERE m.co_microrregiao IN (";
-            sql += "SELECT mi.co_microrregiao ";
-            sql += "FROM microrregiao mi ";
-            sql += "WHERE mi.co_mesorregiao IN (";
-            sql += "SELECT me.co_mesorregiao ";
-            sql += "FROM mesorregiao me ";
-            sql += "WHERE me.co_uf = " + codigoEstado;
-            sql += ")";
-            sql += ")";
-            sql += ")";
+            sql += "FROM distritos"+codigoEstado+" d ";
             sql += ")";
             
             // =======================================================
@@ -214,7 +188,7 @@ public class EscolaDAO {
             // =======================================================
 
             if (!campoBusca.isEmpty()) {
-                sql += "AND e.nome_escola ILIKE '%"+campoBusca+"%' ";
+                sql += "AND e.nome_escola LIKE '%"+campoBusca.toUpperCase()+"%' ";
             }
             
             stmt = connection.prepareStatement(sql);
@@ -320,7 +294,7 @@ public class EscolaDAO {
             // =======================================================
 
             if (!campoBusca.isEmpty()) {
-                sql += "AND e.nome_escola ILIKE '%"+campoBusca+"%' ";
+                sql += "AND e.nome_escola LIKE '%"+campoBusca.toUpperCase()+"%' ";
             }
             
             // =======================================================
@@ -404,7 +378,7 @@ public class EscolaDAO {
             // =======================================================
 
             if (!campoBusca.isEmpty()) {
-                sql += "AND e.nome_escola ILIKE '%"+campoBusca+"%' ";
+                sql += "AND e.nome_escola LIKE '%"+campoBusca.toUpperCase()+"%' ";
             }
             
             stmt = connection.prepareStatement(sql);
