@@ -170,6 +170,7 @@ body {
     width: 200px !important;
     -webkit-box-shadow: 0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15)!important;
     box-shadow: 0 5px 11px 0 rgba(0,0,0,.18),0 4px 15px 0 rgba(0,0,0,.15)!important;
+    z-index: 0 !important;
 }
 .select2-container--default .select2-selection--single .select2-selection__arrow b {
     border-color: var(--verde-escuro) transparent transparent transparent !important;
