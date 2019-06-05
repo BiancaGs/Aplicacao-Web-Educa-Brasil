@@ -107,7 +107,7 @@ public class RecuperarEscolasTabela extends HttpServlet {
 
             String json;
             if (codigoMunicipio != null) 
-                json = edao.listaPorMunicipioJSON(codigoMunicipio, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_municipio"), orderColumn, orderDirection);
+                json = edao.listaPorMunicipioJSON(codigoMunicipio, codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_municipio"), orderColumn, orderDirection);
             else
                 json = edao.listarPorEstadoJSON(codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_estado"), orderColumn, orderDirection);
             

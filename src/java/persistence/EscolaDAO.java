@@ -257,6 +257,7 @@ public class EscolaDAO {
      * Recupera o JSON para utilização da DataTable das Escolas
      * 
      * @param String codigoMunicipio        : código do Municipio
+     * @param String codigoEstado           : código do Estado
      * @param String campoBusca             : campo digitado na busca
      * @param String limit                  : número de itens por página
      * @param String offset                 : "deslocamento" para o SELECT
@@ -266,7 +267,7 @@ public class EscolaDAO {
      * @return uma String contendo o JSON
      * 
      */
-    public String listaPorMunicipioJSON(String codigoMunicipio, String campoBusca, String limit, String offset, String draw, String qtdEscolasMunicipio, String orderColumn, String orderDirection) {
+    public String listaPorMunicipioJSON(String codigoMunicipio, String codigoEstado, String campoBusca, String limit, String offset, String draw, String qtdEscolasMunicipio, String orderColumn, String orderDirection) {
 
         List<Escola> escolas = new ArrayList<>();
         String json = "";
@@ -282,10 +283,10 @@ public class EscolaDAO {
             sql += "e.ens_fundamental_anos_iniciais, e.ens_fundamental_anos_finais, ";
             sql += "e.ens_medio_normal, e.ens_medio_integrado ";
             sql += "FROM escola e ";
-            sql += "WHERE e.co_distrito IN ( ";
+            sql += "WHERE e.co_distrito IN (";
             sql += "SELECT d.co_distrito ";
-            sql += "FROM distrito d ";
-            sql += "WHERE d.co_municipio = " + codigoMunicipio;
+            sql += "FROM distritos"+codigoEstado+" d ";
+            sql += "WHERE d.co_municipio = "+codigoMunicipio+" ";
             sql += ")";
 
 
@@ -366,10 +367,10 @@ public class EscolaDAO {
             
             sql = "SELECT count(e.co_escola) AS total ";
             sql += "FROM escola e ";
-            sql += "WHERE e.co_distrito IN ( ";
+            sql += "WHERE e.co_distrito IN (";
             sql += "SELECT d.co_distrito ";
-            sql += "FROM distrito d ";
-            sql += "WHERE d.co_municipio = " + codigoMunicipio;
+            sql += "FROM distritos"+codigoEstado+" d ";
+            sql += "WHERE d.co_municipio = "+codigoMunicipio+" ";
             sql += ")";
 
             
