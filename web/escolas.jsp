@@ -30,12 +30,6 @@
                             <!-- Preenchido com AJAX -->
                         </select>
                     </li>
-                    <li class="list-inline-item">
-                        <select name="select-escola" id="select-escola">
-                            <option></option>
-                            <!-- Preenchido com AJAX -->
-                        </select>
-                    </li>
                 </ul>
             </div>
 

@@ -243,6 +243,9 @@ body {
     font-weight: 500;   
 }
 
+*:focus {
+    outline: none;
+}
 
 /* Scrollbar */
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -428,6 +431,9 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
    FILTROS ESCOLAS
    ======================================================= */
 
+#resultado-busca {
+    margin-bottom: 100px;
+}
 #resultado-busca h1 {
     margin-bottom: 1rem;
 }

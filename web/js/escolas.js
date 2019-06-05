@@ -237,9 +237,6 @@ $(document).ready(function() {
     $("#select-municipio").select2({
         placeholder: "Município"
     });
-    $("#select-escola").select2({
-        placeholder: "Escola"
-    });
 
 
     inicializaDataTable(); 
