@@ -5,6 +5,15 @@
     Author     : Bianca
 --%>
 
+<%@page import="persistence.EstadoDAO"%>
+<%@page import="persistence.MunicipioDAO"%>
+<%@page import="model.Regiao"%>
+<%@page import="model.Estado"%>
+<%@page import="model.Mesorregiao"%>
+<%@page import="model.Microrregiao"%>
+<%@page import="model.Municipio"%>
+<%@page import="persistence.RegiaoMesoMicroDistritoDAO"%>
+<%@page import="model.Distrito"%>
 <%@page import="model.EscolaOfertas"%>
 <%@page import="model.EscolaDependenciasGerais"%>
 <%@page import="model.EscolaDependenciasFisicas"%>
@@ -16,6 +25,35 @@
     EscolaDependenciasFisicas edf = e.getEdf();
     EscolaDependenciasGerais edg = e.getEdg();
     EscolaOfertas eo = e.getEo();
+    
+    Integer codigoDistrito = e.getCodigoDistrito();
+    Distrito d = new Distrito();
+    Municipio m = new Municipio();
+    Microrregiao mi = new Microrregiao();
+    Mesorregiao me = new Mesorregiao();
+    Estado uf = new Estado();
+    Regiao r = new Regiao();
+    
+    RegiaoMesoMicroDistritoDAO dao = new RegiaoMesoMicroDistritoDAO();
+    MunicipioDAO mdao = new MunicipioDAO();
+    EstadoDAO edao = new EstadoDAO();
+    
+    // Recupera o Distrito
+    d = dao.recuperarDistrito(codigoDistrito);
+    
+    // Recupera o Município
+    m = mdao.buscar(d.getCodigoMunicipio().toString());
+    
+    // Recupera a Mesorregiao e Microrregiao
+    mi = dao.recuperarMicrorregiao(m.getCodigoMicrorregiao());
+    me = dao.recuperarMesorregiao(mi.getCodigoMesorregiao());
+    
+    // Recupera o Estado
+    uf = edao.buscar(me.getCodigoEstado().toString());
+    
+    // Recupera a Região
+    r = dao.recuperarRegiao(uf.getCodigoRegiao());    
+
 %>
 
 <div class="modal-dialog modal-xl" role="document">
@@ -24,7 +62,7 @@
         <div class="modal-header">
             <div class="d-flex flex-column">
                 <h5 class="verde-escuro-text" id="modal-escola-label"><%= e.getCodigo() %> - <%= e.getNome() %></h5>
-                <h6>Nordeste - Maranhão - Leste Maranhanse - Chapada do Alto Itapecuru - Jenipapo dos Vieiras - Jenipapo dos Vieiras</h6>
+                <h6><%= r.getNome() %> - <%= uf.getNome() %> - <%= me.getNome() %> - <%= mi.getNome() %> - <%= m.getNome() %> - <%= d.getNome() %></h6>
             </div>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
@@ -41,27 +79,27 @@
                             <ul class="info">
                                 <li class="row">
                                     <div class="col"><b>Região</b>:</div>
-                                    <div class="col">Nordeste</div>
+                                    <div class="col"><%= r.getNome() %></div>
                                 </li>
                                 <li class="row">
                                     <div class="col"><b>Estado</b>:</div>
-                                    <div class="col">Maranhão - MA</div>
+                                    <div class="col"><%= uf.getNome() %> - <%= uf.getSigla() %></div>
                                 </li>
                                 <li class="row">
                                     <div class="col"><b>Mesorregião</b>:</div>
-                                    <div class="col">Leste Maranhense</div>
+                                    <div class="col"><%= me.getNome() %></div>
                                 </li>                                                      
                                 <li class="row">
                                     <div class="col"><b>Microrregião</b>:</div>
-                                    <div class="col">Chapadas do Alto do Itaperucu</div>
+                                    <div class="col"><%= mi.getNome() %></div>
                                 </li>
                                 <li class="row">
                                     <div class="col"><b>Município</b>:</div>
-                                    <div class="col">Jenipapo das Vieiras</div>
+                                    <div class="col"><%= m.getNome() %></div>
                                 </li>                                                      
                                 <li class="row">
                                     <div class="col"><b>Distrito</b>:</div>
-                                    <div class="col">Jenipapo das Vieiras</div>
+                                    <div class="col"><%= d.getNome() %></div>
                                 </li>                                                      
                                 <li class="row">
                                     <div class="col"><b>Localização</b>:</div>

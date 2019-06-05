@@ -22,6 +22,11 @@ public class EstadoDAO {
         this.connection = ConnectionFactory.getConnection();
     }
     
+    /**
+     * Recupera todos os Estados
+     * 
+     * @return uma List de Estado
+     */
     public List<Estado> listar() {
         
         List<Estado> estados = new ArrayList<>();
@@ -50,7 +55,12 @@ public class EstadoDAO {
         
     }
     
-    
+    /**
+     * Recupera os dados de um Estado dado seu código
+     * 
+     * @param codigo
+     * @return o Estado
+     */
     public Estado buscar(String codigo) {
         
         Estado e = new Estado();

@@ -22,6 +22,12 @@ public class MunicipioDAO {
         this.connection = ConnectionFactory.getConnection();
     }
     
+    /**
+     * Recupera todos os Municipios dado o código de um Estado
+     * 
+     * @param codigoUf
+     * @return uma List de Municipio
+     */
     public List<Municipio> listar(String codigoUf) {
         
         List<Municipio> municipios = new ArrayList<>();
@@ -56,7 +62,12 @@ public class MunicipioDAO {
         
     }
     
-    
+    /**
+     * Recupera os dados de um Municipio dado o seu código
+     * 
+     * @param codigo
+     * @return o Municipio
+     */
     public Municipio buscar(String codigo) {
         
         Municipio m = new Municipio();
