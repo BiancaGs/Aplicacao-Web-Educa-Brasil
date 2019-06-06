@@ -9,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import model.Distrito;
 import model.Mesorregiao;
 import model.Microrregiao;
@@ -51,6 +53,33 @@ public class RegiaoMesoMicroDistritoDAO {
         
         return r;
         
+    }
+    
+    
+    /**
+     * Recupera todas as Regioes do banco
+     * 
+     * @return uma List de Regiao
+     * @throws SQLException 
+     */
+    public List<Regiao> recuperarRegioes() throws SQLException{
+        
+        List<Regiao> regioes = new ArrayList<>();
+        
+        String sql = "SELECT * FROM regiao";
+        
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        
+        while(rs.next()){
+            Regiao r = new Regiao();
+            r.setCodigo(rs.getInt("co_regiao"));
+            r.setNome(rs.getString("nome_regiao"));
+            
+            regioes.add(r);
+        }
+        
+        return regioes;
     }
     
     /**

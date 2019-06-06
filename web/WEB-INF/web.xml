@@ -20,6 +20,10 @@
         <servlet-name>RecuperarInformacoesEscola</servlet-name>
         <servlet-class>controller.RecuperarInformacoesEscola</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecuperarRegioes</servlet-name>
+        <servlet-class>controller.RecuperarRegioes</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RecuperarEstados</servlet-name>
         <url-pattern>/RecuperarEstados</url-pattern>
@@ -39,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>RecuperarInformacoesEscola</servlet-name>
         <url-pattern>/RecuperarInformacoesEscola</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecuperarRegiao</servlet-name>
+        <url-pattern>/RecuperarRegiao</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
