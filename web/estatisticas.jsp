@@ -44,7 +44,16 @@
 
         <div class="container mt-4">
             
-            <h2 class="verde-escuro-text">Brasil</h2>
+            <nav aria-label="breadcrumb" id="nav-estatisticas">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">Sudeste</li>
+                    <li class="breadcrumb-item active">São Paulo</li>
+                    <li class="breadcrumb-item active">Sorocaba</li>
+                </ol>
+            </nav>
+            <!-- <h2 class="verde-escuro-text nome-regiao">Brasil</h2>
+            <h3 class="verde-escuro-text nome-estado">Brasil</h3>
+            <h4 class="verde-escuro-text nome-municipio">Brasil</h4> -->
 
             <div class="container">
                 <div class="row">
@@ -62,21 +71,21 @@
         <div class="container" id="estatisticas-gerais">
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="verde-escuro-text">Situação de Funcionamento</h5>
+                    <h5 class="verde-claro-text">Situação de Funcionamento</h5>
                     <div class="grafico-est" id="grafico-situacao"></div>
                 </div>
                 <div class="col-sm-6">
-                    <h5 class="verde-escuro-text">Dependência Administrativa</h5>
+                    <h5 class="verde-claro-text">Dependência Administrativa</h5>
                     <div class="grafico-est" id="grafico-dep-adm"></div>
                 </div>
             </div>
             <div class="row">
                 <div class="col-sm-6">
-                    <h5 class="verde-escuro-text">Localização</h5>
+                    <h5 class="verde-claro-text">Localização</h5>
                     <div class="grafico-est" id="grafico-localizacao"></div>
                 </div>
                 <div class="col-sm-6">
-                    <h5 class="verde-escuro-text">Oferta de Matrícula</h5>
+                    <h5 class="verde-claro-text">Oferta de Matrícula</h5>
                     <div class="grafico-est" id="grafico-oferta"></div>
                 </div>
             </div>

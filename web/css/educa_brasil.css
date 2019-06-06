@@ -550,6 +550,21 @@ ul.info {
     margin-bottom: 50px;
 }
 
+/* =======================================================
+   PÁGINA DE ESTATÍSTICAS
+   ======================================================= */
+
+#nav-estatisticas {
+    font-size: 1.5em;
+}
+#nav-estatisticas ol.breadcrumb {
+    padding: unset !important;
+    background-color: unset !important;
+}
+#nav-estatisticas ol li {
+    color: var(--verde-escuro) !important;
+}
+
 
 /* =======================================================
    TABELA DE ESCOLAS
