@@ -21,8 +21,8 @@
         <servlet-class>controller.RecuperarInformacoesEscola</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RecuperarRegioes</servlet-name>
-        <servlet-class>controller.RecuperarRegioes</servlet-class>
+        <servlet-name>RecuperarRegiao</servlet-name>
+        <servlet-class>controller.RecuperarRegiao</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RecuperarEstados</servlet-name>

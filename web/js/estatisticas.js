@@ -5,7 +5,7 @@ $(document).ready(function() {
 
     // Ao abrir a página, carregar as regiões
     $.ajax({
-        url: 'RecuperarRegioes',
+        url: 'RecuperarRegiao',
         method: 'POST',
         data: {
             recuperarRegioes: "sim"
