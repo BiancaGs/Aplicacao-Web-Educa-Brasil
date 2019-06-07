@@ -330,10 +330,10 @@ function criarGraficoLocalizacao(urbana, rural) {
 	// Add data
 	chart_localizacao.data = [{
 		"nome": "Rural",
-		"quantidade": urbana
+		"quantidade": rural
 	}, {
 		"nome": "Urbana",
-		"quantidade": rural
+		"quantidade": urbana
 	}];
 	
 	// Add and configure Series

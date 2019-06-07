@@ -28,7 +28,7 @@ $(document).ready(function() {
     // Carregar também o mapa do Brasil
     criarGraficoPrincipal();
 
-
+    // Recupera as estatísticas do Brasil
     $.ajax({
         url: 'RecuperarEstatisticas',
         method: 'POST',
@@ -37,7 +37,7 @@ $(document).ready(function() {
         },
         datatype: 'json',
         success: function(retorno) {
-            
+
             var json = JSON.parse(retorno);
 
             // Cria os gráficos
@@ -87,6 +87,32 @@ $(document).ready(function() {
         $('.nome-municipio').html('');
         $('#select-municipio').html('<option></option>');
 
+
+        // Recupera as estatísticas da Região
+        $.ajax({
+            url: 'RecuperarEstatisticas',
+            method: 'POST',
+            data: {
+                regiao: regiao
+            },
+            datatype: 'json',
+            success: function(retorno) {
+
+                var json = JSON.parse(retorno);
+
+                // Cria os gráficos
+                criarGraficoSituacao(json.Atividade, json.Paralisada, json.Extinta);
+                criarGraficoDependencias(json.Federal, json.Estadual, json.Municipal, json.Privada);
+                criarGraficoLocalizacao(json.Urbana, json.Rural);
+                criarGraficoOfertas(json.B, json.C, json.PE, json.EFI, json.EFII, json.EMN, json.EMI);
+
+            },
+            error: function(retorno) {
+                console.log('Error');
+                console.log(retorno);
+            }
+        });
+
     });
 
     // =======================================================
@@ -120,6 +146,32 @@ $(document).ready(function() {
         var nome_regiao = $('.nome-regiao').text();
         $('#nav-estatisticas ol').html('<li class="breadcrumb-item active nome-regiao">'+nome_regiao+'</li><li class="breadcrumb-item active nome-estado">'+nome_estado+'</li>');
 
+
+        // Recupera as estatísticas do Estado
+        $.ajax({
+            url: 'RecuperarEstatisticas',
+            method: 'POST',
+            data: {
+                estado: estado
+            },
+            datatype: 'json',
+            success: function(retorno) {
+
+                var json = JSON.parse(retorno);
+
+                // Cria os gráficos
+                criarGraficoSituacao(json.Atividade, json.Paralisada, json.Extinta);
+                criarGraficoDependencias(json.Federal, json.Estadual, json.Municipal, json.Privada);
+                criarGraficoLocalizacao(json.Urbana, json.Rural);
+                criarGraficoOfertas(json.B, json.C, json.PE, json.EFI, json.EFII, json.EMN, json.EMI);
+
+            },
+            error: function(retorno) {
+                console.log('Error');
+                console.log(retorno);
+            }
+        });
+
     });
     
     $('#select-municipio').change(function () {
@@ -133,6 +185,31 @@ $(document).ready(function() {
         var nome_regiao = $('.nome-regiao').text();
         var nome_estado = $('.nome-estado').text();
         $('#nav-estatisticas ol').html('<li class="breadcrumb-item active nome-regiao">'+nome_regiao+'</li><li class="breadcrumb-item active nome-estado">'+nome_estado+'</li><li class="breadcrumb-item active nome-municipio">'+nome_municipio+'</li>');
+
+        // Recupera as estatísticas do Municipio
+        $.ajax({
+            url: 'RecuperarEstatisticas',
+            method: 'POST',
+            data: {
+                municipio: municipio
+            },
+            datatype: 'json',
+            success: function(retorno) {
+
+                var json = JSON.parse(retorno);
+
+                // Cria os gráficos
+                criarGraficoSituacao(json.Atividade, json.Paralisada, json.Extinta);
+                criarGraficoDependencias(json.Federal, json.Estadual, json.Municipal, json.Privada);
+                criarGraficoLocalizacao(json.Urbana, json.Rural);
+                criarGraficoOfertas(json.B, json.C, json.PE, json.EFI, json.EFII, json.EMN, json.EMI);
+
+            },
+            error: function(retorno) {
+                console.log('Error');
+                console.log(retorno);
+            }
+        });
 
     });
 
