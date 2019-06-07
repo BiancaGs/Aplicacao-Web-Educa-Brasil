@@ -53,14 +53,14 @@
 
             <!-- Container para o Mapa -->
             <div class="container">
-                <div class="row">
-                    <div class="col-sm-6 mapa-wrapper">
-                        <div id="mapa"></div>
+                <!-- <div class="row"> -->
+                    <div class="mapa-wrapper">
+                        <div id="mapa-principal"></div>
                     </div>
-                    <div class="col-sm-6 barras-wrapper">
+                    <!-- <div class="col-sm-6 barras-wrapper">
                         
-                    </div>
-                </div>
+                    </div> -->
+                <!-- </div> -->
             </div>
 
         </div>
@@ -94,6 +94,8 @@
 
 <!-- Amcharts v4.0 -->
 <script src="lib/amchats4/core.js"></script>
+<script src="lib/amchats4/maps.js"></script>
+<script src="lib/amchats4/geodata/brazilLow.js"></script>
 <script src="lib/amchats4/charts.js"></script>
 <script src="lib/amchats4/animated.js"></script>
 <script src="lib/select2/js/select2.js"></script>

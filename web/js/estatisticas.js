@@ -22,6 +22,9 @@ $(document).ready(function() {
         }
     });
 
+    // Carregar também o mapa do Brasil
+    criarGraficoPrincipal();
+
 
     // =======================================================
     // Recuperar os Estados à partir de uma Região
@@ -102,7 +105,7 @@ $(document).ready(function() {
         var nome_regiao = $('.nome-regiao').text();
         var nome_estado = $('.nome-estado').text();
         $('#nav-estatisticas ol').html('<li class="breadcrumb-item active nome-regiao">'+nome_regiao+'</li><li class="breadcrumb-item active nome-estado">'+nome_estado+'</li><li class="breadcrumb-item active nome-municipio">'+nome_municipio+'</li>');
-        
+
     });
 
 
