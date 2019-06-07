@@ -44,17 +44,14 @@
 
         <div class="container mt-4">
             
+            <!-- Breadcrumb de Localização -->
             <nav aria-label="breadcrumb" id="nav-estatisticas">
                 <ol class="breadcrumb">
-                    <li class="breadcrumb-item active nome-regiao"></li>
-                    <li class="breadcrumb-item active nome-estado"></li>
-                    <li class="breadcrumb-item active nome-municipio"></li>
+                    <li class="breadcrumb-item active">Brasil</li>
                 </ol>
             </nav>
-            <!-- <h2 class="verde-escuro-text nome-regiao">Brasil</h2>
-            <h3 class="verde-escuro-text nome-estado">Brasil</h3>
-            <h4 class="verde-escuro-text nome-municipio">Brasil</h4> -->
 
+            <!-- Container para o Mapa -->
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 mapa-wrapper">

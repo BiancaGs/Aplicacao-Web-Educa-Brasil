@@ -49,11 +49,8 @@ $(document).ready(function() {
             }
         });
         
-         // Atualizar o nome na view
-        $('.nome-regiao').text(nome_regiao);
-
-        // Zera o nome do Estado
-        $('.nome-estado').html('');
+        // Atualizar o nome na view
+        $('#nav-estatisticas ol').html('<li class="breadcrumb-item active nome-regiao">'+nome_regiao+'</li>');
         
         // Zera o nome do Municipio e o seu select
         $('.nome-municipio').html('');
@@ -89,11 +86,8 @@ $(document).ready(function() {
         });
         
         // Atualizar o nome na view
-        $('.nome-estado').text(nome_estado);
-
-        // Zera o nome do Municipio
-        $('.nome-municipio').html('');
-        
+        var nome_regiao = $('.nome-regiao').text();
+        $('#nav-estatisticas ol').html('<li class="breadcrumb-item active nome-regiao">'+nome_regiao+'</li><li class="breadcrumb-item active nome-estado">'+nome_estado+'</li>');
 
     });
     
@@ -105,7 +99,10 @@ $(document).ready(function() {
         var nome_municipio = dados_municipio[0].text;
       
         // Atualizar o nome na view
-        $('.nome-municipio').text(nome_municipio);
+        var nome_regiao = $('.nome-regiao').text();
+        var nome_estado = $('.nome-estado').text();
+        $('#nav-estatisticas ol').html('<li class="breadcrumb-item active nome-regiao">'+nome_regiao+'</li><li class="breadcrumb-item active nome-estado">'+nome_estado+'</li><li class="breadcrumb-item active nome-municipio">'+nome_municipio+'</li>');
+        
     });
 
 
