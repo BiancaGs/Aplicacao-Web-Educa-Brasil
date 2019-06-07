@@ -28,6 +28,10 @@
         <servlet-name>RecuperarQuantidadeEscolasEstado</servlet-name>
         <servlet-class>controller.RecuperarQuantidadeEscolasEstado</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecuperarEstatisticas</servlet-name>
+        <servlet-class>controller.RecuperarEstatisticas</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RecuperarEstados</servlet-name>
         <url-pattern>/RecuperarEstados</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>RecuperarQuantidadeEscolasEstado</servlet-name>
         <url-pattern>/RecuperarQuantidadeEscolasEstado</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecuperarEstatisticas</servlet-name>
+        <url-pattern>/RecuperarEstatisticas</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

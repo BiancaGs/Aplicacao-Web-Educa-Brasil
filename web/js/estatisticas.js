@@ -3,6 +3,9 @@
 
 $(document).ready(function() {
 
+    // Fazer com que o mapa ocupe a altura restante
+    $('#nav-mapa').height($(window).height() - $('#header-principal').height());
+
     // Ao abrir a página, carregar as regiões
     $.ajax({
         url: 'RecuperarRegiao',
@@ -24,6 +27,31 @@ $(document).ready(function() {
 
     // Carregar também o mapa do Brasil
     criarGraficoPrincipal();
+
+
+    $.ajax({
+        url: 'RecuperarEstatisticas',
+        method: 'POST',
+        data: {
+            recuperarEstatisticas: "sim"
+        },
+        datatype: 'json',
+        success: function(retorno) {
+            
+            var json = JSON.parse(retorno);
+
+            // Cria os gráficos
+            criarGraficoSituacao(json.Atividade, json.Paralisada, json.Extinta);
+            criarGraficoDependencias(json.Federal, json.Estadual, json.Municipal, json.Privada);
+            criarGraficoLocalizacao(json.Urbana, json.Rural);
+            criarGraficoOfertas(json.B, json.C, json.PE, json.EFI, json.EFII, json.EMN, json.EMI);
+
+        },
+        error: function(retorno) {
+            console.log('Error');
+            console.log(retorno);
+        }
+    });
 
 
     // =======================================================

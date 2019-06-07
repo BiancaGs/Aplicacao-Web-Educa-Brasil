@@ -42,7 +42,7 @@
     <!-- Main -->
     <main id="main-principal">
 
-        <div class="container mt-4">
+        <div class="container mt-4" id="nav-mapa">
             
             <!-- Breadcrumb de Localização -->
             <nav aria-label="breadcrumb" id="nav-estatisticas">
@@ -52,7 +52,7 @@
             </nav>
 
             <!-- Container para o Mapa -->
-            <div class="container">
+            <div class="container" id="container-mapa-principal">
                 <!-- <div class="row"> -->
                     <div class="mapa-wrapper">
                         <div id="mapa-principal"></div>
@@ -99,5 +99,5 @@
 <script src="lib/amchats4/charts.js"></script>
 <script src="lib/amchats4/animated.js"></script>
 <script src="lib/select2/js/select2.js"></script>
-<script src="js/estatisticas.js"></script>
 <script src="js/estatisticas_graficos.js"></script>
+<script src="js/estatisticas.js"></script>
