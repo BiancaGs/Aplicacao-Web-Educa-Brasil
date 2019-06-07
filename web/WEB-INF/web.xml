@@ -24,6 +24,10 @@
         <servlet-name>RecuperarRegiao</servlet-name>
         <servlet-class>controller.RecuperarRegiao</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RecuperarQuantidadeEscolasEstado</servlet-name>
+        <servlet-class>controller.RecuperarQuantidadeEscolasEstado</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RecuperarEstados</servlet-name>
         <url-pattern>/RecuperarEstados</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>RecuperarRegiao</servlet-name>
         <url-pattern>/RecuperarRegiao</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RecuperarQuantidadeEscolasEstado</servlet-name>
+        <url-pattern>/RecuperarQuantidadeEscolasEstado</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

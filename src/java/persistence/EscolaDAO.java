@@ -616,6 +616,49 @@ public class EscolaDAO {
         return e;
     }
     
+    /**
+     * Retorna um JSON com as siglas e as quantidades correspondentes de cada Estado
+     * 
+     * @return uma String JSON
+     */
+    public String recuperarQtdEscolas() throws SQLException {
+        
+        String sql = "SELECT count(e.co_escola) as qtd, u.sigla_uf " +
+        "FROM escola e " +
+        "JOIN distrito d on e.co_distrito = d.co_distrito " +
+        "JOIN municipio m on d.co_municipio = m.co_municipio " +
+        "JOIN microrregiao m2 on m.co_microrregiao = m2.co_microrregiao " +
+        "JOIN mesorregiao m3 on m2.co_mesorregiao = m3.co_mesorregiao " +
+        "JOIN uf u on m3.co_uf = u.co_uf " +
+        "GROUP BY u.sigla_uf";
+        
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        ResultSet rs = stmt.executeQuery();
+        
+        String data = "";
+        int i = 0;
+
+        // Cria os objetos de dados
+        while (rs.next()) {
+            
+            data += "{" +
+                        "\"sigla\":\"" + rs.getString("sigla_uf") + "\"," +
+                        "\"qtd\":" + rs.getInt("qtd") +
+                    "}";
+            
+            i++;
+            
+            if (i < 27) // Com certeza serão 27 Estados
+                data += ",";
+
+        }
+
+        String json = "[" + data + "]";
+        
+        return json;
+        
+    }
+    
 }
 
 
