@@ -41,17 +41,22 @@ $(document).ready(function() {
             },
             datatype: 'html',
             success: function(retorno) {
-                console.log('Success');
-                console.log(retorno);
+                $('#select-estado').html(retorno);
             },
             error: function(retorno) {
                 console.log('Error');
                 console.log(retorno);
             }
         });
+        
+         // Atualizar o nome na view
+        $('.nome-regiao').text(nome_regiao);
 
-        // Atualizar o nome na view
-        // TODO
+        // Zera o nome do Estado
+        $('.nome-estado').html('');
+        
+        // Zera o nome do Municipio
+        $('.nome-municipio').html('');
 
     });
 
@@ -73,18 +78,33 @@ $(document).ready(function() {
             },
             datatype: 'html',
             success: function(retorno) {
-                console.log('Success');
-                console.log(retorno);
+                $('#select-municipio').html(retorno);
             },
             error: function(retorno) {
                 console.log('Error');
                 console.log(retorno);
             }
+            
         });
-
+        
         // Atualizar o nome na view
-        // TODO
+        $('.nome-estado').text(nome_estado);
 
+        // Zera o nome do Municipio
+        $('.nome-municipio').html('');
+        
+
+    });
+    
+    $('#select-municipio').change(function () {
+        
+        // Recupera os dados do Municipio selecionado
+        var dados_municipio = $(this).select2('data');
+        var municipio = dados_municipio[0].id;
+        var nome_municipio = dados_municipio[0].text;
+      
+        // Atualizar o nome na view
+        $('.nome-municipio').text(nome_municipio);
     });
 
 

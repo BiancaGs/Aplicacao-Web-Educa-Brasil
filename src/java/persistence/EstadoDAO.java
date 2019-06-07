@@ -56,6 +56,41 @@ public class EstadoDAO {
     }
     
     /**
+     * Recupera todos os Estados dado o código de uma Região
+     * 
+     * @param codigoRegiao
+     * @return 
+     */
+    public List<Estado> listarEstadoRegiao( String codigoRegiao) {
+        
+        List<Estado> estados = new ArrayList<>();
+        
+        try {
+        
+            String sql = "SELECT * FROM uf WHERE co_regiao = "+ codigoRegiao + "ORDER BY nome_uf" ;
+            PreparedStatement stmt = connection.prepareStatement(sql);
+        
+            ResultSet rs = stmt.executeQuery();
+        
+            while (rs.next()) {
+                Estado e = new Estado();
+                e.setCodigo(rs.getInt("co_uf"));
+                e.setNome(rs.getString("nome_uf"));
+                e.setSigla(rs.getString("sigla_uf"));
+                
+                estados.add(e);
+            }
+        
+        } catch (SQLException ex) {
+            Logger.getLogger(EstadoDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return estados;
+        
+    }
+    
+    
+    /**
      * Recupera os dados de um Estado dado seu código
      * 
      * @param codigo

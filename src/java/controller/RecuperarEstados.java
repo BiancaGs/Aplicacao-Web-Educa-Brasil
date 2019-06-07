@@ -62,12 +62,17 @@ public class RecuperarEstados extends HttpServlet {
         String retorno = "<option></option>";
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
-        
+               
         try {
             
             EstadoDAO edao = new EstadoDAO();
             List<Estado> estados = edao.listar();
             
+            if(request.getParameter("regiao") != null){
+                String regiao = request.getParameter("regiao");
+                estados = edao.listarEstadoRegiao(regiao);
+            }
+                      
             for (int i = 0; i < estados.size(); i++) {
                 String option = "<option value='" + estados.get(i).getCodigo() + "'>" + estados.get(i).getNome() + "</option>";
                 retorno += option;
