@@ -46,6 +46,9 @@ $(document).ready(function() {
             criarGraficoLocalizacao(json.Urbana, json.Rural);
             criarGraficoOfertas(json.B, json.C, json.PE, json.EFI, json.EFII, json.EMN, json.EMI);
 
+            // Preenche a quantidade de escolas
+            $('.qtd-escolas').text(json.Total);
+
         },
         error: function(retorno) {
             console.log('Error');
@@ -106,6 +109,9 @@ $(document).ready(function() {
                 criarGraficoLocalizacao(json.Urbana, json.Rural);
                 criarGraficoOfertas(json.B, json.C, json.PE, json.EFI, json.EFII, json.EMN, json.EMI);
 
+                // Preenche a quantidade de escolas
+                $('.qtd-escolas').text(json.Total);
+
             },
             error: function(retorno) {
                 console.log('Error');
@@ -165,6 +171,9 @@ $(document).ready(function() {
                 criarGraficoLocalizacao(json.Urbana, json.Rural);
                 criarGraficoOfertas(json.B, json.C, json.PE, json.EFI, json.EFII, json.EMN, json.EMI);
 
+                // Preenche a quantidade de escolas
+                $('.qtd-escolas').text(json.Total);
+
             },
             error: function(retorno) {
                 console.log('Error');
@@ -203,6 +212,9 @@ $(document).ready(function() {
                 criarGraficoDependencias(json.Federal, json.Estadual, json.Municipal, json.Privada);
                 criarGraficoLocalizacao(json.Urbana, json.Rural);
                 criarGraficoOfertas(json.B, json.C, json.PE, json.EFI, json.EFII, json.EMN, json.EMI);
+
+                // Preenche a quantidade de escolas
+                $('.qtd-escolas').text(json.Total);
 
             },
             error: function(retorno) {

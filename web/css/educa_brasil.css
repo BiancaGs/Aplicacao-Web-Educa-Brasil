@@ -564,9 +564,17 @@ ul.info {
 #nav-estatisticas ol.breadcrumb {
     padding: unset !important;
     background-color: unset !important;
+    margin-bottom: 0 !important;
 }
 #nav-estatisticas ol li {
     color: var(--verde-escuro) !important;
+}
+.titulo-qtd-escolas {
+    font-size: 1.25em;
+    color: var(--cinza);
+}
+.qtd-escolas {
+    font-weight: bold;
 }
 
 

@@ -50,6 +50,7 @@
                     <li class="breadcrumb-item active">Brasil</li>
                 </ol>
             </nav>
+            <span class="titulo-qtd-escolas">Número de Escolas: <span class="qtd-escolas"></span></span>
 
             <!-- Container para o Mapa -->
             <div class="container" id="container-mapa-principal">
