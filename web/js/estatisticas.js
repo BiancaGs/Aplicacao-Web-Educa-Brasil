@@ -55,8 +55,9 @@ $(document).ready(function() {
         // Zera o nome do Estado
         $('.nome-estado').html('');
         
-        // Zera o nome do Municipio
+        // Zera o nome do Municipio e o seu select
         $('.nome-municipio').html('');
+        $('#select-municipio').html('<option></option>');
 
     });
 

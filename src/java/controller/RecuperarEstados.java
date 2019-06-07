@@ -3,6 +3,7 @@ package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,11 +67,16 @@ public class RecuperarEstados extends HttpServlet {
         try {
             
             EstadoDAO edao = new EstadoDAO();
-            List<Estado> estados = edao.listar();
+            List<Estado> estados = new ArrayList<>();
             
-            if(request.getParameter("regiao") != null){
+            // Se a requisção veio da página de estatísticas (para recuperar os estados de uma região)
+            if (request.getParameter("regiao") != null) {
                 String regiao = request.getParameter("regiao");
                 estados = edao.listarEstadoRegiao(regiao);
+            }
+            // Se a requisição veio da página das escolas (para recuperar todos os estados do banco)
+            else {
+                estados = edao.listar();
             }
                       
             for (int i = 0; i < estados.size(); i++) {
