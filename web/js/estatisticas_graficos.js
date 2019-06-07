@@ -9,7 +9,7 @@
 // MAPA PRINCIPAL DA PÁGINA (REGIÃO, ESTADO, MUNICÍPIO)
 // =======================================================
 
-function criarGraficoPrincipal() {
+function criarGraficoPrincipal(json) {
 
 	// Themes begin
 	am4core.useTheme(am4themes_animated);
@@ -50,117 +50,18 @@ function criarGraficoPrincipal() {
 	// Make map load polygon data (state shapes and names) from GeoJSON
 	polygonSeries.useGeodata = true;
 
-	// Set heatmap values for each state
-	polygonSeries.data = [
-		{
-			id: "BR-AC",
-			value: 10000
-		},
-		{
-			id: "BR-AL",
-			value: 20000
-		},
-		{
-			id: "BR-AP",
-			value: 30000
-		},
-		{
-			id: "BR-AM",
-			value: 40000
-		},
-		{
-			id: "BR-BA",
-			value: 50000
-		},
-		{
-			id: "BR-CE",
-			value: 60000
-		},
-		{
-			id: "BR-DF",
-			value: 70000
-		},
-		{
-			id: "BR-ES",
-			value: 80000
-		},
-		{
-			id: "BR-GO",
-			value: 90000
-		},
-		{
-			id: "BR-MA",
-			value: 100000
-		},
-		{
-			id: "BR-MT",
-			value: 110000
-		},
-		{
-			id: "BR-MS",
-			value: 120000
-		},
-		{
-			id: "BR-MG",
-			value: 130000
-		},
-		{
-			id: "BR-PA",
-			value: 140000
-		},
-		{
-			id: "BR-PB",
-			value: 150000
-		},
-		{
-			id: "BR-PR",
-			value: 160000
-		},
-		{
-			id: "BR-PE",
-			value: 170000
-		},
-		{
-			id: "BR-PI",
-			value: 180000
-		},
-		{
-			id: "BR-RJ",
-			value: 190000
-		},
-		{
-			id: "BR-RN",
-			value: 200000
-		},
-		{
-			id: "BR-RS",
-			value: 210000
-		},
-		{
-			id: "BR-RO",
-			value: 220000
-		},
-		{
-			id: "BR-RR",
-			value: 230000
-		},
-		{
-			id: "BR-SC",
-			value: 240000
-		},
-		{
-			id: "BR-SP",
-			value: 250000
-		},
-		{
-			id: "BR-SE",
-			value: 260000
-		},
-		{
-			id: "BR-TO",
-			value: 270000
-		}
-	];
+
+	// =======================================================
+    // Preenche com os dados do JSON
+    // =======================================================
+
+    polygonSeries.data = [];
+    for (let i = 0; i < json.length; i++) {
+        polygonSeries.data.push({
+            id: "BR-" + json[i].sigla,
+            value: json[i].qtd 
+        });
+    }
 
 
 	// Configure series tooltip
@@ -171,7 +72,7 @@ function criarGraficoPrincipal() {
 
 	// Create hover state and set alternative fill color
 	var hs = polygonTemplate.states.create("hover");
-	hs.properties.fill = am4core.color("#36923F");
+	hs.properties.fill = am4core.color("#002776");
 
 	// Cor do tooltip
 	polygonSeries.tooltip.getFillFromObject = false;

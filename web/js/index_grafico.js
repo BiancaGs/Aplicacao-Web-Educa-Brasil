@@ -101,7 +101,7 @@ function criarMapa(json) {
     minRange.label.text = "Poucas";
     var maxRange = heatLegend.valueAxis.axisRanges.create();
     maxRange.value = heatLegend.maxValue;
-    maxRange.label.text = "Muitas!";
+    maxRange.label.text = "Muitas";
 
     // Blank out internal heat legend value axis labels
     heatLegend.valueAxis.renderer.labels.template.adapter.add("text", function (labelText) {
@@ -116,7 +116,7 @@ function criarMapa(json) {
 
     // Create hover state and set alternative fill color
     var hs = polygonTemplate.states.create("hover");
-    hs.properties.fill = am4core.color("#36923F");
+    hs.properties.fill = am4core.color("#002776");
 
     // Cor do tooltip
     polygonSeries.tooltip.getFillFromObject = false;
