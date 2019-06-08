@@ -86,39 +86,95 @@ $(document).on('click', '.filtros-btn-aplicar', function() {
     // Situação de Funcionamento
     var vSituacao = Object.values(filtrosSituacao);
     if (vSituacao[0] == true)
-        $('#filtros-situacao').append('<span class="badge badge-light">Em atividade</span>');
+        $('#filtros-situacao').append('<span class="badge-light badge-filtro">Em atividade</span>');
     if (vSituacao[1] == true)
-        $('#filtros-situacao').append('<span class="badge badge-light">Paralisada</span>');
+        $('#filtros-situacao').append('<span class="badge-light badge-filtro">Paralisada</span>');
     if (vSituacao[2] == true)
-        $('#filtros-situacao').append('<span class="badge badge-light">Extinta</span>');
+        $('#filtros-situacao').append('<span class="badge-light badge-filtro">Extinta</span>');
 
     // Dependência Administrativa
     var vDep = Object.values(filtrosDepAdm);
     if (vDep[0] == true)
-        $('#filtros-dep-adm').append('<span class="badge badge-light">Federal</span>');
+        $('#filtros-dep-adm').append('<span class="badge-light badge-filtro">Federal</span>');
     if (vDep[1] == true)
-        $('#filtros-dep-adm').append('<span class="badge badge-light">Estadual</span>');
+        $('#filtros-dep-adm').append('<span class="badge-light badge-filtro">Estadual</span>');
     if (vDep[2] == true)
-        $('#filtros-dep-adm').append('<span class="badge badge-light">Municipal</span>');
+        $('#filtros-dep-adm').append('<span class="badge-light badge-filtro">Municipal</span>');
     if (vDep[3] == true)
-        $('#filtros-dep-adm').append('<span class="badge badge-light">Privada</span>');
+        $('#filtros-dep-adm').append('<span class="badge-light badge-filtro">Privada</span>');
     
     // Dependência Administrativa
     var vOfertas = Object.values(filtrosOfertas);
     if (vOfertas[0] == true)
-        $('#filtros-ofertas').append('<span class="badge badge-light">B</span>');
+        $('#filtros-ofertas').append('<span class="badge-light badge-filtro">B</span>');
     if (vOfertas[1] == true)
-        $('#filtros-ofertas').append('<span class="badge badge-light">C</span>');
+        $('#filtros-ofertas').append('<span class="badge-light badge-filtro">C</span>');
     if (vOfertas[2] == true)
-        $('#filtros-ofertas').append('<span class="badge badge-light">PE</span>');
+        $('#filtros-ofertas').append('<span class="badge-light badge-filtro">PE</span>');
     if (vOfertas[3] == true)
-        $('#filtros-ofertas').append('<span class="badge badge-light">EFI</span>');
+        $('#filtros-ofertas').append('<span class="badge-light badge-filtro">EFI</span>');
     if (vOfertas[4] == true)
-        $('#filtros-ofertas').append('<span class="badge badge-light">EFII</span>');
+        $('#filtros-ofertas').append('<span class="badge-light badge-filtro">EFII</span>');
     if (vOfertas[5] == true)
-        $('#filtros-ofertas').append('<span class="badge badge-light">EMN</span>');
+        $('#filtros-ofertas').append('<span class="badge-light badge-filtro">EMN</span>');
     if (vOfertas[6] == true)
-        $('#filtros-ofertas').append('<span class="badge badge-light">EMI</span>');
+        $('#filtros-ofertas').append('<span class="badge-light badge-filtro">EMI</span>');
+
+});
+
+$(document).on('click', '.filtros-btn-limpar', function() {
+
+    // Zera os filtros
+    var filtrosSituacao = {
+        emAtividade: false,
+        paralisada: false,
+        extinta: false
+    };
+
+    var filtrosDepAdm = {
+        federal: false,
+        estadual: false,
+        municipal: false,
+        privada: false
+    };
+
+    var filtrosOfertas = {
+        b: false,
+        c: false,
+        pe: false,
+        efi: false,
+        efii: false,
+        emn: false,
+        emi: false
+    };
+
+    // Atualiza os filtros
+    $.ajax({
+        url: 'AtualizarFiltros',
+        method: 'POST',
+        data: {
+            atualizarFiltros: "sim",
+            filtrosSituacao: JSON.stringify(filtrosSituacao),
+            filtrosDepAdm: JSON.stringify(filtrosDepAdm),
+            filtrosOfertas: JSON.stringify(filtrosOfertas)
+        },
+        success: function(retorno) {
+            console.log('Success');
+            console.log(retorno);
+        },
+        error: function(retorno) {
+            console.log('Error');
+            console.log(retorno);
+        }
+    });
+
+    // Atualiza a tabela
+    $('#tabela-escolas').DataTable().draw();
+
+    // Zera os filtros na caixa
+    $('#filtros-situacao').html('<span class="badge-light badge-filtro">NENHUM</span>');
+    $('#filtros-dep-adm').html('<span class="badge-light badge-filtro">NENHUM</span>');
+    $('#filtros-ofertas').html('<span class="badge-light badge-filtro">NENHUM</span>');
 
 });
 

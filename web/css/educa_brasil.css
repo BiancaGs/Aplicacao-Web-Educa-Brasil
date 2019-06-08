@@ -603,8 +603,26 @@ li.all-filters {
 #filtros-situacao, #filtros-dep-adm, #filtros-ofertas {
     display: flex;
     flex-direction: column;
+    align-items: center;
+}
+.filtros-btn-limpar {
+    margin-top: 25px;
+    border: none;
+    padding: 6px;
+    text-transform: uppercase;
+    color: white;
+    background-color: var(--verde-intermediario);
+}
+.filtros-btn-limpar:hover {
+    background-color: #a7d366;
 }
 
+.badge-light.badge-filtro {
+    text-align: center;
+    font-weight: bold;
+    border-radius: 4px;
+    width: 94%;
+}
 
 /* =======================================================
    MODAL ESCOLAS

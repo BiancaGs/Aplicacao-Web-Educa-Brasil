@@ -186,19 +186,20 @@
                         <a role="button" class="btn-all-filters">
                             <i class="fas fa-filter fa-lg"></i>
                         </a>
-                        <div class="all-filters-box custom-scrollbar-darker">
+                        <div class="all-filters-box">
                             <p class="verde-claro-text">Situação de Funcionamento</p>
                             <div id="filtros-situacao">
-                                <span class="badge badge-light">NENHUM</span>
+                                <span class="badge-light badge-filtro">NENHUM</span>
                             </div>
                             <p class="verde-claro-text">Dependência Administrativa</p>
                             <div id="filtros-dep-adm">
-                                <span class="badge badge-light">NENHUM</span>
+                                <span class="badge-light badge-filtro">NENHUM</span>
                             </div>
                             <p class="verde-claro-text">Ofertas de Matrícula</p>
                             <div id="filtros-ofertas">
-                                <span class="badge badge-light">NENHUM</span>
+                                <span class="badge-light badge-filtro">NENHUM</span>
                             </div>
+                            <button class="filtros-btn-limpar">limpar filtros</button>
                         </div>
                     </li>
 
