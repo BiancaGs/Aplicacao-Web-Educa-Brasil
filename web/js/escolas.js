@@ -26,29 +26,12 @@ function aplicarFiltros(i, str) {
 
 $(document).on('click', '.filtros-btn-aplicar', function() {
 
-    // // Recupera todos os inputs selecionados (daquele filtro)
-    // $.each($(this).parent().parent().find("input:checkbox:checked"), function() {
-    //     console.log(this);
-    // });
-
-    // // Recupera todos os inputs selecionados (de todos os filtros)
-    // $.each($('.filtros').find("#filtro-situacao input:checkbox:checked"), function() {
-    //     console.log(this);
-    // });
-
-    // $('#tabela-escolas').DataTable()
-    //     .columns(2).search('Em Atividade,Paralisada')
-    //     .columns(3).search('Federal,Privada')
-    //     .columns(4).search('C,EFI,EMN')
-    // .draw();
-
+    // Recupera as caixas selecionadas
     var filtrosSituacao = {
         emAtividade: $('#em-atividade').is(':checked') ? true : false,
         paralisada: $('#paralisada').is(':checked') ? true : false,
         extinta: $('#extinta').is(':checked') ? true : false        
     };
-
-    console.log(filtrosSituacao);
 
     var filtrosDepAdm = {
         federal: $('#federal').is(':checked') ? true : false,
@@ -56,8 +39,6 @@ $(document).on('click', '.filtros-btn-aplicar', function() {
         municipal: $('#municipal').is(':checked') ? true : false,
         privada: $('#privada').is(':checked') ? true : false
     };
-
-    console.log(filtrosDepAdm);
 
     var filtrosOfertas = {
         b: $('#bercario').is(':checked') ? true : false,
@@ -69,8 +50,7 @@ $(document).on('click', '.filtros-btn-aplicar', function() {
         emi: $('#ensino-medio-int').is(':checked') ? true : false
     };
 
-    console.log(filtrosOfertas);
-
+    // Atualiza os filtros
     $.ajax({
         url: 'AtualizarFiltros',
         method: 'POST',
@@ -92,6 +72,53 @@ $(document).on('click', '.filtros-btn-aplicar', function() {
 
     // Atualiza a tabela
     $('#tabela-escolas').DataTable().draw();
+
+    // Zera os filtros na caixa
+    $('#filtros-situacao').html('');
+    $('#filtros-dep-adm').html('');
+    $('#filtros-ofertas').html('');
+
+
+    // =======================================================
+    // Atualiza a box de filtros
+    // =======================================================
+
+    // Situação de Funcionamento
+    var vSituacao = Object.values(filtrosSituacao);
+    if (vSituacao[0] == true)
+        $('#filtros-situacao').append('<span class="badge badge-light">Em atividade</span>');
+    if (vSituacao[1] == true)
+        $('#filtros-situacao').append('<span class="badge badge-light">Paralisada</span>');
+    if (vSituacao[2] == true)
+        $('#filtros-situacao').append('<span class="badge badge-light">Extinta</span>');
+
+    // Dependência Administrativa
+    var vDep = Object.values(filtrosDepAdm);
+    if (vDep[0] == true)
+        $('#filtros-dep-adm').append('<span class="badge badge-light">Federal</span>');
+    if (vDep[1] == true)
+        $('#filtros-dep-adm').append('<span class="badge badge-light">Estadual</span>');
+    if (vDep[2] == true)
+        $('#filtros-dep-adm').append('<span class="badge badge-light">Municipal</span>');
+    if (vDep[3] == true)
+        $('#filtros-dep-adm').append('<span class="badge badge-light">Privada</span>');
+    
+    // Dependência Administrativa
+    var vOfertas = Object.values(filtrosOfertas);
+    if (vOfertas[0] == true)
+        $('#filtros-ofertas').append('<span class="badge badge-light">B</span>');
+    if (vOfertas[1] == true)
+        $('#filtros-ofertas').append('<span class="badge badge-light">C</span>');
+    if (vOfertas[2] == true)
+        $('#filtros-ofertas').append('<span class="badge badge-light">PE</span>');
+    if (vOfertas[3] == true)
+        $('#filtros-ofertas').append('<span class="badge badge-light">EFI</span>');
+    if (vOfertas[4] == true)
+        $('#filtros-ofertas').append('<span class="badge badge-light">EFII</span>');
+    if (vOfertas[5] == true)
+        $('#filtros-ofertas').append('<span class="badge badge-light">EMN</span>');
+    if (vOfertas[6] == true)
+        $('#filtros-ofertas').append('<span class="badge badge-light">EMI</span>');
 
 });
 

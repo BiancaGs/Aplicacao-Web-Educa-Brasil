@@ -600,6 +600,11 @@ li.all-filters {
     margin-top: 12px;
 }
 
+#filtros-situacao, #filtros-dep-adm, #filtros-ofertas {
+    display: flex;
+    flex-direction: column;
+}
+
 
 /* =======================================================
    MODAL ESCOLAS

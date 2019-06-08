@@ -188,14 +188,17 @@
                         </a>
                         <div class="all-filters-box custom-scrollbar-darker">
                             <p class="verde-claro-text">Situação de Funcionamento</p>
-                            <span class="badge badge-light">Em atividade</span>
-                            <span class="badge badge-light">Paralisada</span>
+                            <div id="filtros-situacao">
+                                <span class="badge badge-light">NENHUM</span>
+                            </div>
                             <p class="verde-claro-text">Dependência Administrativa</p>
-                            <span class="badge badge-light">Federal</span>
-                            <span class="badge badge-light">Privada</span>
+                            <div id="filtros-dep-adm">
+                                <span class="badge badge-light">NENHUM</span>
+                            </div>
                             <p class="verde-claro-text">Ofertas de Matrícula</p>
-                            <span class="badge badge-light">EFII</span>
-                            <span class="badge badge-light">EMN</span>
+                            <div id="filtros-ofertas">
+                                <span class="badge badge-light">NENHUM</span>
+                            </div>
                         </div>
                     </li>
 
