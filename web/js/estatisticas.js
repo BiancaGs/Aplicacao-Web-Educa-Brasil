@@ -224,6 +224,28 @@ $(document).ready(function() {
             }
         });
 
+        // Recupera a quantidade de escolas por Estado
+        $.ajax({
+            url: 'RecuperarQuantidadeEscolasEstado',
+            method: 'POST',
+            data: {
+                recuperarIndex: "sim"
+            },
+            datatype: '',
+            success: function(retorno) {
+                
+                // Cria o mapa com os dados do json de retorno
+                var json = JSON.parse(retorno);
+                // Carregar também o mapa do Brasil
+                criarMapaEstado(json, estado);
+                
+            },
+            error: function(retorno) {
+                console.log('Error');
+                console.log(retorno);
+            }
+        });
+
     });
     
     $('#select-municipio').change(function () {

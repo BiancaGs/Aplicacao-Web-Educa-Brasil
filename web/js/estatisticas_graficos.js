@@ -157,7 +157,7 @@ function criarMapaRegiao(json, codigoRegiao) {
 			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SE", "BR-TO"];
 			break;
 		case "4": // Sul
-			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RO", "BR-RR", "BR-SP", "BR-SE", "BR-TO"]
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RO", "BR-RR", "BR-SP", "BR-SE", "BR-TO"];
 			break;
 		case "5": // Centro-Oeste
 			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-ES", "BR-MA", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
@@ -184,6 +184,175 @@ function criarMapaRegiao(json, codigoRegiao) {
 	polygonSeries.tooltip.autoTextColor = false;
 	polygonSeries.tooltip.label.fill = am4core.color("black");
 
+
+}
+
+// =======================================================
+// Criar o mapa do Estado
+// =======================================================
+
+function criarMapaEstado(json, codigoEstado) {
+
+	// Themes begin
+	am4core.useTheme(am4themes_animated);
+	// Themes end
+
+	// Create map instance
+	var chart = am4core.create("mapa-principal", am4maps.MapChart);
+
+	// Desabilita o zoom
+	chart.chartContainer.wheelable = false;
+	chart.seriesContainer.events.disableType("doublehit");
+	chart.chartContainer.background.events.disableType("doublehit");
+
+	// Desabilitar efeito de arrastar
+	chart.seriesContainer.draggable = false;
+	chart.seriesContainer.resizable = false;
+
+	// Set map definition
+	chart.geodata = am4geodata_brazilHigh;
+
+	// Create map polygon series
+
+	var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+
+	chart.colors.list = [
+		am4core.color("#88BC3C")
+	];
+
+
+	//Set min/max fill color for each area
+	polygonSeries.heatRules.push({
+		property: "fill",
+		target: polygonSeries.mapPolygons.template,
+		min: chart.colors.getIndex(1).brighten(1),
+		max: chart.colors.getIndex(1).brighten(-0.3)
+	});
+
+	// Make map load polygon data (state shapes and names) from GeoJSON
+	polygonSeries.useGeodata = true;
+
+
+	// =======================================================
+    // Preenche com os dados do JSON
+    // =======================================================
+
+    polygonSeries.data = [];
+    for (let i = 0; i < json.length; i++) {
+        polygonSeries.data.push({
+            id: "BR-" + json[i].sigla,
+            value: json[i].qtd 
+        });
+	}
+	
+
+	// =======================================================
+	// Apenas o Estado selecionado
+	// =======================================================
+
+	switch (codigoEstado) {
+		case "12": // Acre
+			polygonSeries.exclude = ["BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "27": // Alagoas
+			polygonSeries.exclude = ["BR-AC", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "16": // Amapá
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "13": // Amazonas
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "29": // Bahia
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "23": // Ceará
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "53": // Distrito Federal
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "32": // Espírito Santo
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "52": // Goiás
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "21": // Maranhão
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "51": // Mato Grosso
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "50": // Mato Grosso do Sul
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "31": // Minas Gerais
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "15": // Pará
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "25": // Paraíba
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "41": // Paraná
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "26": // Pernambuco
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "22": // Piauí
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "33": // Rio de Janeiro
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "24": // Rio Grande do Norte
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "43": // Rio Grande do Sul
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "11": // Rondônia
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "14": // Roraima
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "42": // Santa Catarina
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+		case "35": // São Paulo
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SE", "BR-TO"];
+			break;
+		case "28": // Sergipe
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-TO"];
+			break;
+		case "17": // Tocantins
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE"];
+			break;
+	
+		default:
+			break;
+	}
+
+
+	// Configure series tooltip
+	var polygonTemplate = polygonSeries.mapPolygons.template;
+	polygonTemplate.tooltipText = "{name}: {value}";
+	polygonTemplate.nonScalingStroke = true;
+	polygonTemplate.strokeWidth = 0.5;
+
+	// Create hover state and set alternative fill color
+	var hs = polygonTemplate.states.create("hover");
+	hs.properties.fill = am4core.color("#002776");
+
+	// Cor do tooltip
+	polygonSeries.tooltip.getFillFromObject = false;
+	polygonSeries.tooltip.background.fill = am4core.color("white");
+	polygonSeries.tooltip.autoTextColor = false;
+	polygonSeries.tooltip.label.fill = am4core.color("black");
 
 }
 
