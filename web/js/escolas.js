@@ -385,6 +385,11 @@ $(document).click(function() {
     $('.filtros-dropdown').removeClass('opened');    
 });
 
+$('.filtros-btn-aplicar').click(function() {
+    $('.filtros-dropdown').addClass('closed');
+    $('.filtros-dropdown').removeClass('opened');    
+});
+
 // Para a propagação do clique dentro do dropdown
 $(document).on('click', '.filtros-dropdown', function(e) {
     e.stopPropagation();

@@ -32,13 +32,13 @@
         session.setAttribute("filtros_dependencia_adm", filtrosDep);
         
         List<Pair<String, Boolean>> filtrosOfertas = new ArrayList<>();
-        filtrosOfertas.add(new Pair("B", false));
-        filtrosOfertas.add(new Pair("C", false));
-        filtrosOfertas.add(new Pair("PE", false));
-        filtrosOfertas.add(new Pair("EFI", false));
-        filtrosOfertas.add(new Pair("EFII", false));
-        filtrosOfertas.add(new Pair("EMN", false));
-        filtrosOfertas.add(new Pair("EMI", false));
+        filtrosOfertas.add(new Pair("bercario", false));
+        filtrosOfertas.add(new Pair("creche", false));
+        filtrosOfertas.add(new Pair("pre_escola", false));
+        filtrosOfertas.add(new Pair("ens_fundamental_anos_iniciais", false));
+        filtrosOfertas.add(new Pair("ens_fundamental_anos_finais", false));
+        filtrosOfertas.add(new Pair("ens_medio_normal", false));
+        filtrosOfertas.add(new Pair("ens_medio_integrado", false));
         session.setAttribute("filtros_ofertas", filtrosOfertas);
 
     %>

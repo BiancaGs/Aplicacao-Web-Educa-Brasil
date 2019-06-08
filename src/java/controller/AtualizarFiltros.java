@@ -114,13 +114,13 @@ public class AtualizarFiltros extends HttpServlet {
             s.setAttribute("filtros_dependencia_adm", filtrosDep);
 
             List<Pair<String, Boolean>> filtrosOfertas = (List<Pair<String, Boolean>>) s.getAttribute("filtros_ofertas");
-            filtrosOfertas.set(0, new Pair("B", b));
-            filtrosOfertas.set(1, new Pair("C", c));
-            filtrosOfertas.set(2, new Pair("PE", pe));
-            filtrosOfertas.set(3, new Pair("EFI", efi));
-            filtrosOfertas.set(4, new Pair("EFII", efii));
-            filtrosOfertas.set(5, new Pair("EMN", emn));
-            filtrosOfertas.set(6, new Pair("EMI", emi));
+            filtrosOfertas.set(0, new Pair("bercario", b));
+            filtrosOfertas.set(1, new Pair("creche", c));
+            filtrosOfertas.set(2, new Pair("pre_escola", pe));
+            filtrosOfertas.set(3, new Pair("ens_fundamental_anos_iniciais", efi));
+            filtrosOfertas.set(4, new Pair("ens_fundamental_anos_iniciais", efii));
+            filtrosOfertas.set(5, new Pair("ens_medio_normal", emn));
+            filtrosOfertas.set(6, new Pair("ens_medio_integrado", emi));
             s.setAttribute("filtros_ofertas", filtrosOfertas);      
             
             //!DELETAR Enumerar sessão

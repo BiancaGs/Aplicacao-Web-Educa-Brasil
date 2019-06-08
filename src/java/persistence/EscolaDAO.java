@@ -189,7 +189,31 @@ public class EscolaDAO {
             }
             if(flag == 1)
                 sql += ")";
+
+            // Ofertas de Matrícula
+            flag = 0;
+            if ( filtrosOfertas.get(0).getValue() == true ) {
+                sql += "AND ( e.bercario = true ";
+                flag = 1;
+            }
+            int index = 1;
+            while (index < 7) {
+                if ( filtrosOfertas.get(index).getValue() == true ) {
+                    if(flag == 0){
+                        sql += "AND (";
+                        flag = 1;
+                    }
+                    else
+                        sql += "OR ";
+                                                
+                    sql += "e."+filtrosOfertas.get(index).getKey()+" = true ";
+                
+                }
+                index++;
+            }
             
+            if(flag == 1)
+                sql += ")";
             
             
             // =======================================================
@@ -353,6 +377,32 @@ public class EscolaDAO {
             }
             if(flag == 1)
                 sql += ")";
+
+            // Ofertas de Matrícula
+            flag = 0;
+            if ( filtrosOfertas.get(0).getValue() == true ) {
+                sql += "AND ( e.bercario = true ";
+                flag = 1;
+            }
+            index = 1;
+            while (index < 7) {
+                if ( filtrosOfertas.get(index).getValue() == true ) {
+                    if(flag == 0){
+                        sql += "AND (";
+                        flag = 1;
+                    }
+                    else
+                        sql += "OR ";
+                                                
+                    sql += "e."+filtrosOfertas.get(index).getKey()+" = true ";
+                
+                }
+                index++;
+            }
+            
+            if(flag == 1)
+                sql += ")";
+
             
             stmt = connection.prepareStatement(sql);
 
@@ -539,6 +589,31 @@ public class EscolaDAO {
             }
             if(flag == 1)
                 sql += ")";
+
+            // Ofertas de Matrícula
+            flag = 0;
+            if ( filtrosOfertas.get(0).getValue() == true ) {
+                sql += "AND ( e.bercario = true ";
+                flag = 1;
+            }
+            int index = 1;
+            while (index < 7) {
+                if ( filtrosOfertas.get(index).getValue() == true ) {
+                    if(flag == 0){
+                        sql += "AND (";
+                        flag = 1;
+                    }
+                    else
+                        sql += "OR ";
+                                                
+                    sql += "e."+filtrosOfertas.get(index).getKey()+" = true ";
+                
+                }
+                index++;
+            }
+            
+            if(flag == 1)
+                sql += ")";
             
             
             // =======================================================
@@ -698,6 +773,31 @@ public class EscolaDAO {
                 
                 sql += "e.dependencia_adm = 'Privada' ";
             }
+            if(flag == 1)
+                sql += ")";
+
+            // Ofertas de Matrícula
+            flag = 0;
+            if ( filtrosOfertas.get(0).getValue() == true ) {
+                sql += "AND ( e.bercario = true ";
+                flag = 1;
+            }
+            index = 1;
+            while (index < 7) {
+                if ( filtrosOfertas.get(index).getValue() == true ) {
+                    if(flag == 0){
+                        sql += "AND (";
+                        flag = 1;
+                    }
+                    else
+                        sql += "OR ";
+                                                
+                    sql += "e."+filtrosOfertas.get(index).getKey()+" = true ";
+                
+                }
+                index++;
+            }
+            
             if(flag == 1)
                 sql += ")";
             
