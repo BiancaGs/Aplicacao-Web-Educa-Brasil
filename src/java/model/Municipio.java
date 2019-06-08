@@ -11,6 +11,8 @@ public class Municipio {
     private Integer codigo;
     private String nome;
     private Integer codigoMicrorregiao;
+    private Float latitude;
+    private Float longitude;
     
     // ======================================
     // Get e Set
@@ -38,6 +40,22 @@ public class Municipio {
 
     public void setCodigoMicrorregiao(Integer codigoMicrorregiao) {
         this.codigoMicrorregiao = codigoMicrorregiao;
-    }    
+    }
+
+    public Float getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Float latitude) {
+        this.latitude = latitude;
+    }
+
+    public Float getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Float longitude) {
+        this.longitude = longitude;
+    }
     
 }

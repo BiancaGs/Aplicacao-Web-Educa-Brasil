@@ -82,7 +82,8 @@ public class MunicipioDAO {
                 m.setCodigo(rs.getInt("co_municipio"));
                 m.setNome(rs.getString("nome_municipio"));
                 m.setCodigoMicrorregiao(rs.getInt("co_microrregiao"));
-                
+                m.setLatitude(rs.getFloat("latitude"));
+                m.setLongitude(rs.getFloat("longitude"));
             }            
         
         } catch (SQLException ex) {

@@ -33,7 +33,7 @@ $(document).ready(function() {
         data: {
             recuperarIndex: "sim"
         },
-        datatype: '',
+        datatype: 'json',
         success: function(retorno) {
             
             // Cria o mapa com os dados do json de retorno
@@ -147,7 +147,7 @@ $(document).ready(function() {
             data: {
                 recuperarIndex: "sim"
             },
-            datatype: '',
+            datatype: 'json',
             success: function(retorno) {
                 
                 // Cria o mapa com os dados do json de retorno
@@ -231,7 +231,7 @@ $(document).ready(function() {
             data: {
                 recuperarIndex: "sim"
             },
-            datatype: '',
+            datatype: 'json',
             success: function(retorno) {
                 
                 // Cria o mapa com os dados do json de retorno
@@ -254,6 +254,11 @@ $(document).ready(function() {
         var dados_municipio = $(this).select2('data');
         var municipio = dados_municipio[0].id;
         var nome_municipio = dados_municipio[0].text;
+
+        // Do Estado também
+        var dados_estado = $('#select-estado').select2('data');
+        var estado = dados_estado[0].id;
+        var nome_estado = dados_estado[0].text;
       
         // Atualizar o nome na view
         var nome_regiao = $('.nome-regiao').text();
@@ -281,12 +286,36 @@ $(document).ready(function() {
                 // Preenche a quantidade de escolas
                 $('.qtd-escolas').text(json.Total);
 
+                // Recupera a quantidade de escolas por Estado
+                $.ajax({
+                    url: 'RecuperarQuantidadeEscolasEstado',
+                    method: 'POST',
+                    data: {
+                        recuperarIndex: "sim"
+                    },
+                    datatype: 'json',
+                    success: function(retorno) {
+                        
+                        // Cria o mapa com os dados do json de retorno
+                        var jsonQtd = JSON.parse(retorno);
+                        // Carregar também o mapa do Brasil
+                        criarMapaMunicipio(jsonQtd, estado, nome_municipio, json.Latitude, json.Longitude);
+                        
+                    },
+                    error: function(retorno) {
+                        console.log('Error');
+                        console.log(retorno);
+                    }
+                });
+
             },
             error: function(retorno) {
                 console.log('Error');
                 console.log(retorno);
             }
         });
+
+        
 
     });
 

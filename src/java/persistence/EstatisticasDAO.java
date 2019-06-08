@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import model.Municipio;
 
 /**
  *
@@ -224,6 +225,15 @@ public class EstatisticasDAO {
 
         json += "{";
         json += "\"Total\":" + nEscolas.toString() + ",";
+        
+        // Recupera as informações do Município (LAT e LONG), caso aplicável
+        if ( !codigoMunicipio.isEmpty() ) {
+            MunicipioDAO mdao = new MunicipioDAO();
+            Municipio m = mdao.buscar(codigoMunicipio);
+            json += "\"Latitude\":" + m.getLatitude() + ",";
+            json += "\"Longitude\":" + m.getLongitude() + ",";
+        }
+        
         json += "\"Federal\":" + nFederal.toString() + ",";
         json += "\"Estadual\":" + nEstadual.toString() + ",";
         json += "\"Municipal\":" + nMunicipal.toString() + ",";
