@@ -512,6 +512,95 @@ li.filtro {
 }
 
 
+/* Botão de todos os filtros */
+li.all-filters {
+    margin-left: auto;
+}
+li.all-filters i {
+    padding-top: 11px;
+    color: var(--cinza);
+}
+.btn-all-filters {
+    background: #e9ecef;
+    border: 2px solid #e9ecef;
+    padding: 7px;
+    border-radius: 40px;
+}
+.btn-all-filters:hover {
+    background: var(--cinza);
+    border: 2px solid var(--cinza);
+}
+.btn-all-filters:hover > i {
+    color: #e9ecef;
+}
+
+/* Caixa com os filtros */
+li.all-filters {
+    position: relative;
+}
+.all-filters-box.active {
+    opacity: 1;
+    -webkit-transform-origin: right top 0;
+    -webkit-transform: scale(1);
+    transform-origin: right top 0;
+    transform: scale(1);
+}
+.all-filters-box {
+    display: flex;
+    flex-direction: column;
+
+    /* Configurações */
+    z-index: 1;
+    background: white;
+    width: 260px;
+    position: absolute;
+    top: 46px;
+    right: -1px;
+    border-radius: 3px;
+    padding: 14px 12px 16px 14px;
+    overflow: inherit;
+    box-shadow: 0 1px 50px 0 rgba(0, 0, 0, 0.26) !important;
+    -webkit-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+    opacity: 0;
+    -webkit-transform-origin: right top 0;
+    -webkit-transform: scale(0);
+    transform-origin: right top 0;
+    transform: scale(0);
+}
+.all-filters-box.active {
+    opacity: 1;
+    -webkit-transform-origin: right top 0;
+    -webkit-transform: scale(1);
+    transform-origin: right top 0;
+    transform: scale(1);
+}
+.all-filters-box:after {
+    bottom: 100%;
+    left: 92%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-bottom-color: white;
+    border-width: 8px;
+    margin-left: -8px;
+}
+.all-filters-box span {
+    font-size: 90%;
+    margin-bottom: 6px;
+    background-color: #efefef !important;
+}
+.all-filters-box p {
+    text-align: center;
+}
+.all-filters-box p:not(:first-of-type) {
+    margin-top: 12px;
+}
+
+
 /* =======================================================
    MODAL ESCOLAS
    ======================================================= */

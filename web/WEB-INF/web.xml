@@ -32,6 +32,10 @@
         <servlet-name>RecuperarEstatisticas</servlet-name>
         <servlet-class>controller.RecuperarEstatisticas</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AtualizarFiltros</servlet-name>
+        <servlet-class>controller.AtualizarFiltros</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RecuperarEstados</servlet-name>
         <url-pattern>/RecuperarEstados</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>RecuperarEstatisticas</servlet-name>
         <url-pattern>/RecuperarEstatisticas</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AtualizarFiltros</servlet-name>
+        <url-pattern>/AtualizarFiltros</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

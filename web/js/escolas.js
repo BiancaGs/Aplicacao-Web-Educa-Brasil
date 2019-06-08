@@ -1,3 +1,5 @@
+/// <reference path='../lib/jquery/jquery-3.3.1.min.js' />
+/// <reference path='../lib/mdbootstrap/js/datatables.js' />
 
 // =======================================================
 // Função para iniciar/reinicializar a DataTable
@@ -10,6 +12,108 @@ function inicializaDataTable() {
         }
     });
 }
+
+
+// =======================================================
+// Funções de Filtro
+// =======================================================
+
+function aplicarFiltros(i, str) {
+    $('#tabela-escolas').DataTable().columns(i).search(
+        str
+    ).draw();
+}
+
+$(document).on('click', '.filtros-btn-aplicar', function() {
+
+    // // Recupera todos os inputs selecionados (daquele filtro)
+    // $.each($(this).parent().parent().find("input:checkbox:checked"), function() {
+    //     console.log(this);
+    // });
+
+    // // Recupera todos os inputs selecionados (de todos os filtros)
+    // $.each($('.filtros').find("#filtro-situacao input:checkbox:checked"), function() {
+    //     console.log(this);
+    // });
+
+    // $('#tabela-escolas').DataTable()
+    //     .columns(2).search('Em Atividade,Paralisada')
+    //     .columns(3).search('Federal,Privada')
+    //     .columns(4).search('C,EFI,EMN')
+    // .draw();
+
+    var filtrosSituacao = {
+        emAtividade: $('#em-atividade').is(':checked') ? true : false,
+        paralisada: $('#paralisada').is(':checked') ? true : false,
+        extinta: $('#extinta').is(':checked') ? true : false        
+    };
+
+    console.log(filtrosSituacao);
+
+    var filtrosDepAdm = {
+        federal: $('#federal').is(':checked') ? true : false,
+        estadual: $('#estadual').is(':checked') ? true : false,
+        municipal: $('#municipal').is(':checked') ? true : false,
+        privada: $('#privada').is(':checked') ? true : false
+    };
+
+    console.log(filtrosDepAdm);
+
+    var filtrosOfertas = {
+        b: $('#bercario').is(':checked') ? true : false,
+        c: $('#creche').is(':checked') ? true : false,
+        pe: $('#pre-escola').is(':checked') ? true : false,
+        efi: $('#ef-1').is(':checked') ? true : false,
+        efii: $('#ef-2').is(':checked') ? true : false,
+        emn: $('#ensino-medio').is(':checked') ? true : false,
+        emi: $('#ensino-medio-int').is(':checked') ? true : false
+    };
+
+    console.log(filtrosOfertas);
+
+    $.ajax({
+        url: 'AtualizarFiltros',
+        method: 'POST',
+        data: {
+            atualizarFiltros: "sim",
+            filtrosSituacao: JSON.stringify(filtrosSituacao),
+            filtrosDepAdm: JSON.stringify(filtrosDepAdm),
+            filtrosOfertas: JSON.stringify(filtrosOfertas)
+        },
+        success: function(retorno) {
+            console.log('Success');
+            console.log(retorno);
+        },
+        error: function(retorno) {
+            console.log('Error');
+            console.log(retorno);
+        }
+    });
+    
+
+});
+
+// Para abrir a caixa com os filtros aplicados
+$(document).on('click', '.btn-all-filters', function(e) {
+    e.stopPropagation();
+    toggleNotificacoes();
+});
+
+
+// Função para abrir a caixa com os filtros aplicados
+function toggleNotificacoes() {
+    var delay = $('.all-filters-box').index() * 50 + 'ms';
+    $('.all-filters-box').css({
+        '-webkit-transition-delay': delay,
+        '-moz-transition-delay': delay,
+        '-o-transition-delay': delay,
+        'transition-delay': delay
+    });
+    $(".all-filters-box").toggleClass("active");
+}
+
+
+
 
 $(document).ready(function() {
 

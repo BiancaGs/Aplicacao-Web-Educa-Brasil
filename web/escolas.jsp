@@ -5,10 +5,43 @@
     Author     : Bianca
 --%>
 
+<%@page import="javafx.util.Pair"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <%@page import="model.Estado"%>
 <%@page import="persistence.EstadoDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="cabecalho.html"%>
+
+    <%
+        // Cria uma sessão caso não exista
+        session = request.getSession(true);
+ 
+        // Valores default para os filtros
+        List<Pair<String, Boolean>> filtrosSituacao = new ArrayList<>();
+        filtrosSituacao.add(new Pair("Em atividade", false));
+        filtrosSituacao.add(new Pair("Paralisada", false));
+        filtrosSituacao.add(new Pair("Extinta", false));
+        session.setAttribute("filtros_situacao", filtrosSituacao);
+        
+        List<Pair<String, Boolean>> filtrosDep = new ArrayList<>();
+        filtrosDep.add(new Pair("Federal", false));
+        filtrosDep.add(new Pair("Estadual", false));
+        filtrosDep.add(new Pair("Municipal", false));
+        filtrosDep.add(new Pair("Privada", false));
+        session.setAttribute("filtros_dependencia_adm", filtrosDep);
+        
+        List<Pair<String, Boolean>> filtrosOfertas = new ArrayList<>();
+        filtrosOfertas.add(new Pair("B", false));
+        filtrosOfertas.add(new Pair("C", false));
+        filtrosOfertas.add(new Pair("PE", false));
+        filtrosOfertas.add(new Pair("EFI", false));
+        filtrosOfertas.add(new Pair("EFII", false));
+        filtrosOfertas.add(new Pair("EMN", false));
+        filtrosOfertas.add(new Pair("EMI", false));
+        session.setAttribute("filtros_ofertas", filtrosOfertas);
+
+    %>
 
     <!-- Header -->
     <header id="header-principal">
@@ -41,118 +74,129 @@
 
                 <ul class="filtros d-flex flex-row">
 
-                    <li class="filtro">
-                        <form action="" class="form-filtro">
-                            <button type="button" class="btn-filtro">
-                                <span class="filtro-nome">Situação de Funcionamento</span>
-                                <li-icon>
-                                    <i class="fas fa-caret-down fa-lg"></i>
-                                </li-icon>
-                            </button>
-                            <div class="filtros-dropdown closed">
-                                <fieldset>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="em-atividade">
-                                        <label class="custom-control-label" for="em-atividade">Em Atividade</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="paralisada">
-                                        <label class="custom-control-label" for="paralisada">Paralisada</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="extinta">
-                                        <label class="custom-control-label" for="extinta">Extinta</label>
-                                    </div>
-                                    <div class="filtros-botoes">
-                                        <button class="filtros-btn-cancelar">Cancelar</button>
-                                        <button class="filtros-btn-aplicar">Aplicar</button>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </form>
+                    <li class="filtro" id="filtro-situacao">
+                        <button type="button" class="btn-filtro">
+                            <span class="filtro-nome">Situação de Funcionamento</span>
+                            <li-icon>
+                                <i class="fas fa-caret-down fa-lg"></i>
+                            </li-icon>
+                        </button>
+                        <div class="filtros-dropdown closed">
+                            <fieldset>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="em-atividade">
+                                    <label class="custom-control-label" for="em-atividade">Em Atividade</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="paralisada">
+                                    <label class="custom-control-label" for="paralisada">Paralisada</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="extinta">
+                                    <label class="custom-control-label" for="extinta">Extinta</label>
+                                </div>
+                                <div class="filtros-botoes">
+                                    <button class="filtros-btn-cancelar">Cancelar</button>
+                                    <button class="filtros-btn-aplicar">Aplicar</button>
+                                </div>
+                            </fieldset>
+                        </div>
                     </li>
 
                     <li class="filtro">
-                        <form action="" class="form-filtro">
-                            <button type="button" class="btn-filtro">
-                                <span class="filtro-nome">Dependência Administrativa</span>
-                                <li-icon>
-                                    <i class="fas fa-caret-down fa-lg"></i>
-                                </li-icon>
-                            </button>
-                            <div class="filtros-dropdown closed">
-                                <fieldset>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="federal">
-                                        <label class="custom-control-label" for="federal">Federal</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="estadual">
-                                        <label class="custom-control-label" for="estadual">Estadual</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="municipal">
-                                        <label class="custom-control-label" for="municipal">Municipal</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="particular">
-                                        <label class="custom-control-label" for="particular">Particular</label>
-                                    </div>
-                                    <div class="filtros-botoes">
-                                        <button class="filtros-btn-cancelar">Cancelar</button>
-                                        <button class="filtros-btn-aplicar">Aplicar</button>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </form>
+                        <button type="button" class="btn-filtro">
+                            <span class="filtro-nome">Dependência Administrativa</span>
+                            <li-icon>
+                                <i class="fas fa-caret-down fa-lg"></i>
+                            </li-icon>
+                        </button>
+                        <div class="filtros-dropdown closed">
+                            <fieldset>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="federal">
+                                    <label class="custom-control-label" for="federal">Federal</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="estadual">
+                                    <label class="custom-control-label" for="estadual">Estadual</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="municipal">
+                                    <label class="custom-control-label" for="municipal">Municipal</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="privada">
+                                    <label class="custom-control-label" for="privada">Privada</label>
+                                </div>
+                                <div class="filtros-botoes">
+                                    <button class="filtros-btn-cancelar">Cancelar</button>
+                                    <button class="filtros-btn-aplicar">Aplicar</button>
+                                </div>
+                            </fieldset>
+                        </div>
                     </li>
 
                     <li class="filtro">
-                        <form action="" class="form-filtro">
-                            <button type="button" class="btn-filtro">
-                                <span class="filtro-nome">Ofertas de Matrícula</span>
-                                <li-icon>
-                                    <i class="fas fa-caret-down fa-lg"></i>
-                                </li-icon>
-                            </button>
-                            <div class="filtros-dropdown closed">
-                                <fieldset>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="bercario">
-                                        <label class="custom-control-label" for="bercario">Bercário</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="creche">
-                                        <label class="custom-control-label" for="creche">Creche</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="pre-escola">
-                                        <label class="custom-control-label" for="pre-escola">Pré Escola</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="ef-1">
-                                        <label class="custom-control-label" for="ef-1">Ensino Fundamental - 1º ao 4º</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="ef-2">
-                                        <label class="custom-control-label" for="ef-2">Ensino Fundamental - 5º ao 8º</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="ensino-medio">
-                                        <label class="custom-control-label" for="ensino-medio">Ensino Médio Normal</label>
-                                    </div>
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="ensino-medio-int">
-                                        <label class="custom-control-label" for="ensino-medio-int">Ensino Médio
-                                            Integrado</label>
-                                    </div>
-                                    <div class="filtros-botoes">
-                                        <button class="filtros-btn-cancelar">Cancelar</button>
-                                        <button class="filtros-btn-aplicar">Aplicar</button>
-                                    </div>
-                                </fieldset>
-                            </div>
-                        </form>
+                        <button type="button" class="btn-filtro">
+                            <span class="filtro-nome">Ofertas de Matrícula</span>
+                            <li-icon>
+                                <i class="fas fa-caret-down fa-lg"></i>
+                            </li-icon>
+                        </button>
+                        <div class="filtros-dropdown closed">
+                            <fieldset>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="bercario">
+                                    <label class="custom-control-label" for="bercario">Bercário</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="creche">
+                                    <label class="custom-control-label" for="creche">Creche</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="pre-escola">
+                                    <label class="custom-control-label" for="pre-escola">Pré Escola</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ef-1">
+                                    <label class="custom-control-label" for="ef-1">Ensino Fundamental - 1º ao 4º</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ef-2">
+                                    <label class="custom-control-label" for="ef-2">Ensino Fundamental - 5º ao 8º</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ensino-medio">
+                                    <label class="custom-control-label" for="ensino-medio">Ensino Médio Normal</label>
+                                </div>
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="ensino-medio-int">
+                                    <label class="custom-control-label" for="ensino-medio-int">Ensino Médio
+                                        Integrado</label>
+                                </div>
+                                <div class="filtros-botoes">
+                                    <button class="filtros-btn-cancelar">Cancelar</button>
+                                    <button class="filtros-btn-aplicar">Aplicar</button>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </li>
+
+                    <li class="all-filters">
+                        <a role="button" class="btn-all-filters">
+                            <i class="fas fa-filter fa-lg"></i>
+                        </a>
+                        <div class="all-filters-box custom-scrollbar-darker">
+                            <p class="verde-claro-text">Situação de Funcionamento</p>
+                            <span class="badge badge-light">Em atividade</span>
+                            <span class="badge badge-light">Paralisada</span>
+                            <p class="verde-claro-text">Dependência Administrativa</p>
+                            <span class="badge badge-light">Federal</span>
+                            <span class="badge badge-light">Privada</span>
+                            <p class="verde-claro-text">Ofertas de Matrícula</p>
+                            <span class="badge badge-light">EFII</span>
+                            <span class="badge badge-light">EMN</span>
+                        </div>
                     </li>
 
                 </ul>
@@ -203,172 +247,6 @@
 
         </div>
         <!-- Fim do Container -->
-
-        <!-- Seção de Filtros -->
-        <section id="filtros-wrapper" class="d-none">
-
-            <h2 class="verde-escuro-text">Filtros:</h2>
-
-            <!-- Filtros -->
-            <article id="filtros">
-
-                <div class="filtros-funcionamento">
-                    <p class="font-weight-bold">Situação de Funcionamento</p>
-
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="em-atividade">
-                        <label class="custom-control-label" for="em-atividade">Em Atividade</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="paralisada">
-                        <label class="custom-control-label" for="paralisada">Paralisada</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="extinta">
-                        <label class="custom-control-label" for="extinta">Extinta</label>
-                    </div>
-
-                </div>
-
-                <div class="filtros-dependencia-adm">
-                    <p class="font-weight-bold">Dependência Administrativa</p>
-
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="federal">
-                        <label class="custom-control-label" for="federal">Federal</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="estadual">
-                        <label class="custom-control-label" for="estadual">Estadual</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="municipal">
-                        <label class="custom-control-label" for="municipal">Municipal</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="particular">
-                        <label class="custom-control-label" for="particular">Particular</label>
-                    </div>
-                </div>
-
-                <div class="filtros-ofertas">
-                    <p class="font-weight-bold">Ofertas de Matrícula</p>
-
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="creche">
-                        <label class="custom-control-label" for="creche">Creche</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="pre-escola">
-                        <label class="custom-control-label" for="pre-escola">Pré Escola</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="ef-1">
-                        <label class="custom-control-label" for="ef-1">Ensino Fundamental - 1º ao 4º</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="ef-2">
-                        <label class="custom-control-label" for="ef-2">Ensino Fundamental - 5º ao 8º</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="ensino-medio">
-                        <label class="custom-control-label" for="ensino-medio">Ensino Médio Normal</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="ensino-medio-int">
-                        <label class="custom-control-label" for="ensino-medio-int">Ensino Médio
-                            Integrado</label>
-                    </div>
-                </div>
-
-                <div class="filtros-dependencias d-flex flex-row flex-wrap">
-                    <p class="font-weight-bold">Dependências da Escola</p>
-
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="agua-filtrada">
-                        <label class="custom-control-label" for="agua-filtrada">Água Filtrada</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="esgoto">
-                        <label class="custom-control-label" for="esgoto">Esgoto</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="coleta-lixo">
-                        <label class="custom-control-label" for="coleta-lixo">Coleta de Lixo</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="reciclagem">
-                        <label class="custom-control-label" for="reciclagem">Reciclagem</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="lab-info">
-                        <label class="custom-control-label" for="lab-info">Laboratório de
-                            Informática</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="lab-ciencias">
-                        <label class="custom-control-label" for="lab-ciencias">Laboratório de
-                            Ciências</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="quadra">
-                        <label class="custom-control-label" for="quadra">Quadra de Esportes</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="cozinha">
-                        <label class="custom-control-label" for="cozinha">Cozinha</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="biblioteca">
-                        <label class="custom-control-label" for="biblioteca">Biblioteca</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="sala-leitura">
-                        <label class="custom-control-label" for="sala-leitura">Sala de Leitura</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="parque-infantil">
-                        <label class="custom-control-label" for="parque-infantil">Parque Infantil</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="bercario">
-                        <label class="custom-control-label" for="bercario">Bercário</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="auditorio">
-                        <label class="custom-control-label" for="auditorio">Auditório</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="refeitorio">
-                        <label class="custom-control-label" for="refeitorio">Refeitório</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="aloj-alunos">
-                        <label class="custom-control-label" for="aloj-alunos">Alojamento para Alunos</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="aloj-prof">
-                        <label class="custom-control-label" for="aloj-prof">Alojamento para
-                            Professores</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="area-verde">
-                        <label class="custom-control-label" for="area-verde">Área Verde</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="internet">
-                        <label class="custom-control-label" for="internet">Internet</label>
-                    </div>
-                </div>
-
-                <!-- Botão para aplicar os filtros -->
-                <button class="text-uppercase w-100 p-1 mt-4 bg-verde-claro white-text"
-                    id="aplicar-filtros">aplicar filtros</button>
-
-            </article>
-            <!-- Fim dos filtros -->
-        </section>
-        <!-- Fim da seção de filtros -->
 
     </main>
 
