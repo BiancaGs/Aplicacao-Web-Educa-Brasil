@@ -30,7 +30,7 @@ $(document).on('click', '.filtros-btn-aplicar', function() {
     var filtrosSituacao = {
         emAtividade: $('#em-atividade').is(':checked') ? true : false,
         paralisada: $('#paralisada').is(':checked') ? true : false,
-        extinta: $('#extinta').is(':checked') ? true : false        
+        extinta: $('#extinta').is(':checked') ? true : false
     };
 
     var filtrosDepAdm = {
@@ -175,6 +175,22 @@ $(document).on('click', '.filtros-btn-limpar', function() {
     $('#filtros-situacao').html('<span class="badge-light badge-filtro">NENHUM</span>');
     $('#filtros-dep-adm').html('<span class="badge-light badge-filtro">NENHUM</span>');
     $('#filtros-ofertas').html('<span class="badge-light badge-filtro">NENHUM</span>');
+
+    // Deseleciona as checkbox
+    $('#em-atividade').prop('checked', false);
+    $('#paralisada').prop('checked', false);
+    $('#extinta').prop('checked', false);
+    $('#federal').prop('checked', false);
+    $('#estadual').prop('checked', false);
+    $('#municipal').prop('checked', false);
+    $('#privada').prop('checked', false);
+    $('#bercario').prop('checked', false);
+    $('#creche').prop('checked', false);
+    $('#pre-escola').prop('checked', false);
+    $('#ef-1').prop('checked', false);
+    $('#ef-2').prop('checked', false);
+    $('#ensino-medio').prop('checked', false);
+    $('#ensino-medio-int').prop('checked', false);
 
 });
 
