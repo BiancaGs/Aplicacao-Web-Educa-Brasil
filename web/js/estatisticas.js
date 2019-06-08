@@ -37,7 +37,7 @@ $(document).ready(function() {
         success: function(retorno) {
             
             // Cria o mapa com os dados do json de retorno
-            var json = $.parseJSON(retorno);
+            var json = JSON.parse(retorno);
             // Carregar também o mapa do Brasil
             criarGraficoPrincipal(json);
             
@@ -133,6 +133,28 @@ $(document).ready(function() {
                 // Preenche a quantidade de escolas
                 $('.qtd-escolas').text(json.Total);
 
+            },
+            error: function(retorno) {
+                console.log('Error');
+                console.log(retorno);
+            }
+        });
+
+        // Recupera a quantidade de escolas por Estado
+        $.ajax({
+            url: 'RecuperarQuantidadeEscolasEstado',
+            method: 'POST',
+            data: {
+                recuperarIndex: "sim"
+            },
+            datatype: '',
+            success: function(retorno) {
+                
+                // Cria o mapa com os dados do json de retorno
+                var json = JSON.parse(retorno);
+                // Carregar também o mapa do Brasil
+                criarMapaRegiao(json, regiao);
+                
             },
             error: function(retorno) {
                 console.log('Error');

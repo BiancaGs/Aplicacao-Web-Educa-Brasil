@@ -97,6 +97,7 @@
 <script src="lib/amchats4/core.js"></script>
 <script src="lib/amchats4/maps.js"></script>
 <script src="lib/amchats4/geodata/brazilLow.js"></script>
+<script src="lib/amchats4/geodata/brazilHigh.js"></script>
 <script src="lib/amchats4/charts.js"></script>
 <script src="lib/amchats4/animated.js"></script>
 <script src="lib/select2/js/select2.js"></script>

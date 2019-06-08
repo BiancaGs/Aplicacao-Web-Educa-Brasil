@@ -9,6 +9,7 @@
 // MAPA PRINCIPAL DA PÁGINA (REGIÃO, ESTADO, MUNICÍPIO)
 // =======================================================
 
+// Criar o mapa do Brasil
 function criarGraficoPrincipal(json) {
 
 	// Themes begin
@@ -28,7 +29,7 @@ function criarGraficoPrincipal(json) {
 	chart.seriesContainer.resizable = false;
 
 	// Set map definition
-	chart.geodata = am4geodata_brazilLow;
+	chart.geodata = am4geodata_brazilHigh;
 
 	// Create map polygon series
 
@@ -79,6 +80,110 @@ function criarGraficoPrincipal(json) {
 	polygonSeries.tooltip.background.fill = am4core.color("white");
 	polygonSeries.tooltip.autoTextColor = false;
 	polygonSeries.tooltip.label.fill = am4core.color("black");
+
+}
+
+// =======================================================
+// Criar o mapa da Região
+// =======================================================
+
+function criarMapaRegiao(json, codigoRegiao) {
+
+	// Themes begin
+	am4core.useTheme(am4themes_animated);
+	// Themes end
+
+	// Create map instance
+	var chart = am4core.create("mapa-principal", am4maps.MapChart);
+
+	// Desabilita o zoom
+	chart.chartContainer.wheelable = false;
+	chart.seriesContainer.events.disableType("doublehit");
+	chart.chartContainer.background.events.disableType("doublehit");
+
+	// Desabilitar efeito de arrastar
+	chart.seriesContainer.draggable = false;
+	chart.seriesContainer.resizable = false;
+
+	// Set map definition
+	chart.geodata = am4geodata_brazilHigh;
+
+	// Create map polygon series
+
+	var polygonSeries = chart.series.push(new am4maps.MapPolygonSeries());
+
+	chart.colors.list = [
+		am4core.color("#88BC3C")
+	];
+
+
+	//Set min/max fill color for each area
+	polygonSeries.heatRules.push({
+		property: "fill",
+		target: polygonSeries.mapPolygons.template,
+		min: chart.colors.getIndex(1).brighten(1),
+		max: chart.colors.getIndex(1).brighten(-0.3)
+	});
+
+	// Make map load polygon data (state shapes and names) from GeoJSON
+	polygonSeries.useGeodata = true;
+
+
+	// =======================================================
+    // Preenche com os dados do JSON
+    // =======================================================
+
+    polygonSeries.data = [];
+    for (let i = 0; i < json.length; i++) {
+        polygonSeries.data.push({
+            id: "BR-" + json[i].sigla,
+            value: json[i].qtd 
+        });
+	}
+	
+
+	// =======================================================
+	// Exclui os Estados não presentes em cada região
+	// =======================================================
+
+	switch (codigoRegiao) {
+		case "1": // Norte
+			polygonSeries.exclude = ["BR-AL", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-SC", "BR-SP", "BR-SE"];
+			break;
+		case "2": // Nordeste
+			polygonSeries.exclude = ["BR-AC", "BR-AP", "BR-AM", "BR-DF", "BR-ES", "BR-GO", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PR", "BR-RJ", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-TO"];
+			break;
+		case "3": // Sudeste
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SE", "BR-TO"];
+			break;
+		case "4": // Sul
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-DF", "BR-ES", "BR-GO", "BR-MA", "BR-MT", "BR-MS", "BR-MG", "BR-PA", "BR-PB", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RO", "BR-RR", "BR-SP", "BR-SE", "BR-TO"]
+			break;
+		case "5": // Centro-Oeste
+			polygonSeries.exclude = ["BR-AC", "BR-AL", "BR-AP", "BR-AM", "BR-BA", "BR-CE", "BR-ES", "BR-MA", "BR-MG", "BR-PA", "BR-PB", "BR-PR", "BR-PE", "BR-PI", "BR-RJ", "BR-RN", "BR-RS", "BR-RO", "BR-RR", "BR-SC", "BR-SP", "BR-SE", "BR-TO"];
+			break;
+	
+		default:
+			break;
+	}
+
+
+	// Configure series tooltip
+	var polygonTemplate = polygonSeries.mapPolygons.template;
+	polygonTemplate.tooltipText = "{name}: {value}";
+	polygonTemplate.nonScalingStroke = true;
+	polygonTemplate.strokeWidth = 0.5;
+
+	// Create hover state and set alternative fill color
+	var hs = polygonTemplate.states.create("hover");
+	hs.properties.fill = am4core.color("#002776");
+
+	// Cor do tooltip
+	polygonSeries.tooltip.getFillFromObject = false;
+	polygonSeries.tooltip.background.fill = am4core.color("white");
+	polygonSeries.tooltip.autoTextColor = false;
+	polygonSeries.tooltip.label.fill = am4core.color("black");
+
 
 }
 
