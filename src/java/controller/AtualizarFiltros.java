@@ -53,27 +53,17 @@ public class AtualizarFiltros extends HttpServlet {
     
         if ( request.getParameter("atualizarFiltros") != null && request.getParameter("atualizarFiltros").equals("sim") ) {
             
-            System.out.println(request.getParameter("filtrosSituacao"));
-            System.out.println(request.getParameter("filtrosDepAdm"));
-            System.out.println(request.getParameter("filtrosOfertas"));
             
             JSONObject jsonSituacao = new JSONObject(request.getParameter("filtrosSituacao"));
             Boolean emAtividade = (Boolean) jsonSituacao.get("emAtividade");
             Boolean paralisada = (Boolean) jsonSituacao.get("paralisada");
             Boolean extinta = (Boolean) jsonSituacao.get("extinta");
-            System.out.println("emAtividade: " + emAtividade);
-            System.out.println("paralisada: " + paralisada);
-            System.out.println("extinta: " + extinta);
 
             JSONObject jsonDepAdm = new JSONObject(request.getParameter("filtrosDepAdm"));
             Boolean federal = (Boolean) jsonDepAdm.get("federal");
             Boolean estadual = (Boolean) jsonDepAdm.get("estadual");
             Boolean municipal = (Boolean) jsonDepAdm.get("municipal");
             Boolean privada = (Boolean) jsonDepAdm.get("privada");
-            System.out.println("federal: " + federal);
-            System.out.println("estadual: " + estadual);
-            System.out.println("municipal: " + municipal);
-            System.out.println("privada: " + privada);
 
             JSONObject jsonOfertas = new JSONObject(request.getParameter("filtrosOfertas"));
             Boolean b = (Boolean) jsonOfertas.get("b");
@@ -83,17 +73,8 @@ public class AtualizarFiltros extends HttpServlet {
             Boolean efii = (Boolean) jsonOfertas.get("efii");
             Boolean emn = (Boolean) jsonOfertas.get("emn");
             Boolean emi = (Boolean) jsonOfertas.get("emi");
-            System.out.println("b: " + b);
-            System.out.println("c: " + c);
-            System.out.println("pe: " + pe);
-            System.out.println("efi: " + efi);
-            System.out.println("efii: " + efii);
-            System.out.println("emn: " + emn);
-            System.out.println("emi: " + emi);
             
-            System.out.println("--------------------------------");
 
-            
             // =======================================================
             // Atualiza a Sessão
             // =======================================================
@@ -121,23 +102,7 @@ public class AtualizarFiltros extends HttpServlet {
             filtrosOfertas.set(4, new Pair("ens_fundamental_anos_iniciais", efii));
             filtrosOfertas.set(5, new Pair("ens_medio_normal", emn));
             filtrosOfertas.set(6, new Pair("ens_medio_integrado", emi));
-            s.setAttribute("filtros_ofertas", filtrosOfertas);      
-            
-            //!DELETAR Enumerar sessão
-            Enumeration enS = s.getAttributeNames();
-            while (enS.hasMoreElements()) {
-                Object obj = enS.nextElement();
-                String nome = (String) obj;
-                System.out.println("Sessao eh '" + nome + "'");
-                if ( nome.equals("filtros_situacao") || nome.equals("filtros_dependencia_adm") || nome.equals("filtros_ofertas") ) {
-                    List<Pair<String, Boolean>> lista = new ArrayList<>();
-                    lista = (List<Pair<String, Boolean>>) s.getAttribute(nome);
-                    for (int i = 0; i < lista.size(); i++) {
-                        System.out.println(lista.get(i).getKey() + " - " + lista.get(i).getValue());
-                    }
-                }
-            }
-
+            s.setAttribute("filtros_ofertas", filtrosOfertas);
             
 
         }

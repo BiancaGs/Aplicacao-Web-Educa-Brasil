@@ -251,8 +251,6 @@ public class EscolaDAO {
             // =======================================================
             
             sql += "LIMIT "+limit+" OFFSET "+offset;
-
-            System.out.println(sql);
             
 
             PreparedStatement stmt = connection.prepareStatement(sql);
@@ -967,8 +965,6 @@ public class EscolaDAO {
             PreparedStatement stmt = connection.prepareStatement(sql);
 
             ResultSet rs = stmt.executeQuery();
-            
-            System.out.println("hi");
             
             if (rs.next()) {
                 

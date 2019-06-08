@@ -30,12 +30,6 @@
                             <p class="paragrafo-principal">O sistema do Educa Brasil é especialista em te auxiliar a encontrar uma escola ideal para as suas necessidades.</p>
                         </div>
                     </div>
-                    <div class="row mt-5">
-                        <div class="col-8 col-sm-6 col-lg-4 d-flex flex-column">
-                            <span for="btn-start">Vamos começar?</span>
-                            <input type="button" id="btn-start" value="Selecione um estado" class="mt-3 z-depth-2">
-                        </div>
-                    </div>
                 </div>
             </section>
 
