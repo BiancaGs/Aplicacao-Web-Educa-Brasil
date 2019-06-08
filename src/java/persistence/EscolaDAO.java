@@ -382,6 +382,43 @@ public class EscolaDAO {
             if (!campoBusca.isEmpty()) {
                 sql += "AND e.nome_escola LIKE '%"+campoBusca.toUpperCase()+"%' ";
             }
+
+
+            // =======================================================
+            // Filtros
+            // =======================================================
+            
+            // Situação de Funcionamento
+            int flag = 0;
+            if ( filtrosSituacao.get(0).getValue() == true ) {
+                sql += "AND ( e.situacao_funcionamento = 'Em atividade' ";
+                flag = 1;
+            }
+            if ( filtrosSituacao.get(1).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                                            
+                sql += "e.situacao_funcionamento = 'Paralisada' ";
+            
+            }
+            if ( filtrosSituacao.get(2).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.situacao_funcionamento = 'Extinta' ";
+            }
+            
+            if(flag == 1)
+                sql += ")";
+            
             
             // =======================================================
             // Ordenação
@@ -466,6 +503,44 @@ public class EscolaDAO {
             if (!campoBusca.isEmpty()) {
                 sql += "AND e.nome_escola LIKE '%"+campoBusca.toUpperCase()+"%' ";
             }
+
+
+            // =======================================================
+            // Filtros
+            // =======================================================
+            
+            // Situação de Funcionamento
+            flag = 0;
+            if ( filtrosSituacao.get(0).getValue() == true ) {
+                sql += "AND ( e.situacao_funcionamento = 'Em atividade' ";
+                flag = 1;
+            }
+            if ( filtrosSituacao.get(1).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                                            
+                sql += "e.situacao_funcionamento = 'Paralisada' ";
+            
+            }
+            if ( filtrosSituacao.get(2).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.situacao_funcionamento = 'Extinta' ";
+            }
+            
+            if(flag == 1)
+                sql += ")";
+            
+
             
             stmt = connection.prepareStatement(sql);
 
