@@ -89,7 +89,9 @@ $(document).on('click', '.filtros-btn-aplicar', function() {
             console.log(retorno);
         }
     });
-    
+
+    // Atualiza a tabela
+    $('#tabela-escolas').DataTable().draw();
 
 });
 

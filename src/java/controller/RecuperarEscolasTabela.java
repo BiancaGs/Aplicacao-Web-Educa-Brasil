@@ -10,6 +10,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.util.Pair;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -108,10 +109,10 @@ public class RecuperarEscolasTabela extends HttpServlet {
             String json;
             if (codigoMunicipio != null) 
                 json = edao.listaPorMunicipioJSON(codigoMunicipio, codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_municipio"), 
-                        orderColumn, orderDirection);
+                        orderColumn, orderDirection, (List<Pair<String, Boolean>>) s.getAttribute("filtros_situacao"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_dependencia_adm"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_ofertas"));
             else
                 json = edao.listarPorEstadoJSON(codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_estado"), 
-                        orderColumn, orderDirection);
+                        orderColumn, orderDirection, (List<Pair<String, Boolean>>) s.getAttribute("filtros_situacao"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_dependencia_adm"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_ofertas"));
             
             // Retorno
             response.setStatus(200);

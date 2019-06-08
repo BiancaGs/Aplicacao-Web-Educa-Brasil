@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.util.Pair;
 import model.Escola;
 import model.EscolaDependenciasFisicas;
 import model.EscolaDependenciasGerais;
@@ -64,22 +65,26 @@ public class EscolaDAO {
         return escolas;
 
     }
-
+    
 
     /**
      * Recupera o JSON para utilização da DataTable das Escolas
      * 
-     * @param String codigoEstado       : código do Estado
-     * @param String campoBusca         : campo digitado na busca
-     * @param String limit              : número de itens por página
-     * @param String offset             : "deslocamento" para o SELECT
-     * @param String draw               
-     * @param String qtdEscolasEstado   : quantidade total de escolas, fornecida pela sessão
+     * @param codigoEstado              : código do Estado
+     * @param campoBusca                : campo digitado na busca
+     * @param limit                     : número de itens por página
+     * @param offset                    : "deslocamento" para o SELECT
+     * @param draw
+     * @param qtdEscolasEstado          : quantidade total de escolas, fornecida pela sessão
+     * @param orderColumn               : coluna para ordenação
+     * @param orderDirection            : direção de ordenação (ASC e DESC)
+     * @param filtrosSituacao           : filtros de situação de funcionamento
+     * @param filtrosDepAdm             : filtros de dependência administrativa 
+     * @param filtrosOfertas            : filtros de ofertas de matrícula
      * 
      * @return uma String contendo o JSON
-     * 
      */
-    public String listarPorEstadoJSON(String codigoEstado, String campoBusca, String limit, String offset, String draw, String qtdEscolasEstado, String orderColumn, String orderDirection) {
+    public String listarPorEstadoJSON(String codigoEstado, String campoBusca, String limit, String offset, String draw, String qtdEscolasEstado, String orderColumn, String orderDirection, List<Pair<String, Boolean>> filtrosSituacao, List<Pair<String, Boolean>> filtrosDepAdm, List<Pair<String, Boolean>> filtrosOfertas) {
 
         List<Escola> escolas = new ArrayList<>();
         String json = "";
@@ -99,6 +104,7 @@ public class EscolaDAO {
             sql += "FROM distritos"+codigoEstado+" d ";
             sql += ")";
             
+
             // =======================================================
             // Caso o usuário tenha digitado algo no campo de busca
             // =======================================================
@@ -106,6 +112,43 @@ public class EscolaDAO {
             if (!campoBusca.isEmpty()) {
                 sql += "AND e.nome_escola LIKE '%"+campoBusca.toUpperCase()+"%' ";
             }
+            
+            
+            // =======================================================
+            // Filtros
+            // =======================================================
+            
+            // Situação de Funcionamento
+            int flag = 0;
+            if ( filtrosSituacao.get(0).getValue() == true ) {
+                sql += "AND ( e.situacao_funcionamento = 'Em atividade' ";
+                flag = 1;
+            }
+            if ( filtrosSituacao.get(1).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                                            
+                sql += "e.situacao_funcionamento = 'Paralisada' ";
+            
+            }
+            if ( filtrosSituacao.get(2).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.situacao_funcionamento = 'Extinta' ";
+            }
+            
+            if(flag == 1)
+                sql += ")";
+            
             
             // =======================================================
             // Ordenação
@@ -135,6 +178,7 @@ public class EscolaDAO {
                     sql += "ORDER BY e.qtd_funcionarios ";
                     break;
             }
+            
             
             // =======================================================
             // LIMIT e OFFSET para paginação
@@ -183,6 +227,7 @@ public class EscolaDAO {
             sql += "FROM distritos"+codigoEstado+" d ";
             sql += ")";
             
+            
             // =======================================================
             // Caso o usuário tenha digitado algo no campo de busca
             // =======================================================
@@ -190,6 +235,43 @@ public class EscolaDAO {
             if (!campoBusca.isEmpty()) {
                 sql += "AND e.nome_escola LIKE '%"+campoBusca.toUpperCase()+"%' ";
             }
+            
+            
+            // =======================================================
+            // Filtros
+            // =======================================================
+            
+            // Situação de Funcionamento
+            flag = 0;
+            if ( filtrosSituacao.get(0).getValue() == true ) {
+                sql += "AND ( e.situacao_funcionamento = 'Em atividade' ";
+                flag = 1;
+            }
+            if ( filtrosSituacao.get(1).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                                            
+                sql += "e.situacao_funcionamento = 'Paralisada' ";
+            
+            }
+            if ( filtrosSituacao.get(2).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.situacao_funcionamento = 'Extinta' ";
+            }
+            
+            if(flag == 1)
+                sql += ")";
+            
             
             stmt = connection.prepareStatement(sql);
 
@@ -256,18 +338,21 @@ public class EscolaDAO {
     /**
      * Recupera o JSON para utilização da DataTable das Escolas
      * 
-     * @param String codigoMunicipio        : código do Municipio
-     * @param String codigoEstado           : código do Estado
-     * @param String campoBusca             : campo digitado na busca
-     * @param String limit                  : número de itens por página
-     * @param String offset                 : "deslocamento" para o SELECT
-     * @param String draw               
-     * @param String qtdEscolasMunicipio    : quantidade total de escolas, fornecida pela sessão
+     * @param codigoEstado              : código do Estado
+     * @param campoBusca                : campo digitado na busca
+     * @param limit                     : número de itens por página
+     * @param offset                    : "deslocamento" para o SELECT
+     * @param draw
+     * @param qtdEscolasMunicipio       : quantidade total de escolas, fornecida pela sessão
+     * @param orderColumn               : coluna para ordenação
+     * @param orderDirection            : direção de ordenação (ASC e DESC)
+     * @param filtrosSituacao           : filtros de situação de funcionamento
+     * @param filtrosDepAdm             : filtros de dependência administrativa 
+     * @param filtrosOfertas            : filtros de ofertas de matrícula
      * 
      * @return uma String contendo o JSON
-     * 
      */
-    public String listaPorMunicipioJSON(String codigoMunicipio, String codigoEstado, String campoBusca, String limit, String offset, String draw, String qtdEscolasMunicipio, String orderColumn, String orderDirection) {
+    public String listaPorMunicipioJSON(String codigoMunicipio, String codigoEstado, String campoBusca, String limit, String offset, String draw, String qtdEscolasMunicipio, String orderColumn, String orderDirection, List<Pair<String, Boolean>> filtrosSituacao, List<Pair<String, Boolean>> filtrosDepAdm, List<Pair<String, Boolean>> filtrosOfertas) {
 
         List<Escola> escolas = new ArrayList<>();
         String json = "";
