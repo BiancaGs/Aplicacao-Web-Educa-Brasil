@@ -148,6 +148,48 @@ public class EscolaDAO {
             
             if(flag == 1)
                 sql += ")";
+
+
+            // Dependência Administrativa
+            flag = 0;
+            if ( filtrosDepAdm.get(0).getValue() == true ) {
+                sql += "AND ( e.dependencia_adm = 'Federal' ";
+                flag = 1;
+            }
+            if ( filtrosDepAdm.get(1).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                                            
+                sql += "e.dependencia_adm = 'Estadual'  ";
+            
+            }
+            if ( filtrosDepAdm.get(2).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.dependencia_adm = 'Municipal' ";
+            }
+            if ( filtrosDepAdm.get(3).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.dependencia_adm = 'Privada' ";
+            }
+            if(flag == 1)
+                sql += ")";
+            
             
             
             // =======================================================
@@ -271,7 +313,46 @@ public class EscolaDAO {
             
             if(flag == 1)
                 sql += ")";
+
+            // Dependência Administrativa
+            flag = 0;
+            if ( filtrosDepAdm.get(0).getValue() == true ) {
+                sql += "AND ( e.dependencia_adm = 'Federal' ";
+                flag = 1;
+            }
+            if ( filtrosDepAdm.get(1).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                                            
+                sql += "e.dependencia_adm = 'Estadual'  ";
             
+            }
+            if ( filtrosDepAdm.get(2).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.dependencia_adm = 'Municipal' ";
+            }
+            if ( filtrosDepAdm.get(3).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.dependencia_adm = 'Privada' ";
+            }
+            if(flag == 1)
+                sql += ")";
             
             stmt = connection.prepareStatement(sql);
 
@@ -418,6 +499,46 @@ public class EscolaDAO {
             
             if(flag == 1)
                 sql += ")";
+
+            // Dependência Administrativa
+            flag = 0;
+            if ( filtrosDepAdm.get(0).getValue() == true ) {
+                sql += "AND ( e.dependencia_adm = 'Federal' ";
+                flag = 1;
+            }
+            if ( filtrosDepAdm.get(1).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                                            
+                sql += "e.dependencia_adm = 'Estadual'  ";
+            
+            }
+            if ( filtrosDepAdm.get(2).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.dependencia_adm = 'Municipal' ";
+            }
+            if ( filtrosDepAdm.get(3).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.dependencia_adm = 'Privada' ";
+            }
+            if(flag == 1)
+                sql += ")";
             
             
             // =======================================================
@@ -537,6 +658,46 @@ public class EscolaDAO {
                 sql += "e.situacao_funcionamento = 'Extinta' ";
             }
             
+            if(flag == 1)
+                sql += ")";
+            
+            // Dependência Administrativa
+            flag = 0;
+            if ( filtrosDepAdm.get(0).getValue() == true ) {
+                sql += "AND ( e.dependencia_adm = 'Federal' ";
+                flag = 1;
+            }
+            if ( filtrosDepAdm.get(1).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                                            
+                sql += "e.dependencia_adm = 'Estadual'  ";
+            
+            }
+            if ( filtrosDepAdm.get(2).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.dependencia_adm = 'Municipal' ";
+            }
+            if ( filtrosDepAdm.get(3).getValue() == true ) {
+                if(flag == 0){
+                    sql += "AND (";
+                    flag = 1;
+                }
+                else
+                    sql += "OR ";
+                
+                sql += "e.dependencia_adm = 'Privada' ";
+            }
             if(flag == 1)
                 sql += ")";
             
