@@ -16,7 +16,7 @@
 
             <div class="container">
                 <ul class="list-inline navbar-busca">
-                    <li class="list-inline-item">Brasil</li>
+                    <li class="list-inline-item"><a href="estatisticas.jsp" class="text-success">Brasil</a></li>
                     <li class="list-inline-item">
                         <select name="select-regiao" id="select-regiao">
                             <!-- Preenchido com AJAX -->
