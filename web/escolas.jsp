@@ -96,7 +96,7 @@
                                     <label class="custom-control-label" for="extinta">Extinta</label>
                                 </div>
                                 <div class="filtros-botoes">
-                                    <button class="filtros-btn-cancelar">Cancelar</button>
+                                    <button class="filtros-btn-cancelar">Fechar</button>
                                     <button class="filtros-btn-aplicar">Aplicar</button>
                                 </div>
                             </fieldset>
@@ -129,7 +129,7 @@
                                     <label class="custom-control-label" for="privada">Privada</label>
                                 </div>
                                 <div class="filtros-botoes">
-                                    <button class="filtros-btn-cancelar">Cancelar</button>
+                                    <button class="filtros-btn-cancelar">Fechar</button>
                                     <button class="filtros-btn-aplicar">Aplicar</button>
                                 </div>
                             </fieldset>
@@ -175,7 +175,7 @@
                                         Integrado</label>
                                 </div>
                                 <div class="filtros-botoes">
-                                    <button class="filtros-btn-cancelar">Cancelar</button>
+                                    <button class="filtros-btn-cancelar">Fechar</button>
                                     <button class="filtros-btn-aplicar">Aplicar</button>
                                 </div>
                             </fieldset>

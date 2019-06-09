@@ -484,7 +484,7 @@ $(document).click(function() {
     $('.filtros-dropdown').removeClass('opened');    
 });
 
-$('.filtros-btn-aplicar').click(function() {
+$('.filtros-btn-aplicar, .filtros-btn-cancelar').click(function() {
     $('.filtros-dropdown').addClass('closed');
     $('.filtros-dropdown').removeClass('opened');    
 });
