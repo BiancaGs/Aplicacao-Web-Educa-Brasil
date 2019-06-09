@@ -44,7 +44,7 @@
                     </div>
                     <div class="row justify-content-center mt-2">
                         <div class="col-12 col-md-8">
-                            <p>Os dados do Educa Brasil vêm do Censo Escolar dos Microdados do Inep 2018 e abrangem diversas informações que permitem encontrar a melhor escola possível</p>
+                            <p>Os dados do Educa Brasil vêm do Censo Escolar dos <a href="http://inep.gov.br/microdados" class="text-success">Microdados do Inep</a> 2018 e abrangem diversas informações que permitem encontrar a melhor escola possível</p>
                         </div>
                     </div>
                     <div class="row caracteristicas">
