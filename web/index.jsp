@@ -6,6 +6,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<link rel="stylesheet" href="css/arrow-bounce.css">
+
 <%@include file="cabecalho.html"%>
         
         <!-- Header -->
@@ -31,6 +34,9 @@
                         </div>
                     </div>
                 </div>
+                <a href="index.jsp#sobre" class="btn-scroll">
+                    <div class="arrow bounce"><i class="fa fa-angle-down dark-grey-text fa-5x" aria-hidden="true" style="position: absolute; bottom: 5px;"></i></div>
+                </a>
             </section>
 
             <!-- Sobre o Site -->
@@ -87,6 +93,7 @@
     
 <%@include file="rodape.html"%>
 
+<script src="js/index.js"></script>
 <!-- Amcharts v4.0 -->
 <script src="lib/amchats4/core.js"></script>
 <script src="lib/amchats4/maps.js"></script>
