@@ -49,20 +49,7 @@ public class EstatisticasDAO {
                 // SQL do Estado
                 sql += "WHERE e.co_distrito IN ( " +
                     "SELECT d.co_distrito " +
-                    "FROM distrito d " +
-                    "WHERE d.co_municipio IN ( " +
-                        "SELECT m.co_municipio " +
-                        "FROM municipio m " +
-                        "WHERE m.co_microrregiao IN ( " +
-                            "SELECT mi.co_microrregiao " +
-                            "FROM microrregiao mi " +
-                            "WHERE mi.co_mesorregiao IN ( " +
-                                "SELECT me.co_mesorregiao " +
-                                "FROM mesorregiao me " +
-                                "WHERE me.co_uf = " + codigoEstado + " " +
-                            ") " +
-                        ") " +
-                    ") " +
+                    "FROM distritos" + codigoEstado + " d " +
                 ") ";
             }
             else if ( !codigoMunicipio.isEmpty() ) {
