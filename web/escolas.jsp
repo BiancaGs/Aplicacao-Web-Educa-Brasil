@@ -72,9 +72,9 @@
 
             <div class="container">
 
-                <ul class="filtros d-flex flex-row">
+                <ul class="filtros d-flex flex-column flex-sm-row">
 
-                    <li class="filtro" id="filtro-situacao">
+                    <li class="filtro">
                         <button type="button" class="btn-filtro">
                             <span class="filtro-nome">Situação de Funcionamento</span>
                             <li-icon>
@@ -225,19 +225,21 @@
             <section id="resultado-escolas" class="mt-4">
 
                 <!-- Tabela de Escolas -->
-                <table class="table table-hover" id="tabela-escolas">
-                    
-                    <thead class="thead-light">
-                        <tr>
-                            <th class="t-codigo">Código</th>
-                            <th class="t-nome">Nome</th>
-                            <th class="t-situacao">Situação</th>
-                            <th class="t-dep-adm">Dep.Adm.</th>
-                            <th class="t-ofertas">Ofertas</th>
-                        </tr>
-                    </thead>
-
-                </table>
+                <div class="table-responsive-md">
+                    <table class="table table-hover" id="tabela-escolas">
+                        
+                        <thead class="thead-light">
+                            <tr>
+                                <th class="t-codigo">Código</th>
+                                <th class="t-nome">Nome</th>
+                                <th class="t-situacao">Situação</th>
+                                <th class="t-dep-adm">Dep.Adm.</th>
+                                <th class="t-ofertas">Ofertas</th>
+                            </tr>
+                        </thead>
+    
+                    </table>
+                </div>
                 <!-- Fim da Tabela de Escolas -->
                 
             </section>

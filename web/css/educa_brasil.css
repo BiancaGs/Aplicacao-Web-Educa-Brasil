@@ -74,7 +74,6 @@ body {
     color: var(--cinza);
     background-color: var(--cinza-claro);
     border-bottom: 5px solid var(--azul-escuro);
-    height: var(--tamanho-navbar);
 }
 #navbarMenu {
     font-size: 15px;

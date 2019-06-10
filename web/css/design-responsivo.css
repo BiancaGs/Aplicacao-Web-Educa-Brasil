@@ -9,6 +9,12 @@
         height: 131px;
         width: 131px;
     }
+    .btn-filtro {
+        width: 100%;
+    }
+    .btn-filtro {
+        margin-bottom: 5px;
+    }
 }
 
 /* sm */
@@ -36,6 +42,13 @@
 @media only screen and (min-width: 768px) {
     #sobre, #sobre-estatisticas {
         padding: 5rem !important;
+    }
+}
+
+/* até lg */
+@media only screen and (max-width: 1200px) {
+    .modal-dialog {
+        max-width: 95% !important;
     }
 }
 
