@@ -41,25 +41,8 @@ public class EstatisticasDAO {
             if ( !codigoRegiao.isEmpty()  ) {
                 // SQL da Regiao
                 sql += "WHERE e.co_distrito IN ( " +
-                    "SELECT d.co_distrito " +
-                    "FROM distrito d " +
-                    "WHERE d.co_municipio IN ( " +
-                        "SELECT m.co_municipio " +
-                        "FROM municipio m " +
-                        "WHERE m.co_microrregiao IN ( " +
-                            "SELECT mi.co_microrregiao " +
-                            "FROM microrregiao mi " +
-                            "WHERE mi.co_mesorregiao IN ( " +
-                                "SELECT me.co_mesorregiao " +
-                                "FROM mesorregiao me " +
-                                "WHERE me.co_uf IN ( " +
-                                    "SELECT u.co_uf " +
-                                    "FROM uf u " +
-                                    "WHERE u.co_regiao = " + codigoRegiao + " " +
-                                ") " +
-                            ") " +
-                        ") " +
-                    ") " +
+                        "SELECT d.co_distrito " +
+                        "FROM distritos_regiao" + codigoRegiao + " d " +
                 ") ";
             }
             else if ( !codigoEstado.isEmpty() ) {
