@@ -513,7 +513,7 @@ function criarMapaMunicipio(json, codigoEstado, nomeMunicipio, latitude, longitu
 
 	// Create hover state and set alternative fill color
 	var hs = polygonTemplate.states.create("hover");
-	hs.properties.fill = am4core.color("#002776");
+	hs.properties.fill = am4core.color("#88bc3c");
 
 	// Cor do tooltip
 	polygonSeries.tooltip.getFillFromObject = false;
@@ -717,11 +717,11 @@ function criarGraficoLocalizacao(urbana, rural) {
 	
 	
 	// Define as cores
-	// var colorSet  = new am4core.ColorSet();
-	// colorSet.list = ["#32BA7C", "#FF8800", "#E21B1B"].map(function(color) {
-	// 	return new am4core.color(color);
-	// });
-	// localizacaoSeries.colors = colorSet;
+	 var colorSet  = new am4core.ColorSet();;
+	 colorSet.list = ["#005c17", "#7d8900"].map(function(color) {
+	 	return new am4core.color(color);
+	 });
+	 localizacaoSeries.colors = colorSet;
 	
 	// Cor do tooltip
 	localizacaoSeries.tooltip.getFillFromObject = false;
@@ -792,11 +792,11 @@ function criarGraficoOfertas(b, c, pe, efi, efii, emn, emi) {
 	
 	
 	// Define as cores
-	// var colorSet  = new am4core.ColorSet();
-	// colorSet.list = ["#32BA7C", "#FF8800", "#E21B1B"].map(function(color) {
-	// 	return new am4core.color(color);
-	// });
-	// ofertaSeries.colors = colorSet;
+//	 var colorSet  = new am4core.ColorSet();;
+//	 colorSet.list = ["#17005c", "#630062", "#9b005d", "#c80050", "#e83f3e", "#fb7327", "#ffa600"].map(function(color) {
+//	 	return new am4core.color(color);
+//	 });
+//	 ofertaSeries.colors = colorSet;
 	
 	// Cor do tooltip
 	ofertaSeries.tooltip.getFillFromObject = false;
