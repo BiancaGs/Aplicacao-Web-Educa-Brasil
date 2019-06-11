@@ -20,7 +20,8 @@ import persistence.EscolaDAO;
 
 /**
  *
- * @author pietr
+ * @author Pietro
+ * @author Bianca
  */
 public class RecuperarInformacoesEscola extends HttpServlet {
 
