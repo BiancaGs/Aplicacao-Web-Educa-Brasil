@@ -225,7 +225,84 @@ body {
 /* =======================================================
    MISC
    ======================================================= */
-   
+
+.highlight:before {
+    opacity: 0;
+    content: '';
+    position: fixed;
+    padding: 20px 155px;
+    transition: all .5s;
+    -webkit-transform: translate(-33%, -0.6em) scale(1);
+            transform: translate(-33%, -0.6em) scale(1);
+    border-radius: 0.5em;
+    border: 0.2em solid rgba(255, 217, 68, 0.8);
+    box-shadow: 0 0 0 1000em rgba(0, 0, 0, 0.7);
+}
+.overlay .highlight:before {
+    opacity: 1;
+    -webkit-animation: wiggle 3s both;
+            animation: wiggle 3s both;
+    transition: all .2s;
+    z-index: 1000;
+}
+.overlay .highlight:after {
+    content: '';
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 1000;
+}
+
+@-webkit-keyframes wiggle {
+  0% {
+    box-shadow: 0 0 0 0vh rgba(0, 0, 0, 0);
+    -webkit-transform: translate(-33%, -0.6em) scale(0.9);
+            transform: translate(-33%, -0.6em) scale(0.9);
+  }
+  30%, 60% {
+    box-shadow: 0 0 0 200vh rgba(0, 0, 0, 0.7);
+    -webkit-transform: translate(-33%, -0.6em) scale(0.9);
+            transform: translate(-33%, -0.6em) scale(0.9);
+  }
+  15%, 45%, 75% {
+    box-shadow: 0 0 0 200vh rgba(0, 0, 0, 0.7);
+    -webkit-transform: translate(-33%, -0.6em) scale(1.2);
+            transform: translate(-33%, -0.6em) scale(1.2);
+  }
+  100% {
+    box-shadow: 0 0 0 200vh rgba(0, 0, 0, 0.7);
+    -webkit-transform: translate(-33%, -0.6em) scale(1);
+            transform: translate(-33%, -0.6em) scale(1);
+  }
+}
+
+@keyframes wiggle {
+  0% {
+    box-shadow: 0 0 0 0vh rgba(0, 0, 0, 0);
+    -webkit-transform: translate(-33%, -0.6em) scale(0.9);
+            transform: translate(-33%, -0.6em) scale(0.9);
+  }
+  30%, 60% {
+    box-shadow: 0 0 0 200vh rgba(0, 0, 0, 0.7);
+    -webkit-transform: translate(-33%, -0.6em) scale(0.9);
+            transform: translate(-33%, -0.6em) scale(0.9);
+  }
+  15%, 45%, 75% {
+    box-shadow: 0 0 0 200vh rgba(0, 0, 0, 0.7);
+    -webkit-transform: translate(-33%, -0.6em) scale(1.2);
+            transform: translate(-33%, -0.6em) scale(1.2);
+  }
+  100% {
+    box-shadow: 0 0 0 200vh rgba(0, 0, 0, 0.7);
+    -webkit-transform: translate(-33%, -0.6em) scale(1);
+            transform: translate(-33%, -0.6em) scale(1);
+  }
+}
+
+
+
 #form-busca-principal {
 	margin-left: 42px;
 }

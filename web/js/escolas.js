@@ -15,6 +15,30 @@ function inicializaDataTable() {
 
 
 // =======================================================
+// HIGHLIGHT
+// =======================================================
+
+$(function(){
+
+    var url = window.location.href;
+    var id = url.substring(url.lastIndexOf("#") + 1);    
+
+    if (id == "start") {
+
+        $("body").addClass("overlay");
+        $('.navbar-busca li:nth-last-of-type(2)').prepend('<span class="highlight"></span>');
+
+    }
+	
+	$(".highlight").on("click", function(){
+		if($("body").hasClass("overlay"))
+            $("body").removeClass("overlay");
+    });
+    
+});
+
+
+// =======================================================
 // Funções de Filtro
 // =======================================================
 

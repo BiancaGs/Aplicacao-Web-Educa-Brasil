@@ -36,7 +36,7 @@
                     <div class="row mt-5">
                         <div class="col-8 col-sm-6 col-lg-4 d-flex flex-column">
                             <span for="btn-start">Vamos começar?</span>
-                            <a href="escolas.jsp" id="btn-start" class="z-depth-2 mt-3">Encontre sua escola!</a>
+                            <a href="escolas.jsp#start" id="btn-start" class="z-depth-2 mt-3">Encontre sua escola!</a>
                         </div>
                     </div>
                 </div>
