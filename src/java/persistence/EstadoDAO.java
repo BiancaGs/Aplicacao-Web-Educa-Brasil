@@ -67,9 +67,8 @@ public class EstadoDAO {
         
         try {
         
-            String sql = "SELECT * FROM uf WHERE co_regiao = ? ORDER BY nome_uf" ;
+            String sql = "SELECT * FROM uf WHERE co_regiao = "+ codigoRegiao + "ORDER BY nome_uf" ;
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, codigoRegiao);
         
             ResultSet rs = stmt.executeQuery();
         
@@ -103,9 +102,8 @@ public class EstadoDAO {
         
         try {
             
-            String sql = "SELECT * FROM uf WHERE co_uf = ?";
+            String sql = "SELECT * FROM uf WHERE co_uf = " + codigo;
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, codigo);
         
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {

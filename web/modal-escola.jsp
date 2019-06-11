@@ -211,39 +211,20 @@
                                 <li class="row">
                                     <div class="col"><b>Início do Ano Letivo:</b></div>
                                     <%
-                                        
-                                        if (e.getInicioAnoLetivo() != null) {
-                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                            Calendar c = Calendar.getInstance();
-                                            java.util.Date date = sdf.parse(e.getInicioAnoLetivo());
-                                            c.setTime(date);
-                                            
-                                            out.println("<div class=\"col\">" + String.format("%02d", c.get(Calendar.DAY_OF_MONTH)) + "/" + String.format("%02d", c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.YEAR) + "</div>");
-                                        }
-                                        else {
-                                            out.println("<div class=\"col\">Indisponível</div>");
-                                        }
-                                        
+                                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                                        Calendar c = Calendar.getInstance();
+                                        java.util.Date date = sdf.parse(e.getInicioAnoLetivo());
+                                        c.setTime(date);
                                     %>
-                                    
+                                    <div class="col"><%= String.format("%02d", c.get(Calendar.DAY_OF_MONTH)) + "/" + String.format("%02d", c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.YEAR) %></div>
                                 </li>
                                 <li class="row">
                                     <div class="col"><b>Término do Ano Letivo:</b></div>
                                     <%
-                                        
-                                        if (e.getInicioAnoLetivo() != null) {
-                                            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-                                            Calendar c = Calendar.getInstance();
-                                            java.util.Date date = sdf.parse(e.getTerminoAnoLetivo());
-                                            c.setTime(date);
-                                            
-                                            out.println("<div class=\"col\">" + String.format("%02d", c.get(Calendar.DAY_OF_MONTH)) + "/" + String.format("%02d", c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.YEAR) + "</div>");
-                                        }
-                                        else {
-                                            out.println("<div class=\"col\">Indisponível</div>");
-                                        }
-                                        
+                                        date = sdf.parse(e.getTerminoAnoLetivo());
+                                        c.setTime(date);
                                     %>
+                                    <div class="col"><%= String.format("%02d", c.get(Calendar.DAY_OF_MONTH)) + "/" + String.format("%02d", c.get(Calendar.MONTH)+1) + "/" + c.get(Calendar.YEAR) %></div>
                                 </li>                                                      
                                 <li class="row">
                                     <div class="col"><b>Dep. Administrativa:</b></div>

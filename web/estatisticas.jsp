@@ -6,9 +6,6 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
-<link rel="stylesheet" href="css/arrow-bounce.css">
-
 <%@include file="cabecalho.html"%>
 
     <!-- Header -->
@@ -57,9 +54,14 @@
 
             <!-- Container para o Mapa -->
             <div class="container" id="container-mapa-principal">
-                <div class="mapa-wrapper">
-                    <div id="mapa-principal"></div>
-                </div>
+                <!-- <div class="row"> -->
+                    <div class="mapa-wrapper">
+                        <div id="mapa-principal"></div>
+                    </div>
+                    <!-- <div class="col-sm-6 barras-wrapper">
+                        
+                    </div> -->
+                <!-- </div> -->
             </div>
 
         </div>
