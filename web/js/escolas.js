@@ -9,57 +9,6 @@ function inicializaDataTable() {
     $('#tabela-escolas').DataTable({
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json"
-        },
-        "processing": true,
-        "serverSide": true,
-        "ajax": {
-            "url": 'RecuperarEscolasTabela',
-            "type": 'GET',
-            "data": {
-                "brasil": "sim"
-            }
-        },
-        "columns": [
-            {
-                "name": "co_escola",
-                "className": "t-codigo-escola"
-            },
-            {
-                "name": "nome_escola",
-                "className": "t-nome-escola"
-            },
-            {
-                "name": "situacao_funcionamento",                
-                "className": "t-situacao-escola"
-            },
-            {
-                "name": "dependencia_adm",
-                "className": "t-dep-adm"
-            },
-            {
-                "name": "ofertas",
-                "className": "t-ofertas"
-            }
-        ],
-        createdRow: function (row, data, index) {
-            var ofertas = data[4];
-
-            var div = document.createElement('div');
-            div.className = "ofertas";
-
-            for (let i = 0; i < ofertas.length; i++) {
-                const oferta = ofertas[i];
-                
-                if (oferta) {
-                    var span = document.createElement('span');
-                    span.className = "badge badge-pill badge-light";
-                    span.textContent = oferta;
-                    div.append(span);
-                }
-                
-            }
-
-            $(row).children("td:last-child").html(div);
         }
     });
 }

@@ -41,7 +41,6 @@ public class RecuperarEscolasTabela extends HttpServlet {
 
         String codigoEstado = request.getParameter("estado");
         String codigoMunicipio = request.getParameter("municipio");
-        String brasil = request.getParameter("brasil");
 
         
         try {
@@ -57,7 +56,7 @@ public class RecuperarEscolasTabela extends HttpServlet {
             if ( s.getAttribute("co_estado") != null ) {
                 String estadoSessao = (String) s.getAttribute("co_estado");
                 // codigo recuperado
-                if ( codigoEstado != null && !codigoEstado.equals(estadoSessao) ) { // usuário selecionou um estado diferente
+                if ( !codigoEstado.equals(estadoSessao) ) { // usuário selecionou um estado diferente
                     // atualiza o codigo e a quantidade
                     s.setAttribute("co_estado", codigoEstado);
                     Integer total = edao.contarEscolasEstado(codigoEstado);
@@ -85,11 +84,9 @@ public class RecuperarEscolasTabela extends HttpServlet {
             }
             else {
                 // codigo inexistente
-                if (codigoEstado != null) {
-                    s.setAttribute("co_estado", codigoEstado);
-                    Integer total = edao.contarEscolasEstado(codigoEstado);
-                    s.setAttribute("qtd_escolas_estado", total.toString());
-                }                
+                s.setAttribute("co_estado", codigoEstado);
+                Integer total = edao.contarEscolasEstado(codigoEstado);
+                s.setAttribute("qtd_escolas_estado", total.toString());
             }
 
 
@@ -110,19 +107,12 @@ public class RecuperarEscolasTabela extends HttpServlet {
              */
 
             String json;
-            
-            if ( brasil != null && brasil.equals("sim")) {
-                json = edao.listaBrasilJSON(searchValue, length, start, draw, "285975", orderColumn, orderDirection, (List<Pair<String, Boolean>>) s.getAttribute("filtros_situacao"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_dependencia_adm"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_ofertas"));
-            }
-            else {
-                if (codigoMunicipio != null) 
-                    json = edao.listaPorMunicipioJSON(codigoMunicipio, codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_municipio"), 
-                            orderColumn, orderDirection, (List<Pair<String, Boolean>>) s.getAttribute("filtros_situacao"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_dependencia_adm"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_ofertas"));
-                else
-                    json = edao.listarPorEstadoJSON(codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_estado"), 
-                            orderColumn, orderDirection, (List<Pair<String, Boolean>>) s.getAttribute("filtros_situacao"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_dependencia_adm"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_ofertas"));
-            }
-            
+            if (codigoMunicipio != null) 
+                json = edao.listaPorMunicipioJSON(codigoMunicipio, codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_municipio"), 
+                        orderColumn, orderDirection, (List<Pair<String, Boolean>>) s.getAttribute("filtros_situacao"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_dependencia_adm"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_ofertas"));
+            else
+                json = edao.listarPorEstadoJSON(codigoEstado, searchValue, length, start, draw, (String) s.getAttribute("qtd_escolas_estado"), 
+                        orderColumn, orderDirection, (List<Pair<String, Boolean>>) s.getAttribute("filtros_situacao"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_dependencia_adm"), (List<Pair<String, Boolean>>) s.getAttribute("filtros_ofertas"));
             
             // Retorno
             response.setStatus(200);
