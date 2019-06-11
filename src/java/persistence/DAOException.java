@@ -7,7 +7,8 @@ package persistence;
 
 /**
  *
- * @author pietr
+ * @author Pietro
+ * @author Bianca
  */
 public class DAOException extends java.lang.Exception {
 

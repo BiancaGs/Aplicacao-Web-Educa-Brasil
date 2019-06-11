@@ -30,7 +30,7 @@ public class EscolaDAO {
     /**
      * Recupera a lista de escolas de um dado Município
      * 
-     * @param String codigoMunicipio    : código do município
+     * @param codigoMunicipio   : código do Município
      * 
      * @return uma List<Escola> com as escolas recuperadas do banco
      */
@@ -43,10 +43,11 @@ public class EscolaDAO {
             String sql = "SELECT e.co_escola, e.nome_escola FROM escola e ";
             sql += "WHERE e.co_distrito IN (";
             sql += "SELECT d.co_distrito FROM distrito d ";
-            sql += "WHERE d.co_municipio = " + codigoMunicipio + ")";
+            sql += "WHERE d.co_municipio = ?)";
             sql += "ORDER BY e.nome_escola";
 
             PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, codigoMunicipio);
 
             ResultSet rs = stmt.executeQuery();
 

@@ -23,7 +23,8 @@ import persistence.EstatisticasDAO;
 
 /**
  *
- * @author pietr
+ * @author Pietro
+ * @author Bianca
  */
 public class RecuperarEstatisticas extends HttpServlet {
 
