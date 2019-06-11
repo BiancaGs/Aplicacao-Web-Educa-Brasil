@@ -51,7 +51,7 @@
 
             <div class="container">
                 <ul class="list-inline navbar-busca">
-                    <li class="list-inline-item">Buscar</li>
+                    <li class="list-inline-item"><a href="escolas.jsp" class="text-success">Brasil</a></li>
                     <li class="list-inline-item">
                         <select name="select-estado" id="select-estado">
                             <!-- Preenchido com AJAX -->
@@ -217,7 +217,7 @@
         <div class="container mt-5" id="resultado-busca">
 
             <h2 class="verde-escuro-text titulo-resultado-busca">Resultado da Busca:</h2>
-            <h3 class="verde-claro-text nome-estado"></h3>
+            <h3 class="verde-claro-text nome-estado">Brasil</h3>
             <h4 class="verde-claro-text mt-4 nome-municipio"></h4>
             
             
