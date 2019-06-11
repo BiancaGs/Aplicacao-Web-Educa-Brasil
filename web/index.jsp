@@ -33,6 +33,12 @@
                             <p class="paragrafo-principal">O sistema do Educa Brasil é especialista em te auxiliar a encontrar uma escola ideal para as suas necessidades.</p>
                         </div>
                     </div>
+                    <div class="row mt-5">
+                        <div class="col-8 col-sm-6 col-lg-4 d-flex flex-column">
+                            <span for="btn-start">Vamos começar?</span>
+                            <a href="escolas.jsp" id="btn-start" class="z-depth-2 mt-3">Encontre sua escola!</a>
+                        </div>
+                    </div>
                 </div>
                 <a href="index.jsp#sobre" class="btn-scroll">
                     <div class="arrow bounce"><i class="fa fa-angle-down dark-grey-text fa-5x" aria-hidden="true" style="position: absolute; bottom: 5px;"></i></div>
