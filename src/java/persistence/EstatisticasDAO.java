@@ -26,57 +26,31 @@ public class EstatisticasDAO {
     
     public String recuperarEstatisticas(String brasil, String codigoRegiao, String codigoEstado, String codigoMunicipio) throws DAOException, SQLException {
         
-        String sql = "SELECT " +
-            "GROUPING(e.bercario) g_bercario, GROUPING(e.creche) g_creche, GROUPING(e.pre_escola) g_pe, GROUPING(e.ens_fundamental_anos_iniciais) g_efi, " +
-            "GROUPING(e.ens_fundamental_anos_finais) g_efii, GROUPING(e.ens_medio_normal) g_emn, " +
-            "GROUPING(e.ens_medio_integrado) g_emi, GROUPING(e.situacao_funcionamento) g_situacao, " +
-            "GROUPING(e.dependencia_adm) g_dep, GROUPING(e.localizacao) g_localizacao, " +
-            "e.bercario, e.creche, e.pre_escola, e.ens_fundamental_anos_iniciais, e.ens_fundamental_anos_finais, e.ens_medio_normal, " +
-            "e.ens_medio_integrado,e.situacao_funcionamento, e.dependencia_adm, e.localizacao, count(e.co_escola) as qtd_escolas " +
-        "FROM escola e ";
-        
-        
+        String sql = "";
+
         if ( !brasil.equals("sim") ) {
             
             if ( !codigoRegiao.isEmpty()  ) {
                 // SQL da Regiao
-                sql += "WHERE e.co_distrito IN ( " +
-                        "SELECT d.co_distrito " +
-                        "FROM distritos_regiao" + codigoRegiao + " d " +
-                ") ";
+                sql = "SELECT * FROM recuperarEstatisticas(NULL, '"+codigoRegiao+"', NULL, NULL)";
             }
             else if ( !codigoEstado.isEmpty() ) {
                 // SQL do Estado
-                sql += "WHERE e.co_distrito IN ( " +
-                    "SELECT d.co_distrito " +
-                    "FROM distritos" + codigoEstado + " d " +
-                ") ";
+                sql = "SELECT * FROM recuperarEstatisticas(NULL, NULL, '"+codigoEstado+"', NULL)";
             }
             else if ( !codigoMunicipio.isEmpty() ) {
                 // SQL do Municipio
-                sql += "WHERE e.co_distrito IN ( " +
-                    "SELECT d.co_distrito " +
-                    "FROM distrito d " +
-                    "WHERE d.co_municipio = " + codigoMunicipio + " " +
-                ") ";
+                sql = "SELECT * FROM recuperarEstatisticas(NULL, NULL, NULL, '"+codigoMunicipio+"')";
             }
             
         }
+        else {
+
+            // SQL do Brasil
+            sql = "SELECT * FROM recuperarEstatisticas(true, NULL, NULL, NULL)";
+
+        }
         
-        
-        sql += "GROUP BY GROUPING SETS ( " +
-            "(e.situacao_funcionamento), " +
-            "(e.dependencia_adm), " +
-            "(e.localizacao), " +
-            "(e.bercario), " +
-            "(e.creche), " +
-            "(e.pre_escola), " +
-            "(e.ens_fundamental_anos_iniciais), " +
-            "(e.ens_fundamental_anos_finais), " +
-            "(e.ens_medio_normal), " +
-            "(e.ens_medio_integrado), " +
-            "()" +
-        ");";
         
         PreparedStatement stmt = ConnectionFactory.getConnection().prepareStatement(sql);
         ResultSet rs = stmt.executeQuery();
