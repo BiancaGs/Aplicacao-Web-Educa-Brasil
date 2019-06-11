@@ -1283,13 +1283,14 @@ public class EscolaDAO {
             sql += "WHERE mi.co_mesorregiao IN (";
             sql += "SELECT me.co_mesorregiao ";
             sql += "FROM mesorregiao me ";
-            sql += "WHERE me.co_uf = " + codigoEstado;
+            sql += "WHERE me.co_uf = ?";
             sql += ")";
             sql += ")";
             sql += ")";
             sql += "); ";
 
             PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, codigoEstado);
 
             ResultSet rs = stmt.executeQuery();
             rs.next();
@@ -1321,10 +1322,11 @@ public class EscolaDAO {
             sql += "WHERE e.co_distrito IN ( ";
             sql += "SELECT d.co_distrito ";
             sql += "FROM distrito d ";
-            sql += "WHERE d.co_municipio = " + codigoMunicipio;
+            sql += "WHERE d.co_municipio = ?";
             sql += ")";
 
             PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setString(1, codigoMunicipio);
 
             ResultSet rs = stmt.executeQuery();
             rs.next();
