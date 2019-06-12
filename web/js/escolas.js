@@ -84,6 +84,7 @@ $(function(){
 	$(".highlight").on("click", function(){
 		if($("body").hasClass("overlay"))
             $("body").removeClass("overlay");
+        $(this).remove();
     });
     
 });
