@@ -381,8 +381,8 @@ table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, 
    ======================================================= */
 
 #hero-principal {
-    padding-top: 150px;
-    min-height: 100vh;
+    padding-top: 100px;
+    min-height: 93vh;
 
     /* Imagem */
     background-image: url(../img/fundos/fundo-lapis.jpg);
