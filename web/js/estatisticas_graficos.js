@@ -528,8 +528,8 @@ function criarMapaMunicipio(json, codigoEstado, nomeMunicipio, latitude, longitu
 	var imageSeriesTemplate = imageSeries.mapImages.template;
 	var marker = imageSeriesTemplate.createChild(am4core.Image);
 	marker.href = "https://s3-us-west-2.amazonaws.com/s.cdpn.io/t-160/marker.svg";
-	marker.width = 20;
-	marker.height = 20;
+	marker.width = 40;
+	marker.height = 40;
 	marker.nonScaling = true;
 	marker.tooltipText = "{title}";
 	marker.horizontalCenter = "middle";
